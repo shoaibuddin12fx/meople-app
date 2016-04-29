@@ -1,0 +1,234 @@
+<ion-view view-title="Create {{AcType}}">
+  <ion-content >
+    <div class="card list">
+      <div class="item item-avatar"> <img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
+        <h2>{{profile.profile.name}}</h2>
+        <p>{{profile.profile.age}}, {{profile.profile.gender}}</p>
+      </div>
+      <form id="act-form"  class="brown-i">
+        <ion-checkbox ng-model="sos.checked">SEND AS S.O.S</ion-checkbox>
+        <div class="item item-divider" ng-if="sos.checked">Maximum distance to S.O.S</div>
+        <label style="padding-right:14px" ng-if="sos.checked" class="item item-input" for="sos_distance"> <span class="input-label all-span">{{sos.distance}} km</span> 10
+          <input type="range" id="sos_distance" ng-model="sos.distance"  min="10" max="1000" value="sos.distance" style="padding-right:0">
+          1000 </label>
+        <label class="item item-input"> <span class="input-label all-span">{{AcType}} </span>
+          <input type="text" ng-model="NewActData.actname" placeholder="type here" style="color:gray" value="">
+        </label>
+        
+        <label class="item item-input item-select"> <span class="input-label all-span">Country</span>
+            <select name="ageFrom"  ng-model="gnationality.repeatSelect" ng-change="selectedEduChanged()">
+              <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
+            </select>
+          </label>
+        
+        
+        <label class="item item-input"> <span class="input-label all-span">City</span>
+            <input type="text" ng-model="NewActData.city" placeholder="type here" style="color:gray">
+          </label>
+        
+        
+        
+        
+        <!-- Start This Block is for Accomodation--> 
+        
+        <!-- Host Block --> 
+        <!-- City, Date, Accomodation Type, Price,  Capacity of Accomodation --> 
+        
+        <!-- Traveller Block --> 
+        <!-- City, Date, Accomodation Type-->
+        
+        <div ng-if="AcType == 'accomodation'">
+          <div class="item item-divider"></div>
+          <label class="item item-input item-select"> <span class="input-label all-span">You are ?</span>
+            <select name="HomeTypes" ng-model="accom.person">
+              <option value="host" selected>host</option>
+              <option value="traveller">traveller</option>
+            </select>
+          </label>
+          
+          <label class="item item-input item-icon-right">
+            <span class="input-label all-span" ng-if="accom.person == 'host'">Location</span>
+            <span class="input-label all-span" ng-if="accom.person == 'traveller'">Departure</span>
+            <button class="b-upload co-button" style="float:right" ng-click="openModal('m1')"><span>{{marker1.lat | number:2}}  {{marker1.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
+          </label>
+                    
+          <label class="item item-input item-icon-right" ng-if="accom.person == 'traveller'">
+            <span class="input-label all-span">Destination</span>
+            <button class="b-upload co-button" style="float:right" ng-click="openModal('m2')"><span>{{marker2.lat | number:2}}  {{marker2.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
+          </label>
+          
+          <label class="item item-input item-icon-right"> <span class="input-label all-span">Date</span> <span class="input-label all-span">{{dobValue | date:'yyyy/MM/dd'}}</span>
+            <ionic-datepicker input-obj="datepickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button>
+            </ionic-datepicker>
+          </label>
+          
+          <label class="item item-input item-select" for="natSelect">
+          <div class="input-label"> <span class="input-label all-span">Activity</span> </div>
+          <select name="natSelect" ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
+            <option value="" disabled selected>Select option</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>
+          </select>
+          </label>          
+          
+          <label class="item item-input item-select"> <span class="input-label all-span">Type</span>
+            <select name="HomeTypes"  ng-model="AccTypeList.repeatSelect">
+              <option ng-repeat="(k,v) in AccTypeList.availableOptions" value="{{k}}">{{k}}</option>
+            </select>
+          </label>
+          <label class="item item-input item-select" ng-if="accom.person == 'host'"> <span class="input-label all-span">Price/Person</span>
+            <input type="number" min="1" ng-model="PerPersonCharges.value" placeholder="charges" style="color:gray" value="1000">
+          </label>
+          <label class="item item-input item-select" ng-if="accom.person == 'host'"> <span class="input-label all-span">Capacity</span>
+            <select name="HomeCapacity" ng-model="HomeCapacity.value">
+              <option ng-repeat="n in [] | range:20" value="{{$index+1}}">{{$index+1}}</option>
+            </select>
+          </label>
+          <div class="item item-divider"></div>
+        </div>
+        
+        <!-- End This Block is for Accomodation--> 
+        
+        
+        
+        <!-- Start This Block is for Carpool--> 
+        
+        <!-- Driver Block --> 
+        <!-- Departure, destination, Date, Hour, Price, No of Places, Car Type --> 
+        
+        <!-- Passenger Block Start --> 
+        <!-- Departure, Destination, Date, Car Type -->
+        
+        <div ng-if="AcType == 'carpool'">
+          <div class="item item-divider"></div>
+          <label class="item item-input item-select"> <span class="input-label all-span">You are ?</span>
+            <select name="HomeTypes" ng-model="poolcar.person">
+              <option value="driver" selected>driver</option>
+              <option value="passenger">passenger</option>
+            </select>
+          </label>
+          
+          <label class="item item-input item-icon-right">
+            <span class="input-label all-span" ng-if="poolcar.person == 'driver'">Location</span>
+            <span class="input-label all-span" ng-if="poolcar.person == 'passenger'">Departure</span>
+            <button class="b-upload co-button" style="float:right" ng-click="openModal('m1')"><span>{{marker1.lat | number:2}}  {{marker1.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
+          </label>
+                    
+          <label class="item item-input item-icon-right" ng-if="poolcar.person == 'passenger'">
+            <span class="input-label all-span">Destination</span>
+            <button class="b-upload co-button" style="float:right" ng-click="openModal('m2')"><span>{{marker2.lat | number:2}}  {{marker2.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
+          </label>
+          
+          <label class="item item-input item-icon-right"> <span class="input-label all-span">Date</span> <span class="input-label all-span">{{dobValue | date:'yyyy/MM/dd'}}</span>
+            <ionic-datepicker input-obj="datepickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button>
+            </ionic-datepicker>
+          </label>
+          <label class="item item-input item-icon-right" ng-if="poolcar.person != 'passenger'"> <span class="input-label all-span">Time</span> <span class="input-label all-span">{{timeValue | date:'hh:mm'}}</span>
+            <ionic-timepicker input-obj="timePickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-clock"></i></button>
+            </ionic-timepicker>
+          </label>
+          
+          <label class="item item-input item-select" for="natSelect">
+          <div class="input-label"> <span class="input-label all-span">Activity</span> </div>
+          <select name="natSelect" ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
+            <option value="" disabled selected>Select option</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>
+          </select>
+          </label>
+          
+          <label class="item item-input item-select"> <span class="input-label all-span">Car Type</span>
+            <select name="CarType"  ng-model="CarTypeList.repeatSelect">
+              <option ng-repeat="(k,v) in CarTypeList.availableOptions" value="{{k}}">{{k}}</option>
+            </select>
+          </label>
+          <label class="item item-input item-select" ng-if="poolcar.person != 'passenger'"> <span class="input-label all-span">Price/Person</span>
+            <input type="number" min="1" ng-model="PerPersonCharges.value" placeholder="charges" style="color:gray" value="">
+          </label>
+          <label class="item item-input item-select" ng-if="poolcar.person != 'passenger'"> <span class="input-label all-span">No of Places</span>
+            <input type="number" min="1" ng-model="NoPlaces.value" placeholder="charges" style="color:gray" value="">
+          </label>
+          <div class="item item-divider"></div>
+        </div>
+        
+        <!-- End This Block is for Carpool--> 
+        
+        <!-- Start This Block is for Activity -->
+        
+        <div ng-if="AcType == 'activity'">
+          <div class="item item-divider"></div>
+          
+          
+          <label class="item item-input item-icon-right"> <span class="input-label all-span">Choose Location</span>
+            <button class="b-upload co-button" style="float:right" ng-click="openModal()"><span>{{marker.lat | number:2}}  {{marker.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
+          </label>
+          <label class="item item-input item-icon-right"> <span class="input-label all-span">Activity Date</span><span class="input-label all-span">{{dobValue | date:'yyyy/MM/dd'}}</span>
+            <ionic-datepicker input-obj="datepickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button>
+            </ionic-datepicker>
+          </label>
+          <label class="item item-input item-icon-right"> <span class="input-label all-span">Activity Time</span> <span class="input-label all-span">{{timeValue | date:'hh:mm'}}</span>
+            <ionic-timepicker input-obj="timePickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-clock"></i></button>
+            </ionic-timepicker>
+          </label>
+          <label class="item item-input item-select" for="natSelect">
+          <div class="input-label"> <span class="input-label all-span">Activity type</span> </div>
+          <select name="natSelect" ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
+            <option value="" disabled selected>Select option</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
+            <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>
+          </select>
+          </label>
+          <label class="item item-input item-select"> <span class="input-label all-span">Age Group</span>
+            <select name="ageTo"  ng-model="ageGroup.value" ng-change="selectedEduChanged()">
+              <option value="any">Any</option>
+              <option value="only 18" selected>only 18</option>
+              <option value="18 to 25">18 - 25</option>
+              <option value="25 to 30">25 - 30</option>
+              <option value="30 to 40">30 - 40</option>
+              <option value="older than 40">older than 40</option>
+            </select>
+          </label>
+          <label class="item item-input item-select"> <span class="input-label all-span">Language</span>
+            <select name="language"  ng-model="languages.repeatSelect" ng-change="selectedEduChanged()">
+              <option ng-repeat="(k,v) in languages.availableOptions" value="{{k}}">{{k}}</option>
+            </select>
+          </label>
+          <label class="item item-input item-select"> <span class="input-label all-span">I'm Looking for</span>
+            <select name="Lookingfor"  ng-model="Lookingfor.value" ng-change="selectedEduChanged()">
+              <option value="male">male</option>
+              <option value="female">female</option>
+              <option value="both">both</option>
+            </select>
+          </label>
+          <label style="padding-right:14px" class="item item-input item-select"> <span class="input-label all-span">Person upto</span>
+            <select name="rPersons" ng-model="rPersons.value" ng-change="selectedEduChanged()">
+              <option ng-repeat="n in [] | range:10" value="{{$index+1}}">{{$index+1}}</option>
+            </select>
+          </label>
+          <div class="item item-divider"></div>
+        </div>
+        
+        <!-- End This Block is for Activity-->
+        
+        <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="createActivity()"> CREATE </button>
+      </form>
+    </div>
+  </ion-content>
+  <!--<div class="bar bar-footer" style="background:#0F6A93">
+      <div class="title" ng-click="createActivity()" style="cursor:pointer;color:#FFFFFF">CREATE</div>
+    </div> --> 
+</ion-view>

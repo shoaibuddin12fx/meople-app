@@ -1,0 +1,15 @@
+<ion-modal-view id="mapd.html">
+<!--<ion-view view-title="Location"> -->
+
+<ion-header-bar>
+    <h1 class="title">location</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeModal()">Set</button>
+    </div>
+  </ion-header-bar>
+  <ion-content scroll="false">
+      <map id="foomap" zoom="15" center='[{{coords.lat}}, {{coords.long}}]' zoom="15" on-center-changed="centerChanged()">
+        <marker position="[{{marker.lat}}, {{marker.long}}]" centered="true"></marker> 
+      </map>
+  </ion-content>      
+</ion-modal-view>

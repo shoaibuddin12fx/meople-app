@@ -1,0 +1,18 @@
+<ion-view hide-nav-bar="true" cache-view="false" hide-back-button="true" view-title="Login" class="login-page">
+<ion-content>
+<div id="wrapper">
+<div style="height:180px"></div>
+  <form id="login-form" ng-submit="doRegister()">
+    <input type="text" ng-model="NewloginData.username" placeholder="Email">
+    <input type="password" ng-model="NewloginData.password" placeholder="password" ng-hide="hide">
+    <input type="password" ng-model="NewloginData.newpassword" placeholder="new password" ng-show="show">
+    <button class="submit-button button button-block" type="submit">{{Signin}}</button>
+  </form>
+  <div class="NetworkNotes">{{NetworkMsg}}</div>
+  <ul class="bottom-links">
+    <li><a href="#" ng-click="returnToLogin()">Cancel</a></li>
+   
+  </ul>
+</div>
+</ion-content>
+</ion-view>

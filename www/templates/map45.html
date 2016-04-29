@@ -1,0 +1,15 @@
+<ion-view view-title="Google Maps V3 example">
+<ion-header-bar>
+    <h1 class="title">your location</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeTerms()">Close</button>
+    </div>
+  </ion-header-bar>
+    <ion-content data-tap-disabled="true">
+    
+      <ng-map style="height:calc(100vh - 45px)" ng-model="coords" zoom="11" center="[{{coords.lat}}, {{coords.long}}]">
+        <marker position="[{{coords.lat}}, {{coords.long}}]" title="You are here"></marker>
+      </ng-map>
+    
+    </ion-content>
+</ion-view>

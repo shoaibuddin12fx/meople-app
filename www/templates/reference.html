@@ -1,0 +1,50 @@
+<ion-view view-title="Matches">
+  <ion-content>
+    <div class="card list">
+      <div class="item item-divider">Match Requests Received</div>
+      <div ng-repeat="(tkey,tvalue) in inboxlist">
+        <li class="item item-avatar">
+        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />        
+          <h2>{{tvalue.name}}</h2>          
+          <p>#{{$index+1}}</p>
+          <div class="ActMemberInfoIcon">
+              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
+              <i ng-click="AcceptRequest(inboxlist, $index, tkey)" class="icon ion-checkmark-round"></i>
+              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
+          </div>
+            
+        </li>
+        
+      </div>
+    </div>
+    <div class="card list">
+      <div class="item item-divider">Match Requests sent</div>
+      <div ng-repeat="(tkey,tvalue) in inboxlistd">
+        <li class="item item-avatar">
+        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
+          <h2>{{tvalue.name}}</h2>
+          <p>#{{$index+1}}</p>
+          <div class="ActMemberInfoIcon">
+              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
+              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
+          </div>
+        </li>
+      </div>
+    </div>
+    <div class="card list">
+      <div class="item item-divider">Matches</div>
+      <div ng-repeat="(tkey,tvalue) in inboxlistf">
+        
+        <li class="item item-avatar">
+        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
+          <h2>{{tvalue.name}}</h2>
+          <p>#{{$index+1}}</p>
+          <div class="ActMemberInfoIcon">
+              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
+              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
+          </div>
+        </li>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

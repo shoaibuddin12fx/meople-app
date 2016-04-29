@@ -1,0 +1,17 @@
+<ion-view view-title="Chat List">
+  <ion-content>
+    
+    
+    
+    <div class="card list">
+      <a class="item item-avatar small-span" href="#/app/chat/{{tkey}}" ng-repeat="(tkey,tvalue) in chatlist">
+       <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}">
+      <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+      <h2>{{tvalue.name}}</h2>
+      <span>tap to start chat</span>
+      </a>
+      </div>
+    
+    
+  </ion-content>
+</ion-view>

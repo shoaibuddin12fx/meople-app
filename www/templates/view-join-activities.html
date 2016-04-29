@@ -1,0 +1,20 @@
+<ion-view view-title="Activity" cache-view="false">
+	
+ <ion-content overflow-scroll="true">
+          <div class="list card brown-i">
+              <div class="item item-avatar item-icon-right">
+                <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
+                <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/> on {{res.act.date | date:'yyyy/MM/dd'}}  | {{res.act.time}} (24hr)</h4>
+     		<i ng-if="show" ng-click="openModal()" class="icon ion-edit"></i>
+            </div>
+
+              <div class="item item-image">
+                <ng-map zoom="15" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
+                    <marker position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+                </ng-map>
+              </div>
+            </div>
+          
+          </ion-content>
+</ion-view>

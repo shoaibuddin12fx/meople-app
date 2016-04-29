@@ -1,0 +1,32 @@
+<ion-view hide-nav-bar="true" cache-view="false" hide-back-button="true" view-title="Login" class="login-page">
+<div class="bar bar-header">
+  <button class="button button-icon icon ion-chevron-left" ng-click="returnToLogin()"></button>
+  <div class="h1 title">Signup</div>  
+</div>
+  <ion-content>
+    <div id="wrapper"> <div style="height:80px"></div>
+    <ionic-datepicker input-obj="datepickerObject">
+          <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+        </ionic-datepicker>
+      <form id="login-form" ng-submit="doRegister()">
+        
+        <input type="text" placeholder="your age - {{yAge}}" disabled>
+        <input type="text" ng-model="NewloginData.fullname" placeholder="Full name" required>
+        <input type="text" ng-model="NewloginData.username" placeholder="Email" required>
+        <input type="password" ng-model="NewloginData.password" placeholder="password" required>
+          
+        <ion-toggle toggle-class="toggle-dark" ng-model="NewloginData.checked" ng-checked="NewloginData.checked" ng-click="test()"> 
+        <span ng-if="NewloginData.checked">Male</span>
+        <span ng-if="!NewloginData.checked">Female</span></ion-toggle>
+       
+        <button class="submit-button button button-block" type="submit" ng-disabled="showSubmit" >{{Signin}}</button>
+      </form>      
+      <div class="NetworkNotes" ng-show="showSubmit">{{NetworkMsg}}</div>
+      <!-- <div style="height:30px"></div> -->
+      <ul class="bottom-links">
+        <!-- <li><a href="#" ng-click="terms()">terms and condition</a></li> -->
+        <li><a href="#" ng-click="returnToLogin()">Cancel</a></li>
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>

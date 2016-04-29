@@ -1,0 +1,27 @@
+<ion-view view-title="Group Chat" ng-init="">
+<ion-content class="chat-ion-content">
+    <ul class="list">
+    <li>
+    <div class="item item-avatar">
+        <img ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}"> <img ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}">
+        <h2>{{res.act.acName}}</h2>
+        <p>{{res.act.acdesc}}</p>
+      </div>
+    </li>
+    </ul>
+    <div class="item item-divider item-icon-right"> {{res.act.actype}} - Time: {{res.act.actime}} <i class="icon ion-chatbubble-working"></i> </div>
+        
+      <a class="item small-span item-avatar-left" ng-repeat="(tkey,tvalue) in convlist" href="#/app/search/{{tvalue.uid}}">
+        
+        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}">
+        <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+        <span style="color:blue; text-decoration:underline">{{tvalue.name}}</span><br/>
+        <span>{{tvalue.msg}}</span>
+      </a>
+    
+  </ion-content>
+   <form id="msg-form" class="message-window" ng-submit="sendmsg()">
+    <input type="text" ng-model="msg.text" placeholder="message text">
+    <button class="submit-button button button-dark" type="submit"> <i class="fa fa-paper-plane"></i></button>
+  </form>
+</ion-view>

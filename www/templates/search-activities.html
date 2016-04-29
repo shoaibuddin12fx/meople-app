@@ -1,0 +1,34 @@
+<ion-view view-title="Search Activity">
+
+  <ion-content style="height:calc(100% - 100px)">
+    
+     
+   <div class="card list">
+      <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Select Activity Date</span><span class="input-label" style="text-transform:uppercase; font-size:11px">{{dobValue | date:'yyyy/MM/dd'}}</span>
+          <ionic-datepicker input-obj="datepickerObject" style="width:100%">          
+              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button></ionic-datepicker>
+        </label>      
+    </div>
+    
+    <div class="card list"> <a class="item item-avatar small-span item-icon-left item-icon-right brown-i" href="#/app/view-activities/{{tkey}}" ng-repeat="(tkey,tvalue) in acts" ng-if="tvalue.uid != myuid"> 
+    <!--<img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}"> -->
+      <i ng-if="tvalue.act.params.its != 'accomodation' && tvalue.act.params.its != 'carpool'" class="icon ion-android-calendar"></i>
+      <i ng-if="tvalue.act.params.its == 'accomodation'" class="icon ion-home"></i>
+      <i ng-if="tvalue.act.params.its == 'carpool'"class="icon ion-android-car"></i>      
+      <h2>{{tvalue.act.Name}}</h2>
+      <span style="float:left">{{tvalue.act.city}} - {{tvalue.act.type}} </span>    
+      <!-- <span ng-if="tvalue.count"> {{tvalue.count}} member </span>
+      <span ng-if="!tvalue.count"> 0 member </span> -->
+      <!--<span style="float:right"> - {{tvalue.act.date | date:'yyyy/MM/dd'}}</span> -->
+            <span style="float:right"> - {{tvalue.act.params.its}}</span>
+      <i class="icon ion-chevron-right"></i> 
+      
+      </a> </div>
+    
+      
+      
+  </ion-content>
+    <div class="bar bar-footer" style="background:#0F6A93">
+      <div class="title" style="cursor:pointer;color:#FFFFFF" ng-click="refreshList()">REFRESH</div>
+    </div>
+</ion-view>

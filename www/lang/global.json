@@ -1,0 +1,135 @@
+{
+   "Education":{
+      "AA":"Associate of Arts",
+      "AAA":"Associate of Applied Arts",
+      "AAS":"Associate of Aplied Science",
+      "AE":"Associate of Engineering",
+      "APS":"Associate of political Science",
+      "AS":"Associate of Science",
+      "BA":"Bachelor of Arts",
+      "BArch":"Bachelor of Architecture",
+      "BBA":"Bachelor of Business Administration",
+      "BFA":"Bachelor of Fine Arts",
+      "BS":"Bachelor of Science",
+      "EdD":"Doctor of Education",
+      "LLM":"Master of Laws",
+      "MA":"Master of Arts",
+      "MBA":"Master of Business Administration",
+      "MD":"Doctor of Medicine",
+      "MPhil":"Master of Philosophy",
+      "MRes":"Master of Research",
+      "MS":"Master of Science",
+      "PhD":"Doctor of Philosophy"
+   },
+   "Status":{
+      "Engaged":true,
+      "Married":true,
+      "Single":true
+   },
+   "actypes":{
+      "combineStudy":true,
+      "getTogather":true,
+      "greenEnviroment":true,
+      "helpAFriend":true,
+      "homeAlone":true,
+      "indoorGame":true,
+      "letsCook":true,
+      "myDate":true,
+      "officeWork":true,
+      "outdoorGame":true,
+      "party":true
+   },
+   "CarTypes":{
+      "sport":true,
+      "luxury":true,
+      "large":true,
+      "MidSize":true,
+      "Small":true      
+   },
+   "AccTypes":{
+      "villa":true,
+      "apartment":true,
+      "cottage":true,
+      "pansion":true,
+      "pod":true      
+   },   
+   "hobbies2":{
+      "Hobbies1":{
+         "Drinks":"icon/food-drink-wine-glasses-outline-stroke-128.png",
+         "Fashion":"icon/Shoes_1-128.png",
+         "Fitness":"icon/sports-apparel-28-128.png",
+         "Literature":"icon/Library_1-128.png",
+         "Cinema":"icon/23.Videos-128.png",
+         "Museume":"icon/museum.png",         
+         "Songs":"icon/icon-headphone-128.png",
+		 "Pets":"icon/pets.png",
+		 "Politics":"icon/politics.png",
+		 "Technologies":"icon/technology-128.png"
+      },
+      "Hobbies2":{
+         "Classic":"icon/icon-music-note-128.png",
+         "Disco":"icon/app_type_disco_512px_GREY.png",
+         "Electro":"icon/electro_devices.png",
+         "Guitar":"icon/Music_Band_2-128.png",
+         "Jazz":"icon/black_7_music_node-128.png",
+         "Piano":"icon/multimedia-04-128.png",
+         "Rock":"icon/GuitarPro5.png",
+		 "Reggae":"icon/rock_music.png",
+         "Rap":"icon/sound_speaker-128.png"
+      },
+      "Hobbies3":{
+         "Chatting":"icon/bubble-128.png",
+         "Cooking":"icon/Restaurant_1-128.png",
+         "Latina":"icon/dancer_1-128.png",
+         "Designing":"icon/Streamline-26-128.png",
+         "Driving":"icon/13-128.png",
+         "Gardening":"icon/gardening_512pxGREY.png",
+		 "Hiking":"icon/hiking-128.png",
+         "TV Shows":"icon/39-128.png",
+		 "Riding":"icon/riding-128.png",
+		 "Running":"icon/run-128.png",
+         "Theatre":"icon/Theatre_2-128.png"
+		 
+      },
+      "Hobbies4":{
+         "Base_ball":"icon/baseball-128.png",
+         "Basket_Ball":"icon/sport-128.png",
+         "Cycling":"icon/Bike-128.png",
+         "Painting":"icon/17.Brush-128.png",
+         "Reading":"icon/internt_web_technology-05-128.png",
+         "Shopping":"icon/09.Handbag-128.png",
+         "Surfing":"icon/globe-128.png",
+		 "Games":"icon/game.png",
+		 "Oriental":"icon/oriental.png",
+		 "Camping":"icon/Tent-512.png",
+		 "Clubbing":"icon/clubbing.png",
+         "Travelling":"icon/11-128.png"
+      },
+      "Hobbies5":{
+         "Golf":"icon/golf-128.png",
+         "Hockey":"icon/hockey.png",         
+         "Skate_Board":"icon/scate.png",
+         "Skiing":"icon/skiing-128.png",
+         "Soccer":"icon/02_Soccer-128.png",
+         "Swimming":"icon/swimming-128.png",
+         "Tennis":"icon/Tennis_2-128.png",
+		 "Rugby":"icon/rugby-128.png",
+		 "Handball": "icon/handball-128.png",
+		 "Video Games":"icon/jostic-128.png",
+		 "Ping Pong":"icon/ping-128.png",
+		 "Martial Arts":"icon/tobi-geri.png"
+      }
+   },
+   "languages":{
+      "Simplified Chinese":"flag-cn",
+      "Traditional Chinese":"flag-cn",
+      "arabic":"flag-sa",
+      "english":"flag-us",
+      "french":"flag-fr",
+      "hindi":"flag-in",
+      "portuguese":"flag-pt",
+      "russian":"flag-ru",
+      "spanish":"flag-es",
+      "turkish":"flag-tr"
+   }
+}

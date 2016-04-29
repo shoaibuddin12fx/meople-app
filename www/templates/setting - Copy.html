@@ -1,0 +1,199 @@
+<ion-view view-title="Settings">
+
+<div class="dob-wrapper"  ng-show="!hasdob">
+    <ionic-datepicker input-obj="datepickerObject">
+          <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+        </ionic-datepicker>
+        <span></span>
+    </div>
+
+<ion-tabs class="tabs-icon-only" ng-show="hasdob">
+    <ion-tab icon="fa fa-search">
+      <!-- Tab 1 content -->
+      	  <ion-view>
+        	<ion-content>
+            	      <div class="item item-divider">Maximal distance of research:</div>
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.distance}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">{{ilist2.distance}} km</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.distance}}" ng-model="ilist2.distance"  min="0" max="100" value="ilist2.distance"></label>
+      
+      <div class="item item-divider">Show Me:</div>
+      
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.maleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Male Age: ({{ilist2.maleage}})</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.maleage}}" ng-model="ilist2.maleage"  min="18" max="100" value="ilist2.maleage"></label>
+      
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.femaleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Female Age: ({{ilist2.femaleage}})</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.femaleage}}" ng-model="ilist2.femaleage"  min="18" max="100" value="ilist2.femaleage"></label>
+          <ion-toggle ng-model="ilist2.male"   toggle-class="toggle-calm"><span style="text-transform:uppercase; font-size:11px; font-weight:bold">Male</span></ion-toggle>
+	  <ion-toggle ng-model="ilist2.female" toggle-class="toggle-calm"><span style="text-transform:uppercase; font-size:11px; font-weight:bold">Female</span></ion-toggle>   
+
+            </ion-content>
+          </ion-view>
+          </ion-tab>
+          <ion-tab icon="fa fa-flag-checkered"> 
+            <!-- Tab 2 content -->
+            <ion-view>
+              <ion-content>
+              	 <div class="item item-divider">Languages</div>
+    
+    
+    
+    <ul>
+    <li ng-model="ilist.languages">
+          <label class="item item-input" for="{{ilist}}-{{ilist.languages}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Languages</span> </label>
+          <div class="i-font-style-1">
+            <div ng-repeat="(k,v) in ilist.languages">
+              <div class="flag {{v}}" ng-if="k != 'i'"></div>
+              <span ng-if="k != 'i'">{{k}}</span></div>
+          </div>
+          <ion-list>
+            <div ng-model="groups[1]">
+              <ion-item class="item-stable"
+                    ng-click="toggleGroup(groups[1])"
+                    ng-class="{active: isGroupShown(groups[1])}"> <i class="icon" ng-class="isGroupShown(groups[1]) ? 'ion-minus' : 'ion-plus'"></i> &nbsp;
+                Select {{groups[1].name}} </ion-item>
+              <ion-item class="item-accordion" style="padding-left:0;padding-right:0"
+                    ng-repeat="(key, value) in groups[1].items"
+                    ng-show="isGroupShown(groups[1])">
+                <ul class="toggle-calm">
+                  <li class="item item-toggle" >
+                    <div class="flag {{value}}"></div>
+                    {{key}}<span ng-if="lang.checked" style="font-size:11px"> selected</span>
+                    <label class="toggle toggle-assertive" for="{{key}}-{{$index}}">
+                    <input type="checkbox" id="{{key}}-{{$index}}" ng-model="lang.checked"
+                    ng-checked="lang.checked" ng-change="langValue(key, lang.checked, value)">
+                    <div class="track">
+                      <div class="handle"></div>
+                    </div>
+                    </label>
+                  </li>
+                </ul>
+              </ion-item>
+            </div>
+          </ion-list>
+        </li>
+        </ul>
+              </ion-content>
+            </ion-view>
+          </ion-tab>
+          <ion-tab icon="fa fa-exclamation-circle"> 
+            <!-- Tab 3 content -->
+            <ion-view>
+           		   <ion-content>
+              <li style="height:40px"></li>
+      <li>
+      	<button class="button button-dark" style="width:45%;font-size: 3vw;" ng-click="resetPassword()"> Modify password </button>
+        <button class="button" style="width:45%;font-size: 3vw;" ng-click="DeleteProfile()"> Delete my Profile </button> 
+      </li>
+              
+              </ion-content>
+            </ion-view>
+          </ion-tab>
+          <ion-tab icon="fa fa-camera"> 
+            <!-- Tab 4 content -->
+            <ion-view>
+              
+            </ion-view>
+          </ion-tab>
+  </ion-tabs>
+
+
+
+
+
+
+
+
+  <ion-content>
+   
+   <div class="dob-wrapper"  ng-show="!hasdob">
+    <ionic-datepicker input-obj="datepickerObject">
+          <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+        </ionic-datepicker>
+        <span></span>
+    </div>
+
+    <ul class="list" ng-show="hasdob" ng-model="ilist2">
+      <div class="item item-divider">Maximal distance of research:</div>
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.distance}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">{{ilist2.distance}} km</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.distance}}" ng-model="ilist2.distance"  min="0" max="100" value="ilist2.distance"></label>
+      
+      <div class="item item-divider">Show Me:</div>
+      
+      <ion-toggle ng-model="ilist2.male"   toggle-class="toggle-calm"><span style="text-transform:uppercase; font-size:11px; font-weight:bold">Male</span></ion-toggle>
+	  <ion-toggle ng-model="ilist2.female" toggle-class="toggle-calm"><span style="text-transform:uppercase; font-size:11px; font-weight:bold">Female</span></ion-toggle>
+      
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.maleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Male Age: ({{ilist2.maleage}})</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.maleage}}" ng-model="ilist2.maleage"  min="18" max="100" value="ilist2.maleage"></label>
+      
+      <label class="item item-input" for="{{ilist2}}-{{ilist2.femaleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Female Age: ({{ilist2.femaleage}})</span>
+	      <input type="range" id="{{ilist2}}-{{ilist2.femaleage}}" ng-model="ilist2.femaleage"  min="18" max="100" value="ilist2.femaleage"></label>   
+      
+          
+          
+          
+    </ul>
+    
+    
+    <ul class="list" ng-show="hasdob" ng-model="ilist">
+     
+    <div class="item item-divider">constants</div>
+    <li>
+        <label class="item item-input" for="{{ilist}}-{{ilist.location}}">
+         <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">location</span>
+         <button class="b-upload" id="{{ilist}}-{{ilist.location}}" ng-click="mapshow()">
+          <i class="fa fa-pencil-square-o"></i></button>
+          <span style="font-style: italic;font-size:11px">[ {{ilist.location.lat}} , {{ilist.location.long}} ]</span>
+        </label>
+    </li>
+    
+    
+    <div class="item item-divider">Languages</div>
+    
+    
+    
+    
+    <li ng-model="ilist.languages">
+          <label class="item item-input" for="{{ilist}}-{{ilist.languages}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Languages</span> </label>
+          <div class="i-font-style-1">
+            <div ng-repeat="(k,v) in ilist.languages">
+              <div class="flag {{v}}" ng-if="k != 'i'"></div>
+              <span ng-if="k != 'i'">{{k}}</span></div>
+          </div>
+          <ion-list>
+            <div ng-model="groups[1]">
+              <ion-item class="item-stable"
+                    ng-click="toggleGroup(groups[1])"
+                    ng-class="{active: isGroupShown(groups[1])}"> <i class="icon" ng-class="isGroupShown(groups[1]) ? 'ion-minus' : 'ion-plus'"></i> &nbsp;
+                Select {{groups[1].name}} </ion-item>
+              <ion-item class="item-accordion" style="padding-left:0;padding-right:0"
+                    ng-repeat="(key, value) in groups[1].items"
+                    ng-show="isGroupShown(groups[1])">
+                <ul class="toggle-calm">
+                  <li class="item item-toggle" >
+                    <div class="flag {{value}}"></div>
+                    {{key}}<span ng-if="lang.checked" style="font-size:11px"> selected</span>
+                    <label class="toggle toggle-assertive" for="{{key}}-{{$index}}">
+                    <input type="checkbox" id="{{key}}-{{$index}}" ng-model="lang.checked"
+                    ng-checked="lang.checked" ng-change="langValue(key, lang.checked, value)">
+                    <div class="track">
+                      <div class="handle"></div>
+                    </div>
+                    </label>
+                  </li>
+                </ul>
+              </ion-item>
+            </div>
+          </ion-list>
+        </li>
+         
+    <!-- <div class="item item-divider">Profile Edits</div> -->
+      <li style="height:40px"></li>
+      <li>
+      	<button class="button button-dark" style="width:45%;font-size: 3vw;" ng-click="resetPassword()"> Modify password </button>
+        <button class="button" style="width:45%;font-size: 3vw;" ng-click="DeleteProfile()"> Delete my Profile </button> 
+      </li>
+      
+    </ul>
+  
+  </ion-content>
+</ion-view>

@@ -1,0 +1,27 @@
+<ion-view view-title="Chat to" ng-init="">
+<ion-content class="chat-ion-content">
+    <ul class="list" >
+      <li class="item small-span" ng-class="checkPuid(tvalue.uid)" ng-repeat="(tkey,tvalue) in convlist">
+        
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}">
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}">
+        
+        <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{aprofile.profile.picture}}">
+        <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}">
+        <h2 ng-if="tvalue.msg">{{tvalue.msg}}</h2>
+        <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}">  
+        <span ng-if="pid.muid == tvalue.uid">me</span>
+        <span ng-if="pid.fuid == tvalue.uid">{{aprofile.profile.name}}</span>
+        
+        
+        
+      </li>
+    </ul>
+  </ion-content>
+     <form id="msg-form" class="message-window" ng-submit="sendmsg()">
+        <input type="text" ng-model="msg.text" placeholder="message text">
+        <button class="submit-button button" type="submit" style="background: #0F6A93;color:#FFFFFF"> <i class="fa fa-paper-plane"></i></button>       
+     </form>
+     <button class="submit-button button button-dark pull-right chat-pic-button" ng-click="sendMsgImage()"> <i class="fa fa-camera"></i></button>
+      
+</ion-view>

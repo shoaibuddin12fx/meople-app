@@ -1,0 +1,16 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <h1 class="title">Date Required</h1>
+    <div class="buttons">
+      <!-- <button class="button button-clear" ng-click="closeIt()">Close</button> -->
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <div class="dob-wrapper">
+    <ionic-datepicker input-obj="datepickerObject">
+          <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+        </ionic-datepicker>
+        <span></span>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,111 @@
+<ion-view class="Profile-page">
+  <ion-tabs class="tabs-icon-only">
+    <ion-tab icon="icon ion-grid">
+      <!-- Tab 1 content -->
+      <ion-view>
+        <ion-content overflow-scroll="true">
+          <div class="list card">
+
+              <div class="item item-avatar">
+                <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <h2>{{ilist.profile.name}}</h2>
+                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>                
+              </div>
+
+              <div class="item item-image">
+                <img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') !== -1" src="{{ilist.profile.cover}}" /> <img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.cover}}" />
+              </div>
+              <a class="item item-icon-left brown-i">
+                <i class="icon ion-university"></i>
+                {{ ilist.profile['education'] }}
+              </a>
+
+            </div>
+          
+          </ion-content>
+          </ion-view>
+          </ion-tab>
+          <ion-tab title="Activities" icon="icon ion-person"> 
+            <!-- Tab 2 content -->
+            <ion-view>
+              <ion-content overflow-scroll="true"> 
+                <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher> -->
+                <ul class="card list brown-i">
+                <div class="item item-avatar">
+                <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <h2>{{ilist.profile.name}}</h2>
+                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>                
+              </div>
+                  <div class="item item-divider">Personal</div>
+                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Name</span>
+                    <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']">
+                    <i class="icon ion-person"></i> </label>
+                  <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">what do you do?</span>
+                    <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']">
+                    <i class="icon ion-card"></i> </label>          
+                  <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">About yourself</span>
+                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']"></label>    
+                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">education</span>
+                    <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" readonly>
+                    <i class="icon ion-university"></i> </label>                  
+                  <label class="item item-input item-icon-right" for="{{ilist}}-nationality"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">nationality</span>
+                    <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
+                    <i class="icon ion-ios-flag"></i> </label>
+                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Status</span>
+                    <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
+                    <i class="icon ion-ios-heart"></i> </label>
+                 <a ng-click="openModal()" class="item  item-avatar item-icon-right"><h4 style="font-size: 16px;text-transform: uppercase;font-weight: bold;margin-top: 10px;color:#0F6A93">Edit Profile</h4> <i class="icon ion-chevron-up"></i>  </a>     
+                  
+                </ul>
+              </ion-content>
+            </ion-view>
+          </ion-tab>
+          <ion-tab icon="icon ion-coffee"> 
+            <!-- Tab 3 content -->
+            
+            <ion-view>            
+              <ion-content overflow-scroll="true">
+               <ul class="card list brown-i">
+                <div class="item item-avatar">
+                <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <h2>{{ilist.profile.name}}</h2>
+                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>                
+              </div>
+                  <div class="item item-divider">Hobbies</div>
+              <div class="item  item-avatar item-icon-right" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'">
+                <img src="{{value}}"  />    {{key}}  <i style="cursor:pointer" ng-click="hobValue(key, 0, value)" class="icon ion-close-round"></i>  </div>
+              <a href="#/app/profile/edit/hobbies" class="item  item-avatar item-icon-right"><h4 style="font-size: 16px;text-transform: uppercase;font-weight: bold;margin-top: 10px;color:#0F6A93">Select Hobbies</h4> <i class="icon ion-chevron-right"></i>  </a>  
+                </ul>
+              
+              
+              
+               
+              </ion-content>             
+            </ion-view>
+          </ion-tab>
+          <ion-tab icon="icon ion-camera"> 
+            <!-- Tab 4 content -->
+            <ion-view>
+              <ion-content overflow-scroll="true"> 
+                <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"> </ion-refresher> -->
+                
+                <div class="card list">
+                <div class="item item-divider">Pictures</div>
+                <li class="item item-thumbnail-left">
+                  <img src="cover.jpg">
+                  <h2>Pretty Hate Machine</h2>
+                  <p>Nine Inch Nails</p>
+                </li>
+                
+                
+                
+                 <a class="item small-span p-photo-list" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}"> <span class="remove-img" ng-click="removeImage(key)"><i class="icon ion-close-round"></i></span> </a> 
+                <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="photoUpload()"> UPLOAD PICTURE </button></div>
+              </ion-content>
+              <!--<div class="bar bar-footer" style="background:#0F6A93">
+                <div ng-click="photoUpload()" class="title" style="color:#FFFFFF">UPLOAD PICTURE</div>
+              </div> -->             
+            </ion-view>
+          </ion-tab>
+  </ion-tabs>
+</ion-view>

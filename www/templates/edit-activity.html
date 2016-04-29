@@ -1,0 +1,55 @@
+ <ion-modal-view id="edit-profile.html">
+    <ion-header-bar>
+      <h1 class="title">Update Activity</h1>
+      <div class="buttons">
+          <button class="button button-clear" ng-click="closeModal()">Close</button>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+      <div class="card list">
+      <div class="item item-avatar item-icon-right">
+                <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
+                <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/> on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</h4>
+     		</div>
+   		<form id="act-form">
+        <div class="item item-divider">Activity at ...</div>
+        <label class="item item-input"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">City Name</span>
+          <input type="text" ng-model="NewActData.city" placeholder="type here" style="color:gray">
+        </label>
+        <div class="item item-divider">Activity on ...</div>
+        <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity Date</span><span class="input-label" style="text-transform:uppercase; font-size:11px">{{dobValue | date:'yyyy/MM/dd'}}</span>
+          <ionic-datepicker input-obj="datepickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button></ionic-datepicker>
+              
+        </label>
+        <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity Time</span> <span class="input-label" style="text-transform:uppercase; font-size:11px">{{timeValue | date:'hh:mm'}}</span>
+          <ionic-timepicker input-obj="timePickerObject" style="width:100%">
+              <button class="b-upload" style="float:right"><i class="icon ion-clock"></i></button></ionic-timepicker>              
+        </label>
+        
+        <div class="item item-divider">Activity for ...</div>
+        <label class="item item-input item-select" for="natSelect">
+            <div class="input-label">
+              <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity type</span>
+            </div>
+            <select name="natSelect" ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
+              <option value="" disabled selected>Select option</option>    
+              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
+              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
+              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
+              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
+              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>    
+            </select>
+        </label>
+          
+        
+        
+          <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="updateActivity()"> UPDATE </button>
+        
+      </form>   
+    </div>
+    </ion-content>
+   
+  </div>
+  </ion-modal-view>

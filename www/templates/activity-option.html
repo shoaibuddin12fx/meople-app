@@ -1,0 +1,48 @@
+<ion-view view-title="Activites">
+  <ion-content>
+    <div class="card list brown-i">
+      <a class="item item-icon-left item-icon-right" href="#/app/activities/{{authID}}">
+        <i class="icon ion-android-person"></i>
+        Show My Activities
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" href="#/app/create-activities/activity/{{authID}}">
+        <i class="icon ion-android-calendar"></i>
+        Create My Activity
+        <i class="icon ion-chevron-right"></i>
+      </a>      
+      <a class="item item-icon-left item-icon-right" href="#/app/group-activities/{{authID}}">
+        <i class="icon ion-android-calendar"></i>
+        Join A Group Activity
+        <i class="icon ion-chevron-right"></i>
+      </a>      
+      <a class="item item-icon-left item-icon-right" href="#/app/activities-search">
+        <i class="icon ion-search"></i>
+        Search Other Activities
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" href="#/app/create-activities/accomodation/{{authID}}">
+        <i class="icon ion-home"></i>
+        Accomodation
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" href="#/app/create-activities/carpool/{{authID}}">
+        <i class="icon ion-android-car"></i>
+        Carpool
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <a class="item item-icon-left item-icon-right" href="#/app/activities-sent/sent">
+        <i class="icon ion-arrow-return-right"></i>
+        Sent Requests
+        <i class="icon ion-chevron-right"></i>
+      </a>
+      <li class="item item-icon-left item-icon-right sos-outer" ng-if="sosExist">
+        <i class="icon ion-help-buoy"></i>
+        SOS {{delmsg}}
+        <span class="trash-sos"><i ng-click="deleteSos(sosKey)" class="icon ion-trash-b"></i></span>
+        <i ng-click="gotoActivity(sosKey)" class="icon ion-chevron-right"></i>
+      </li>
+    </div>
+      
+  </ion-content>  
+</ion-view>

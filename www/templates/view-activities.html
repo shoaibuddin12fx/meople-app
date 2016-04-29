@@ -1,0 +1,135 @@
+<ion-view view-title="Activity" cache-view="false">
+  <ion-tabs class="tabs-icon-only">
+    <ion-tab icon="icon ion-grid">
+      <!-- Tab 1 content -->
+      
+      <ion-view>
+        <ion-content overflow-scroll="true">
+          <div class="list card brown-i">
+            <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+              <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
+              <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/>
+                on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</h4>
+              <i ng-if="show" ng-click="openModal()" class="icon ion-edit"></i> </div>
+            <div class="item item-image">
+            
+              <ng-map zoom="11" ng-if="marker2.lat == null" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
+                <marker position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+              </ng-map>
+            	
+              <ng-map zoom="11" ng-if="marker2.lat != null"
+                center="[{{coords.lat}}, {{coords.long}}]"
+                style="height:90%" >
+                <directions
+                  draggable="true"
+                  panel="directions-panel"
+                  travel-mode="DRIVING"
+                  origin="[{{coords.lat}}, {{coords.long}}]"
+                  destination="[{{marker2.lat}}, {{marker2.long}}]">
+                </directions>
+                <custom-marker id="start"
+                  position="[{{coords.lat}}, {{coords.long}}]">
+                  <div> Departure </div>
+                </custom-marker>
+                <custom-marker id="end"
+                  position="[{{marker2.lat}}, {{marker2.long}}]">
+                  <div> Destination </div>
+                </custom-marker>
+              </ng-map>
+              
+            
+            </div>
+            
+            <a ng-if="show" ng-hide="twoMarkers" ng-click="change_location()" class="item item-icon-left item-icon-right brown-i" style="cursor:pointer"> <i class="icon ion-android-map"></i>
+            <h4 style="text-transform: uppercase;font-weight: bold;color:#0F6A93">{{editLabel}} </h4>
+            <i class="icon {{m_icon}}"></i> </a>
+            
+            <a ng-click="joinActivityAs()" ng-show='!show && status != "pending"' class="item item-icon-left item-icon-right brown-i" style="cursor:pointer"> <i class="icon ion-android-calendar"></i>
+            <h4 style="text-transform: uppercase;font-weight: bold;color:#0F6A93">JOIN THIS ACTIVITY</h4>
+            <i class="icon ion-chevron-right"></i> </a> 
+            
+            <a ng-click="showConfirm()" ng-show='!show && status == "pending"' class="item item-icon-left item-icon-right brown-i" style="cursor:pointer"> <i class="icon ion-android-calendar"></i>
+            <h4 style="text-transform: uppercase;font-weight: bold;color:#0F6A93">REQUEST SENT</h4>
+            <i class="icon ion-arrow-return-right"></i> </a> 
+            
+            
+            </div>
+        </ion-content>
+      </ion-view>
+      </ion-tab>
+      <ion-tab title="Activities" icon="icon ion-person"> 
+        <!-- Tab 2 content -->
+        <ion-view>
+          <ion-content overflow-scroll="true">
+            <div class="list card brown-i">
+              <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
+                <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/>
+                  on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</h4>
+                <i ng-if="show" ng-click="openModal()" class="icon ion-edit"></i> </div>
+              <div ng-if="show" class="item item-divider">Members Pending ...</div>
+              <li class="item item-avatar small-span" ng-repeat="(tkey,tvalue) in res.members" ng-if='tkey != "RequestCounter" && tvalue.type == "request" && show '> <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+                <h2>{{tvalue.name}}</h2>
+                <h4>like to join as {{tvalue.joinAs}}</h4>
+                <div class="ActMemberInfoIcon"> <span ng-repeat="(k,v) in tvalue.Data" ng-if="k != 'location'">{{k}} - {{v}}<br/>
+                  </span> <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i> <i ng-click="AcceptMember(tkey)" class="icon ion-checkmark-round"></i> <i ng-click="DeleteMember(tkey, 'request')" class="icon ion-trash-b"></i> </div>
+              </li>
+              <div class="item item-divider">Members Accepted ...</div>
+              <li class="item item-avatar small-span" href="#/app/chat/{{tkey}}" ng-repeat="(tkey,tvalue) in res.members" ng-if='(tkey != "RequestCounter" && tkey != "MemberCounter") && tvalue.type != "request"'> <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+                <h2>{{tvalue.name}}</h2>
+                <p>#{{$index+1}}</p>
+                <div class="ActMemberInfoIcon"> <span ng-repeat="(k,v) in tvalue.Data" ng-if="k != 'location'">{{k}} - {{v}}<br/>
+                  </span> <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i> <i  ng-if="show" ng-click="DeleteMember(tkey, 'member')" class="icon ion-trash-b"></i> </div>
+              </li>
+            </div>
+          </ion-content>
+        </ion-view>
+      </ion-tab>
+      <ion-tab icon="icon ion-coffee"> 
+        <!-- Tab 3 content -->
+        
+        <ion-view>
+          <ion-content overflow-scroll="true">
+            <div class="list card brown-i">
+              <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
+                <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/>
+                  on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</h4>
+                <i ng-if="show" ng-click="openModal()" class="icon ion-edit"></i> </div>
+              <div ng-if="show" class="item item-divider">Activity Details ...</div>
+              <label ng-repeat="(key, value) in res.act" ng-if="key != 'params' && key != 'date' && key != 'time'" class="item item-input">
+                <span class="input-label all-span">{{key}}</span>
+                <span class="all-span">{{value}}</span> </label>
+            </div>
+          </ion-content>
+        </ion-view>
+      </ion-tab>
+      <ion-tab icon="icon ion-chatbubbles">
+        <!-- Tab 4 content -->
+        
+        <ion-view view-title="Chat to" ng-init="isMemberFunc()">
+          <ion-content class="chat-ion-content">
+            <ul class="card list" ng-show="isMember != true">
+                	<li class="item item-icon-left">
+                    <i class="icon ion-alert"></i>
+                    Member's Chat only
+                    </li>
+                </ul>
+                
+            <ul class="card list" ng-show="isMember == true">
+              <li class="item small-span item-avatar" ng-repeat="(tkey,tvalue) in res.conversation"> <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+                <h2 ng-if="tvalue.msg">{{tvalue.msg}}</h2>
+                <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}"> <span ng-if="pid.muid == tvalue.uid">me</span> <span ng-if="pid.fuid == tvalue.uid">{{tvalue.name}}</span> </li>
+            </ul>
+            
+            
+          </ion-content>
+          <form id="msg-form" class="message-window" ng-submit="sendmsg()" ng-show="isMember == true">
+            <input type="text" ng-model="msg.text" placeholder="message text">
+            <button class="submit-button button" type="submit" style="background: #0F6A93;color:#FFFFFF"> <i class="fa fa-paper-plane"></i></button>
+          </form>
+          <button class="submit-button button button-dark pull-right chat-pic-button" ng-click="sendMsgImage()" ng-show="isMember == true"> <i class="fa fa-camera"></i></button>
+        </ion-view>
+      </ion-tab>
+  </ion-tabs>
+</ion-view>

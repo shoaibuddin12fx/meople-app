@@ -1,0 +1,40 @@
+<ion-view title="my meople" style="height:100vh">
+  <ion-content> </ion-content>
+  <div ng-if="cards.active">
+    <td-cards>
+      <td-card ng-repeat="card in cards.active" on-destroy="cardDestroyed($index)" on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)" style="background-color:#FFFFFF">
+        <div class="image" ng-controller="cardsCtrl">
+          <div class="no-text"><i class="icon ion-thumbsdown"></i></div>
+          <div class="yes-text"><i class="icon ion-thumbsup"></i></div>
+          <div class="discard"><a href="#/app/view-activities/{{card.key}}">GROUP</a></div>
+          <img class="small-center"  ng-if="card.value.picture.indexOf('http') !== -1" src="{{card.value.picture}}" /> <img  ng-if="card.value.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{card.value.picture}}" /> </div>
+          <h4 class="groupOwnerName">by {{card.value.ownerName}} <br/>for {{card.value.act.type}} at {{card.value.act.city}} <br/> on {{card.value.act.date | date:'yyyy/MM/dd'}}</h4>
+        <div class="group-p-bar"><h4>{{card.value.act.Name}}</h4></div>
+        <div class="looking-for">Looking for <span ng-if="card.value.act.lookingFor != 'both'">{{card.value.act.lookingFor}}</span><span ng-if="card.value.act.lookingFor == 'both'">male / female</span> <br/> language: {{card.value.act.language}}</div>
+        <div class="join-group-buttons"><i class="icon ion-close-round" ng-click="BcardSwipedLeft(0)"></i> <i class="icon ion-checkmark-round" ng-click="BcardSwipedRight(0)"></i> </div>
+      </td-card>
+      <td-cards>
+      <td-card id="end-card" drag="false">
+         <div class="outer-image" ng-click="refreshCards()">         
+         <img id="back-card" ng-if="profileImage.indexOf('http') !== -1" src="{{profileImage}}" /> <img id="back-card" ng-if="profileImage.indexOf('http') === -1" src="data:image/jpeg;base64,{{profileImage}}" />
+         </div>
+         <!-- <i class="icon ion-load-d disable-user-behavior" style="color: rgba(15, 106, 147, 0.5);"></i> -->
+         <span style="position: absolute;left: 100px;top: 220px;color: rgba(15, 106, 147, 1);">Please Reload ...</span>
+         
+         
+      </td-card>
+    </td-cards>
+    </td-cards>
+  </div>
+  <div ng-if="!cards.active">
+    <td-cards>
+      <td-card id="end-card" drag="false" style="pointer-events:none">
+      <div class="outer-image" ng-click="refreshCards()">         
+         <img id="back-card" ng-if="profileImage.indexOf('http') !== -1" src="{{profileImage}}" /> <img id="back-card" ng-if="profileImage.indexOf('http') === -1" src="data:image/jpeg;base64,{{profileImage}}" />
+         </div>
+       <!--<i class="icon ion-load-d disable-user-behavior" style="color: rgba(15, 106, 147, 0.5);"></i>-->
+       <span ng-if="!cards.active" style="position: absolute;left: 105px;top: 220px;color: rgba(15, 106, 147, 1);">Nothing to show</span></td-card>
+    </td-cards>
+  </div>
+  <!--<div class="td-buttons"> <i class="fa fa-refresh" ng-click="refreshCards()"></i> <i class="fa fa-heart" ng-click="BcardSwipedRight(0)"></i> <i class="fa fa-times" ng-click="BcardSwipedLeft(0)"></i> </div>-->
+</ion-view>

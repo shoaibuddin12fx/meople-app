@@ -1,0 +1,29 @@
+<ion-modal-view id="join-activity-info.html">
+  <ion-header-bar>
+    <h1 class="title">Join Activity As</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeJoinModal()">Close</button>
+    </div>
+  </ion-header-bar>
+  <ion-pane>
+  	<ion-content overflow-scroll="true">
+            <div class="list card brown-i">
+              <a class="item item-avatar item-icon-right"> <img ng-if="joinData.data.picture.indexOf('http') !== -1" src="{{joinData.data.picture}}" /> <img  id="logo-pic" ng-if="joinData.data.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{joinData.data.picture}}" />
+                <h2 style="text-transform:uppercase">{{joinData.data.name}}</h2>
+                <h4><span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Like to join as {{joinData.data.type}}</span></h4>
+              </a>
+              <div class="item item-image">
+                <ng-map zoom="12" id="joinInfoMap" center="[{{joincoords.lat}}, {{joincoords.long}}]">
+                    <marker position="[{{marker1.lat}}, {{marker1.long}}]"></marker>
+                    <marker position="[{{marker2.lat}}, {{marker2.long}}]"></marker>
+                </ng-map>
+              </div>              
+              <label class="item item-input" ng-repeat="(key, value) in joinData.data.Data" ng-if='joinData.data.Data != "location"'> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">{{key}}</span>
+                <input type="text" placeholder="charges" style="color:gray" value="{{value}}" disabled>
+              </label>
+              <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="AcceptRequestActMember(joinData.uid)"> Accept </button>
+              <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="DeleteRequestActMember(joinData.uid)"> Delete </button>
+            </div>
+          </ion-content>    
+  </ion-pane>
+</ion-modal-view>
