@@ -1220,7 +1220,13 @@ button.co-button span{
 .item.item-thumbnail-left.item-icon-right:nth-child(2n+1){
    background: #EEEFF1;
 }
-
+.full-page-map{
+   position: absolute;
+   top: 0px;
+   left: 0;
+   width: 100%;
+   height: calc(100vh - 100px) !important;;
+}
 
 
 

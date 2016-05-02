@@ -8,17 +8,7 @@
           <ng-map zoom="15" id="MyLocation" class="full-page-map" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
                 <marker position="[{{coords.lat}}, {{coords.long}}]" title="Location"></marker>
           </ng-map>
-          <div class="list brown-i">
-            <div class="item item-thumbnail-left item-icon-right center-outer"> 
-            <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" />
-            <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-              <div class="center-inside">
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-                <h2>{{ilist.profile.name}}</h2>
-                <span class="dim-gray-italic">approx {{myDistance}} km away</span>
-                </div>
-            </div>
-            <!--<a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a>-->
+          <!--<a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a>-->
          </div>
         </ion-content>
       </ion-view>
@@ -28,33 +18,51 @@
         <ion-view>
           <ion-content overflow-scroll="true"> 
             <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher> -->
-            <ul class="card list brown-i">
-              <div class="item item-avatar"> <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
+            <div class="list brown-i">
+            <div class="item item-thumbnail-left item-icon-right center-outer"> 
+            <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" />
+            <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+              <div class="center-inside">
                 <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              </div>
+                <h2>{{ilist.profile.name}}</h2>
+                <span class="dim-gray-italic">approx {{myDistance}} km away</span>
+                </div>
+            </div>
+            </div>  
+              
+              <div class="over-box">
               <!--<a class="item item-icon-left" ng-click="letsHang()"><i class="icon {{hicon}}"></i> {{htext}} </a> -->
-              <div class="item item-divider">Personal</div>
+              <div class="item item-divider"><span></span><h4>About</h4></div>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Name</span>
                 <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" disabled>
-                <i class="icon ion-person"></i> </label>
+              </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">My Work</span>
                 <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" disabled>
-                <i class="icon ion-card"></i> </label>
+                </label>
               <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">About Myself</span>
                 <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" disabled>
               </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">education</span>
                 <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" readonly>
-                <i class="icon ion-university"></i> </label>
+                </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-nationality"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">nationality</span>
                 <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
-                <i class="icon ion-ios-flag"></i> </label>
+                </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Status</span>
                 <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
-                <i class="icon ion-ios-heart"></i> </label>
-              
-            </ul>
+                </label>
+              </div>
+            <div class="over-box">
+                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
+                  <div class="row">
+                    <div class="col"><a ng-click="letsHang()"><i class="icon {{hicon}}"></i><br><span>{{htext}}</span> </a>
+                    <!--<a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br><span>Main</span></a>-->
+                    </div>
+                    <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
+                    <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
+                  </div>              
+            </div>
+            
           </ion-content>
         </ion-view>
       </ion-tab>
