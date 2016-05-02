@@ -1159,6 +1159,9 @@ button.co-button span{
    background: transparent;
    height: 30px;   
 }
+.over-box label input{
+   text-align: right;
+}
 .over-box label *{
    font-size: 10px;   
 }
@@ -1200,6 +1203,10 @@ button.co-button span{
    float: left;
    text-align: center;   
 }
+.picture-box img{
+   width: 50% !important;
+}
+
 .round-border-gray{
    border-radius: 50% !important;
    border: 1px solid lightgray;

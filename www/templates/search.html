@@ -6,16 +6,11 @@
   
   <ion-content>
   
-   <div class="list">
-      <ion-toggle toggle-class="toggle-dark" ng-model="SearchMale.checked" ng-checked="SearchMale.checked" ng-click="SearchTick()"> 
-        <span ng-if="SearchMale.checked">Male</span>
-        <span ng-if="!SearchMale.checked">Female</span> {{wait}}</ion-toggle>   
-    </div>
-  
-  
-        <!--<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher>-->
          <ul class="list">
-             <a class="item item-thumbnail-left item-icon-right center-outer" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
+         <ion-toggle toggle-class="toggle-dark" ng-model="SearchMale.checked" ng-checked="SearchMale.checked" ng-click="SearchTick()"> 
+    	    	<span ng-if="SearchMale.checked">MALE</span>
+	    	    <span ng-if="!SearchMale.checked">FEMALE</span> {{wait}}</ion-toggle>   
+         <a class="item item-thumbnail-left item-icon-right center-outer" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
                 <img  ng-if="tvalue.profile.picture.indexOf('http') !== -1" src="{{tvalue.profile.picture}}">
                 <img  ng-if="tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.profile.picture}}">
                 <div class="center-inside">

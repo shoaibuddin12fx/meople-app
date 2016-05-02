@@ -2424,8 +2424,13 @@ angular.module('starter.controllers', [])
 		
 	
 })
-.controller('PublicProfileCtrl', function($scope, $state, $stateParams, $q, $firebaseObject, getProfileInfo, BeFriend, authlogin, $ionicPopup, $ionicHistory, photolink,$cordovaGeolocation, searchInfo, 	NgMap, actInfo) {
-
+.controller('PublicProfileCtrl', function($scope, $state, $stateParams, $q, $firebaseObject, getProfileInfo, BeFriend, authlogin, $ionicPopup, $ionicHistory, photolink,$cordovaGeolocation, searchInfo, 	NgMap, actInfo, $ionicTabsDelegate) {
+	
+	$scope.selectTabWithIndex = function(index) {
+		$ionicTabsDelegate.select(index);
+	  }
+	
+	
 	var authData = authlogin.verify();
 	$scope.myuid = authData.uid;
 	var uid = $stateParams.uid;

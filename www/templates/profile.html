@@ -107,37 +107,16 @@
           <ion-tab icon="icon ion-camera"> 
             <!-- Tab 4 content -->
             <ion-view>
-              <ion-content overflow-scroll="true"> 
-                <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"> </ion-refresher> -->
-                
-                 <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Pictures</h4></div>              
-               <div class="small-center-inside">
-               <a class="two-col-a" ng-repeat="(key,value) in ilist.images" ng-if="key != 'i'" ><img ng-src="data:image/jpeg;base64,{{value.image}}"><br> <span>  #{{$index+1}}  </span></a>                
-               
-               </div>
-               <button class="button button-block button-balanced">upload</button>
-                      
-            </div>
+              <ion-content overflow-scroll="true">
+                <div class="item item-button-right">
+                    UPLOAD PICTURE
+                    <button ng-click="photoUpload()" class="button button-positive">
+                      <i class="icon ion-camera"></i>
+                    </button>
+                  </div>
+             <div class="picture-box">
+               <a ng-repeat="(key,value) in ilist.images" ng-if="key != 'i'" ><img ng-src="data:image/jpeg;base64,{{value.image}}"></a></div>
             
-            
-            
-            
-            
-            
-              <div class="over-box">
-                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
-                  <div class="row">
-                    <div class="col"><a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br><span>Main</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><br><span>Edit</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
-                  </div>              
-            </div>
-                
-                
-                
-                
-                
                 
                <!-- <div class="list brown-i">
                 <div class="item item-avatar">
