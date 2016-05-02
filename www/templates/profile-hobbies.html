@@ -1,23 +1,22 @@
 
 <ion-view>
 <ion-content>
-  <div class="bar custom-footer-h"><img class="bottomlistAct" style="cursor:pointer" ng-click="hobValue(key, 0, value)" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'" src="{{value}}"></div>
-  
-  	<!--<div class="full-page-hobbies">
-    <ul class="listAct">
-    <div class="c-x-overflow" ng-repeat="(key,value) in listAct">
-        <div class="item item-divider">Hobbies {{$index+1}} of 5</div>
-          <li ng-repeat="(key, value) in value" ng-click="hobValue(key, 1, value)"> <img src="{{value}}"><span>{{key}}</span></li>
-    </div>
-        </ul>
-    </div>-->
+  <div class="item center-outer">
+     <div class="center-inside">
+   		<img class="bottomlistAct" style="cursor:pointer" ng-click="hobValue(key, 0, value)" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'" src="{{value}}">            
+     </div>
+  </div>
    
     <ion-slide-box class="full-page-hobbies" >  
       <ion-slide ng-repeat="(key,value) in listAct">
-        <ul class="listAct">
-        <div class="item item-divider">Hobbies {{$index+1}} of 5</div>
-          <li ng-repeat="(key, value) in value" ng-click="hobValue(key, 1, value)"> <img src="{{value}}"><span>{{key}}</span></li>
-        </ul>
+      
+        <div class="over-box">
+              <div class="item item-divider"><span></span><h4>Hobbies {{$index+1}} of 6</h4></div>              
+               <div class="small-center-inside">
+               <a class="four-col-a" ng-repeat="(key, value) in value" ng-if="key != 'i'" ng-click="hobValue(key, 1, value)" ><img class="round-border-gray" src="{{value}}"  /><br> <span>  {{key}}  </span></a>                
+               </div>               
+            </div>
+      
       </ion-slide>
     </ion-slide-box> 
 </ion-content> 

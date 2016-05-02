@@ -866,24 +866,24 @@ height: 50px;
 
 @-webkit-keyframes slide
 {
-    0%   {background: rgba(15, 106, 147, 0.5);}
-    50% {background: rgba(15, 106, 147, 0.2);}
-    100% {background: rgba(15, 106, 147, 0.5);}
+    0%   {background: rgba(211, 211, 211, 1);}
+    50% {background: rgba(255, 255, 255, 1);}
+    100% {background: rgba(211, 211, 211, 1);}
    
 }
 
 @-moz-keyframes slide
 {
-    0%   {background: rgba(15, 106, 147, 0.5);}
-    50% {background: rgba(15, 106, 147, 0.2);}
-    100% {background: rgba(15, 106, 147, 0.5);}
+    0%   {background: rgba(211, 211, 211, 1);}
+    50% {background: rgba(255, 255, 255, 1);}
+    100% {background: rgba(211, 211, 211, 1);}
 }
 
 @keyframes slide
 {
-    0%   {background: rgba(15, 106, 147, 0.5);}
-    50% {background: rgba(15, 106, 147, 0.2);}
-    100% {background: rgba(15, 106, 147, 0.5);}
+    0%   {background: rgba(211, 211, 211, 1);}
+    50% {background: rgba(255, 255, 255, 1);}
+    100% {background: rgba(211, 211, 211, 1);}
 }
 
 .c-select-age select{
@@ -963,7 +963,7 @@ img.small-center{
 }
 
 .full-page-hobbies{
-   padding-top: 90px;      
+   /*! padding-top: 90px; */      
    width: 300px;
    margin: 0 auto;
       
@@ -1065,6 +1065,7 @@ button.co-button span{
   border-radius: 15px;
   padding: 15px;
   max-width:300px;
+  background: #EEEFF1; 
   
 }
 .over-box .item-divider{
@@ -1165,7 +1166,7 @@ button.co-button span{
    text-transform: uppercase;
 }
 .over-box .small-center-inside{
-   width: 200px;
+   width: 210px;
    margin: 20px auto;
    overflow: hidden;
    
@@ -1183,13 +1184,42 @@ button.co-button span{
    float: left;
    text-align: center;
 }
+
+.over-box .four-col-a{
+   width: 65px;
+   height: 80px;
+   margin: 2px 2px;
+   float: left;
+   text-align: center;
+   font-size: 0.7em
+}
+
+.over-box .four-col-a img{
+   width: 60px;
+   border-radius: 8px;
+   float: left;
+   text-align: center;   
+}
+.round-border-gray{
+   border-radius: 50% !important;
+   border: 1px solid lightgray;
+}
+
 .tab-nav.tabs{
    background: #000;
 }
 .tab-nav.tabs a.tab-item i.icon{
    color: #FFF;
 }
-
+.icon.ion-chevron-right{
+   color: lightgray;
+}
+.item.item-thumbnail-left img{
+   border-radius: 10px;
+}
+.item.item-thumbnail-left.item-icon-right:nth-child(2n+1){
+   background: #EEEFF1;
+}
 
 
 

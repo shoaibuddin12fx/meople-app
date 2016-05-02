@@ -1,25 +1,25 @@
 <ion-view view-title="Information   {{loading}}" cache-view="false" class="Profile-page  public">
-
   <ion-tabs class="tabs-icon-only">
     <ion-tab icon="icon ion-grid">
       <!-- Tab 1 content -->
       
       <ion-view>
-        <ion-content overflow-scroll="true">
-          <div class="list card brown-i">
-            <div class="item item-avatar"> <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-              <h2>{{ilist.profile.name}}</h2>
-              <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              <p>approx {{myDistance}} km away</p>
-            </div>
-            <div class="item item-image"> 
-              
-              <!--<img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') !== -1" src="{{ilist.profile.cover}}" /> <img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.cover}}" /> -->
-              <ng-map zoom="15" id="MyLocation" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
+        <ion-content overflow-scroll="false">
+          <ng-map zoom="15" id="MyLocation" class="full-page-map" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
                 <marker position="[{{coords.lat}}, {{coords.long}}]" title="Location"></marker>
-              </ng-map>
+          </ng-map>
+          <div class="list brown-i">
+            <div class="item item-thumbnail-left item-icon-right center-outer"> 
+            <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" />
+            <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+              <div class="center-inside">
+                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
+                <h2>{{ilist.profile.name}}</h2>
+                <span class="dim-gray-italic">approx {{myDistance}} km away</span>
+                </div>
             </div>
-            <a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a> </div>
+            <!--<a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a>-->
+         </div>
         </ion-content>
       </ion-view>
       </ion-tab>

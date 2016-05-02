@@ -6,23 +6,34 @@
   
   <ion-content>
   
-   <div class="card list">
+   <div class="list">
       <ion-toggle toggle-class="toggle-dark" ng-model="SearchMale.checked" ng-checked="SearchMale.checked" ng-click="SearchTick()"> 
         <span ng-if="SearchMale.checked">Male</span>
-        <span ng-if="!SearchMale.checked">Female</span> {{wait}}</ion-toggle>    
+        <span ng-if="!SearchMale.checked">Female</span> {{wait}}</ion-toggle>   
     </div>
   
   
-        <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
-        </ion-refresher>
-         	<ul class=" card list">
-             <a class="item item-avatar small-span" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
+        <!--<ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher>-->
+         <ul class="list">
+             <a class="item item-thumbnail-left item-icon-right center-outer" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
+                <img  ng-if="tvalue.profile.picture.indexOf('http') !== -1" src="{{tvalue.profile.picture}}">
+                <img  ng-if="tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.profile.picture}}">
+                <div class="center-inside">
+                <p>{{tvalue.profile.age}} years old</p>
+                <h2>{{tvalue.profile.name}}</h2>                
+                <span class="dim-gray-italic">tap to see map/distance</span>
+                </div>
+                <i class="icon ion-chevron-right"></i>
+              </a>
+              
+              
+             <!--<a class="item item-avatar small-span" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
               <img  ng-if="tvalue.profile.picture.indexOf('http') !== -1" src="{{tvalue.profile.picture}}">
               <img  ng-if="tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.profile.picture}}">
               <span style="font-weight:bold">{{tvalue.profile.name}} <br/> </span>
               <span>{{tvalue.profile.gender}},  {{tvalue.profile.age}} </span><br/>
-              <!--<span style="float:left">just {{tvalue.distance}} km away</span>-->
-              </a>
+              <span style="float:left">just {{tvalue.distance}} km away</span>
+              </a>-->
           <li ng-if="!ilist" class="item item-divider">
             sorry no results
             
