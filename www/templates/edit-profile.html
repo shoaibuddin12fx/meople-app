@@ -1,14 +1,27 @@
- <ion-modal-view id="edit-profile.html">
+ <ion-modal-view id="edit-profile.html" style="background:rgba(0,0,0,0.7)">
     <ion-header-bar>
       <h1 class="title">Complete The Profile</h1>
     </ion-header-bar>
     <ion-content>
-      <div class="card list" >
-      <div class="item item-avatar"> <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+      <div class="list" >
+      
+      <div class="item item-thumbnail-left center-outer">
+        <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> 
+        <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+        <div class="center-inside">
+        <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
+        <h2>{{ilist.profile.name}}</h2>                
+        <span class="dim-gray-italic">Select Options Below</span>                
+        </div>
+      </div>
+              
+      <!--<div class="item item-avatar"> <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
         <h2>{{ilist.profile.name}}</h2>
         <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-      </div>
-      <div class="item item-divider">Select an option</div>
+      </div>-->
+      
+      
+      <!--<div class="item item-divider">Select an option</div>-->
       <label class="item item-input" for="eduSelect"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Your Education</span>
                 <input type="text" ng-model="geducation.value" id="eduSelect" placeholder="about your self">
       </label>
@@ -25,6 +38,7 @@
         <option ng-repeat="(key,value) in gsta.availableOptions" value="{{key}}">{{key}}</option>
       </select>
       </label>
+      <button class="button button-block button-balanced">save</button>
     </div>
     </ion-content>
    <div class="bar bar-footer" style="background:#0F6A93" >

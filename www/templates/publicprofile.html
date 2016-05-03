@@ -100,21 +100,15 @@
         <ion-view>
           <ion-content overflow-scroll="true"> 
             <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"> </ion-refresher> -->
-            
-            <div class="card list">
-              <div class="item item-avatar"> <img ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              </div>
-              <div class="item item-divider">Pictures</div>
-              <li class="item item-thumbnail-left" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}">
-                <h2>Picture</h2>
-                <p>#{{$index+1}} </p>
-                <!--<span ng-if="value.count">{{value.count}}</span> <span ng-if="!value.count" >0 </span> <i class="icon ion-heart"></i>-->
-                <!--<div class='clearfix'></div>
-                <ion-checkbox ng-model="isChecked" ng-click="likePic(key, isChecked)" style="background:rbga(0,0,0,0.3);height:45px; padding: 3px 10px;"> <span class="brown-i" ng-if="isChecked">Liked - <i class="icon ion-heart"></i></span> <span class="brown-i" ng-if="!isChecked"> Like </span></ion-checkbox>-->
-              </li>
-            </div>
+                               
+             <div class="picture-box">
+               <a ng-repeat="(key,value) in ilist.images" ng-if="key != 'i'" >
+               
+               <img ng-src="data:image/jpeg;base64,{{value.image}}"></a>
+               
+               </div>
+               
+           
           </ion-content>
         </ion-view>
       </ion-tab>

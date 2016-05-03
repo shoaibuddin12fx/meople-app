@@ -1,6 +1,6 @@
 <ion-view view-title="Matches">
   <ion-content>
-    <div class="card list">
+    <div class="list" ng-if="inboxlist.length">
       <div class="item item-divider">Match Requests Received</div>
       <div ng-repeat="(tkey,tvalue) in inboxlist">
         <li class="item item-avatar">
@@ -17,7 +17,7 @@
         
       </div>
     </div>
-    <div class="card list">
+    <div class="list">
       <div class="item item-divider">Match Requests sent</div>
       <div ng-repeat="(tkey,tvalue) in inboxlistd">
         <li class="item item-avatar">
@@ -31,7 +31,7 @@
         </li>
       </div>
     </div>
-    <div class="card list">
+    <div class="list">
       <div class="item item-divider">Matches</div>
       <div ng-repeat="(tkey,tvalue) in inboxlistf">
         

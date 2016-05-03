@@ -486,6 +486,7 @@ angular.module('starter.controllers', [])
 			 $scope.bindInterestLive();
 			 $scope.getGroups();			 
 			 $ionicLoading.hide();
+			 $scope.setProfileInfo();
 			 //$scope.geoLocation();
 		 })
 			 
@@ -551,6 +552,12 @@ angular.module('starter.controllers', [])
 			  else{
 				  ref.child('hobbies').child(lang).set(null);  }		
 			}			  
+		  
+		  $scope.selectedChanged = function(key, value){
+			  console.log(key, value);
+			  ref.child(key).set(value);
+			  }
+		  
 		  
 	  
 	  }

@@ -1,13 +1,13 @@
 <ion-view class="Profile-page" cache-view="false">
 <ion-nav-title>PROFILE</ion-nav-title>
   <ion-tabs class="tabs-icon-only">
-    <ion-tab icon="icon ion-grid">
+  		  <ion-tab icon="icon ion-grid">
       <!-- Tab 1 content -->
       <ion-view>
         <ion-content overflow-scroll="true">
           <div class="list">
           
-              <div class="item item-thumbnail-left center-outer">
+              <div class="item item-thumbnail-left center-outer">	
                 <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
                 <div class="center-inside">
                 <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
@@ -38,25 +38,44 @@
               <ion-content overflow-scroll="true"> 
                 
               <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Edit</h4></div>              
+              <div class="item item-divider"><span></span><h4>Edit</h4></div>                            
                   <label class="item item-input" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label all-span">Name</span>
-                    <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']">
+                    <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
                   </label>
                   <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label all-span">what do you do?</span>
-                    <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']">
+                    <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-disabled="!filter.edit">
                   </label>          
                   <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label all-span">About yourself</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']"></label>    
+                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" ng-disabled="!filter.edit"></label>    
                   <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label all-span">education</span>
-                    <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" readonly>
+                    <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" ng-disabled="!filter.edit">
+                    
+                    
+                    
+                    
                     </label>                  
-                  <label class="item item-input item-icon-right" for="{{ilist}}-nationality"> <span class="input-label all-span">nationality</span>
+                  <label class="item item-input item-icon-right" for="{{ilist}}-nationality" ng-if="!filter.edit"> <span class="input-label all-span">nationality</span>
                     <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
                     </label>
-                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}"> <span class="input-label all-span">Status</span>
+                  <label class="item item-input item-select" for="natSelect" ng-if="filter.edit">
+                      <div class="input-label">
+                      <span class="input-label all-span">Nationality</span> </div>
+                      <select name="natSelect"  ng-model="gnationality.repeatSelect" ng-change="selectedChanged('nationality', gnationality.repeatSelect)">
+                        <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
+                      </select>
+                  </label>
+                    
+                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}" ng-if="!filter.edit"> <span class="input-label all-span">Status</span>
                     <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
                     </label>
-                 <button ng-click="openModal()" class="button button-block button-balanced">edit profile</button>
+                  <label class="item item-input item-select" for="staSelect" ng-if="filter.edit">
+                      <div class="input-label"><span class="input-label  all-span">Status</span> </div>
+                      <select name="staSelect"  ng-model="gsta.repeatSelect" ng-change="selectedChanged('status', gsta.repeatSelect)">
+                        <option ng-repeat="(key,value) in gsta.availableOptions" value="{{key}}">{{key}}</option>
+                      </select>
+                      </label>  
+                    <ion-checkbox class="button button-block button-balanced" ng-model="filter.edit">Edit Profile</ion-checkbox>
+                 <!--<button ng-click="openModal()" ng-disabled="filter.edit" class="button button-block button-balanced">edit profile</button>-->
                       
             </div>
               <div class="over-box">
@@ -108,38 +127,25 @@
             <!-- Tab 4 content -->
             <ion-view>
               <ion-content overflow-scroll="true">
-                <div class="item item-button-right">
+                  <div class="item item-button-right">
                     UPLOAD PICTURE
                     <button ng-click="photoUpload()" class="button button-positive">
                       <i class="icon ion-camera"></i>
                     </button>
-                  </div>
-             <div class="picture-box">
-               <a ng-repeat="(key,value) in ilist.images" ng-if="key != 'i'" ><img ng-src="data:image/jpeg;base64,{{value.image}}"></a></div>
-            
-                
-               <!-- <div class="list brown-i">
-                <div class="item item-avatar">
-                <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>                
-              </div>
-                <div class="item item-divider">Pictures</div>
-                <li class="item item-icon-right item-thumbnail-left" ng-repeat="(key,value) in ilist.images">
+                  </div>                  
+               <div class="list">
+                <li class="item item-icon-right item-thumbnail-left center-outer" ng-repeat="(key,value) in ilist.images">
                   <img ng-src="data:image/jpeg;base64,{{value.image}}">
-                  <h2>Picture</h2>
-                  <p>#{{$index+1}}</p>
-                  <!--<p><span ng-if="value.count">{{value.count}}</span><span ng-if="!value.count">0</span> Likes </p>
-                  <i ng-click="removeImage(key)" class="icon ion-close-round"></i>
+                  
+                  <div class="center-inside">
+                    <h2>Picture #{{$index+1}}</h2>                
+                    <span class="dim-gray-italic">tap trash to remove image</span>                
+                  </div>
+                  <!--<p><span ng-if="value.count">{{value.count}}</span><span ng-if="!value.count">0</span> Likes </p>-->
+                  <i ng-click="removeImage(key)" class="icon ion-trash-b"></i>
                 </li>
-                <button class=" item button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="photoUpload()"> UPLOAD PICTURE </button>
-                </div> -->
-                
-                
+              </div>
               </ion-content>
-              <!--<div class="bar bar-footer" style="background:#0F6A93">
-                <div ng-click="photoUpload()" class="title" style="color:#FFFFFF">UPLOAD PICTURE</div>
-              </div> -->             
             </ion-view>
           </ion-tab>
   </ion-tabs>

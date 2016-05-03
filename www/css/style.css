@@ -1203,9 +1203,27 @@ button.co-button span{
    float: left;
    text-align: center;   
 }
-.picture-box img{
-   width: 50% !important;
+.picture-box{
+   border-radius: 10px;
+   margin-left: 5px;
+   margin-top: 5px;
+   width: 100%;
 }
+.picture-box img{
+   width: 48% !important;
+   border-radius: 10px;
+   box-shadow: 2px 2px 2px lightgray;   
+}
+.picture-box a button{
+   margin: 10px;
+   height: 10px !important;;
+   line-height: 10px;
+   font-size: 10px;
+   padding: 0 !important;
+   background: #33CD5F;
+   
+}
+
 
 .round-border-gray{
    border-radius: 50% !important;
@@ -1218,7 +1236,7 @@ button.co-button span{
 .tab-nav.tabs a.tab-item i.icon{
    color: #FFF;
 }
-.icon.ion-chevron-right{
+.icon.ion-chevron-right, .icon.ion-close-round, .icon.ion-trash-b{
    color: lightgray;
 }
 .item.item-thumbnail-left img{
