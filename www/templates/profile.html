@@ -1,153 +1,146 @@
 <ion-view class="Profile-page" cache-view="false">
-<ion-nav-title>PROFILE</ion-nav-title>
+  <ion-nav-title>PROFILE</ion-nav-title>
   <ion-tabs class="tabs-icon-only">
-  		  <ion-tab icon="icon ion-grid">
+    <ion-tab icon="icon ion-grid"> 
       <!-- Tab 1 content -->
       <ion-view>
         <ion-content overflow-scroll="true">
           <div class="list">
-          
-              <div class="item item-thumbnail-left center-outer">	
-                <img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <div class="center-inside">
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-                <h2>{{ilist.profile.name}}</h2>                
-                <span class="dim-gray-italic">tap image to change</span>                
+            <div class="item center-outer">
+              <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{ilist.profile.name}}</h2>
+                  <p>{{ilist.profile.age}} years old</p>
+                  <div class="button button-balanced green-button-style" ng-click="changeLogo('picture')">Change Picture</div>
                 </div>
               </div>
-
-              
-              
-				
-              
             </div>
+          </div>
           <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Profile</h4></div>
-              <div class="row">
-                <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><span>  Edit  </span></a></div>
-                <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
-                <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
-              </div>              
+            <div class="item item-divider"><span></span>
+              <h4>Profile</h4>
             </div>
-          </ion-content>
-          </ion-view>
-          </ion-tab>
-          <ion-tab title="Activities" icon="icon ion-person"> 
-            <!-- Tab 2 content -->
-            <ion-view>
-              <ion-content overflow-scroll="true"> 
-                
-              <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Edit</h4></div>                            
-                  <label class="item item-input" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label all-span">Name</span>
-                    <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
-                  </label>
-                  <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label all-span">what do you do?</span>
-                    <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-disabled="!filter.edit">
-                  </label>          
-                  <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label all-span">About yourself</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" ng-disabled="!filter.edit"></label>    
-                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label all-span">education</span>
-                    <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" ng-disabled="!filter.edit">
-                    
-                    
-                    
-                    
-                    </label>                  
-                  <label class="item item-input item-icon-right" for="{{ilist}}-nationality" ng-if="!filter.edit"> <span class="input-label all-span">nationality</span>
-                    <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
-                    </label>
-                  <label class="item item-input item-select" for="natSelect" ng-if="filter.edit">
-                      <div class="input-label">
-                      <span class="input-label all-span">Nationality</span> </div>
-                      <select name="natSelect"  ng-model="gnationality.repeatSelect" ng-change="selectedChanged('nationality', gnationality.repeatSelect)">
-                        <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
-                      </select>
-                  </label>
-                    
-                  <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}" ng-if="!filter.edit"> <span class="input-label all-span">Status</span>
-                    <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
-                    </label>
-                  <label class="item item-input item-select" for="staSelect" ng-if="filter.edit">
-                      <div class="input-label"><span class="input-label  all-span">Status</span> </div>
-                      <select name="staSelect"  ng-model="gsta.repeatSelect" ng-change="selectedChanged('status', gsta.repeatSelect)">
-                        <option ng-repeat="(key,value) in gsta.availableOptions" value="{{key}}">{{key}}</option>
-                      </select>
-                      </label>  
-                    <ion-checkbox class="button button-block button-balanced" ng-model="filter.edit">Edit Profile</ion-checkbox>
-                 <!--<button ng-click="openModal()" ng-disabled="filter.edit" class="button button-block button-balanced">edit profile</button>-->
-                      
+            <div class="row">
+              <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><br><span> Edit </span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i><br><span>Hobbies</span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i><br><span>Pictures</span></a></div>
             </div>
-              <div class="over-box">
-                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
-                  <div class="row">
-                    <div class="col"><a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br><span>Main</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
-                  </div>              
-            </div>
-                
-                
-              </ion-content>
-            </ion-view>
-          </ion-tab>
-          <ion-tab icon="icon ion-coffee"> 
-            <!-- Tab 3 content -->
-            
-            <ion-view>            
-              <ion-content overflow-scroll="true">
-              
-              <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Hobbies</h4></div>              
-               <div class="small-center-inside">
-               <a class="two-col-a" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'" ><img src="{{value}}"  /><br> <span>  {{key}}  </span></a>                
-               </div>
-               <a href="#/app/profile/edit/hobbies" class="button button-block button-balanced">edit hobbies</a>
-                      
-            </div>
-            
-            
-            
-            
-            
-            
-              <div class="over-box">
-                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
-                  <div class="row">
-                    <div class="col"><a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br><span>Main</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><br><span>Edit</span></a></div>
-                    <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
-                  </div>              
-            </div>
-               
-              </ion-content>             
-            </ion-view>
-          </ion-tab>
-          <ion-tab icon="icon ion-camera"> 
-            <!-- Tab 4 content -->
-            <ion-view>
-              <ion-content overflow-scroll="true">
-                  <div class="item item-button-right">
-                    UPLOAD PICTURE
-                    <button ng-click="photoUpload()" class="button button-positive">
-                      <i class="icon ion-camera"></i>
-                    </button>
-                  </div>                  
-               <div class="list">
-                <li class="item item-icon-right item-thumbnail-left center-outer" ng-repeat="(key,value) in ilist.images">
-                  <img ng-src="data:image/jpeg;base64,{{value.image}}">
+          </div>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+    <ion-tab title="Activities" icon="icon ion-person"> 
+      <!-- Tab 2 content -->
+      <ion-view>
+        <ion-content overflow-scroll="true">
+        
+          <div class="list">
+            <div class="item center-outer">
+              <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{ilist.profile.name}}</h2>
+                  <p>{{ilist.profile.age}} years old</p>
+                  <ion-checkbox class="button button-block button-balanced green-button-style" ng-model="filter.edit">Edit Profile</ion-checkbox>
                   
-                  <div class="center-inside">
-                    <h2>Picture #{{$index+1}}</h2>                
-                    <span class="dim-gray-italic">tap trash to remove image</span>                
-                  </div>
-                  <!--<p><span ng-if="value.count">{{value.count}}</span><span ng-if="!value.count">0</span> Likes </p>-->
-                  <i ng-click="removeImage(key)" class="icon ion-trash-b"></i>
-                </li>
+                </div>
               </div>
-              </ion-content>
-            </ion-view>
-          </ion-tab>
+            </div>
+          
+        <div class="alternate-labels">
+          
+            <label class="item item-input" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label all-span">Name</span>
+              <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
+            </label>
+            <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label all-span">what do you do?</span>
+              <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-disabled="!filter.edit">
+            </label>
+            <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label all-span">About yourself</span>
+              <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" ng-disabled="!filter.edit">
+            </label>
+            <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label all-span">education</span>
+              <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" ng-disabled="!filter.edit">
+            </label>
+            <label class="item item-input item-icon-right" for="{{ilist}}-nationality" ng-if="!filter.edit"> <span class="input-label all-span">nationality</span>
+              <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
+            </label>
+            <label class="item item-input item-select" for="natSelect" ng-if="filter.edit">
+            <div class="input-label"> <span class="input-label all-span">Nationality</span> </div>
+            <select name="natSelect"  ng-model="gnationality.repeatSelect" ng-change="selectedChanged('nationality', gnationality.repeatSelect)">
+              <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
+            </select>
+            </label>
+            <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}" ng-if="!filter.edit"> <span class="input-label all-span">Status</span>
+              <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
+            </label>
+            <label class="item item-input item-select" for="staSelect" ng-if="filter.edit">
+            <div class="input-label"><span class="input-label  all-span">Status</span> </div>
+            <select name="staSelect"  ng-model="gsta.repeatSelect" ng-change="selectedChanged('status', gsta.repeatSelect)">
+              <option ng-repeat="(key,value) in gsta.availableOptions" value="{{key}}">{{key}}</option>
+            </select>
+            </label>
+            </div>
+            <!--<button ng-click="openModal()" ng-disabled="filter.edit" class="button button-block button-balanced">edit profile</button>--> </div>
+            
+          
+          <!--<div class="over-box">
+            <div class="item item-divider"><span></span>
+              <h4>Links</h4>
+            </div>
+            <div class="row">
+              <div class="col"><a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br>
+                <span>Main</span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
+            </div>
+          </div>-->
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+    <ion-tab icon="icon ion-coffee"> 
+      <!-- Tab 3 content -->
+      
+      <ion-view>
+        <ion-content overflow-scroll="true">
+          <div class="over-box">
+            <div class="item item-divider"><span></span>
+              <h4>Hobbies</h4>
+            </div>
+            <div class="small-center-inside"> <a class="two-col-a" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'" ><img src="{{value}}"  /><br>
+              <span> {{key}} </span></a> </div>
+            <a href="#/app/profile/edit/hobbies" class="button button-block button-balanced">edit hobbies</a> </div>
+          <div class="over-box">
+            <div class="item item-divider"><span></span>
+              <h4>Links</h4>
+            </div>
+            <div class="row">
+              <div class="col"><a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br>
+                <span>Main</span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><br>
+                <span>Edit</span></a></div>
+              <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
+            </div>
+          </div>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+    <ion-tab icon="icon ion-camera"> 
+      <!-- Tab 4 content -->
+      <ion-view>
+        <ion-content overflow-scroll="true">
+          <div class="item item-button-right"> UPLOAD PICTURE
+            <button ng-click="photoUpload()" class="button button-positive"> <i class="icon ion-camera"></i> </button>
+          </div>
+          <div class="list">
+            <li class="item item-icon-right item-thumbnail-left center-outer" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}">
+              <div class="center-inside">
+                <h2>Picture #{{$index+1}}</h2>
+                <span class="dim-gray-italic">tap trash to remove image</span> </div>
+              <!--<p><span ng-if="value.count">{{value.count}}</span><span ng-if="!value.count">0</span> Likes </p>--> 
+              <i ng-click="removeImage(key)" class="icon ion-trash-b"></i> </li>
+          </div>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
   </ion-tabs>
   </ion-content>
 </ion-view>

@@ -1106,36 +1106,47 @@ button.co-button span{
    display: block;
    width: 100%;
    text-align:center;
-   border-radius: 10px;
+   border-radius: 6px;
    padding: 3px;
    text-decoration: none;
    box-shadow: 2px 2px darkgray;
    color: #FFFFFF;
+   font-weight: bold;
 }
 .over-box .col a i{
-   font-size: 4em;
+   font-size: 3.5em;
    clear: both;
 }
 .over-box .col a img{
    width: 35px;
 }
 .over-box .row:nth-child(2) .col:nth-child(1) a{
-   background-color: #8EBD3A;
+   background-color: #87C23C;
 }
 .over-box .row:nth-child(2) .col:nth-child(2) a{
-   background-color: #F68634;
+   background-color: #F1873A;
 }
 .over-box .row:nth-child(2) .col:nth-child(3) a{
-   background-color: #01ACE2;
+   background-color: #43ACE1;
 }
 .over-box .row:nth-child(3) .col:nth-child(1) a{
-   background-color: #01ACE2;
+   background-color: #DBDBE4;
 }
+.over-box .row:nth-child(3) .col:nth-child(1) a i
+,.over-box .row:nth-child(3) .col:nth-child(1) a span{
+   color: #44A8E5;
+}
+
 .over-box .row:nth-child(3) .col:nth-child(2) a{
-   background-color: #F14043;
+   background-color: #F04347;
 }
 .over-box .row:nth-child(3) .col:nth-child(3) a{
-   background-color: #4CD764;
+   background-color: #DBDFE4;
+}
+.over-box .row:nth-child(3) .col:nth-child(3) a i,
+.over-box .row:nth-child(3) .col:nth-child(3) a span
+{
+   color: #87C321;
 }
 
 .center-outer{
@@ -1252,6 +1263,103 @@ button.co-button span{
    width: 100%;
    height: calc(100vh - 100px) !important;;
 }
+
+.fix-div-inside{
+   width: 300px;
+   margin: 0 auto;
+   
+   
+}
+.fix-div-inside img{
+   width: 100px;
+   height: 100px;
+   float: left;
+   border-radius: 10px;
+   border: 1px solid #000000;   
+}
+.fix-div-inside .welcome-profile-top{
+   
+   padding: 0px 15px;
+   width: 200px;
+   height: 100px;
+   
+}
+.fix-div-inside h2{
+   font-weight: bold;
+   text-transform: capitalize;
+}
+.text-align-center{
+   text-align: center;
+}
+.green-button-style{
+   margin-top: 15px !important;;
+   min-height: 10px !important;
+   height: 35px;
+   width: 170px;
+   line-height: 30px !important;
+   border-radius: 7px !important;
+   border-bottom: 2px solid #000 !important;
+   font-weight: bold;
+}
+.alternate-labels label{
+   height: 30px !important;    
+}
+.alternate-labels label *{
+   font-size: 0.8em;   
+}
+.alternate-labels label:nth-child(2n+1){
+   background: #DBDAE4;   
+}
+.alternate-labels label:nth-child(2n){
+   background: #F3F2F9 !important;;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,26 +1,27 @@
 <ion-view class="Profile-page">
   <ion-content>
-    <div class="list brown-i">
-      <a href="#/app/profile/edit" class="item item-thumbnail-left item-icon-right center-outer"> <img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
-      	<div class="center-inside">
-        <p>Welcome</p>
-        <h2>{{profile.profile.name}}</h2>
-        <span class="dim-gray-italic">tap to go to profile</span>        
+    <div class="list brown-i"> <a href="#/app/profile/edit" class="item center-outer">
+      <div class="fix-div-inside text-align-center"><img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
+        <div class="center-inside welcome-profile-top">
+          <p>Welcome</p>
+          <h2>{{profile.profile.name}}</h2>
+          <div class="button button-balanced green-button-style">Profile</div>
         </div>
-        <i class="icon ion-chevron-right"></i>
-      </a>
-    </div>
+      </div>
+      </a> </div>
     <div class="over-box">
-      <div class="item item-divider"><span></span><h4>Home</h4></div>
-      <div class="row">
-        <div class="col"><a href="#/app/td-cards"><i class="icon ion-heart"></i><span>Cards</span></a></div>
-        <div class="col"><a href="#/app/profile/edit"> <i class="icon ion-person"></i> <span>Profile</span></a></div>
-        <div class="col"><a href="#/app/search"> <i class="icon ion-search"></i> <span>Search</span></a></div>
+      <div class="item item-divider"><span></span>
+        <h4>Home</h4>
       </div>
       <div class="row">
-        <div class="col"><a href="#/app/chat"><i class="icon ion-chatbubbles"></i><span>Chats</span></a></div>
-        <div class="col"><a href="#/app/inbox"><i class="icon ion-person-stalker"></i><span>Matches</span></a></div>
         <div class="col"><a href="#/app/activities"><i class="icon ion-android-calendar"></i><span>Activities</span></a></div>
+        <div class="col"><a href="#/app/profile/edit"> <i class="icon ion-person"></i> <span>Profile</span></a></div>
+        <div class="col"><a href="#/app/chat"><i class="icon ion-chatbubbles"></i><span>Chats</span></a></div>
+      </div>
+      <div class="row">
+        <div class="col"><a href="#/app/search"> <i class="icon ion-search"></i> <span>Search</span></a></div>        
+        <div class="col"><a href="#/app/inbox"><i class="icon ion-person-stalker"></i><span>Matches</span></a></div>
+        <div class="col"><a href="#/app/td-cards"><i class="icon ion-heart"></i><span>Cards</span></a></div>
       </div>
     </div>
   </ion-content>
