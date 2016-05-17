@@ -1307,6 +1307,9 @@ button.co-button span{
 .alternate-labels label *{
    font-size: 0.8em;   
 }
+.alternate-labels label input{
+   background: transparent !important;
+}
 .alternate-labels label:nth-child(2n+1){
    background: #DBDAE4;   
 }

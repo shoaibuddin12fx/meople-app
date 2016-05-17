@@ -4,7 +4,7 @@
     <ion-tab icon="icon ion-grid"> 
       <!-- Tab 1 content -->
       <ion-view>
-        <ion-content overflow-scroll="true">
+        <ion-content>
           <div class="list">
             <div class="item center-outer">
               <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
@@ -32,7 +32,7 @@
     <ion-tab title="Activities" icon="icon ion-person"> 
       <!-- Tab 2 content -->
       <ion-view>
-        <ion-content overflow-scroll="true">
+        <ion-content>
         
           <div class="list">
             <div class="item center-outer">
@@ -40,7 +40,7 @@
                 <div class="center-inside welcome-profile-top">
                   <h2>{{ilist.profile.name}}</h2>
                   <p>{{ilist.profile.age}} years old</p>
-                  <ion-checkbox class="button button-block button-balanced green-button-style" ng-model="filter.edit">Edit Profile</ion-checkbox>
+                  <ion-checkbox class="button button-balanced green-button-style" ng-model="filter.edit">Edit Profile</ion-checkbox>
                   
                 </div>
               </div>
@@ -52,7 +52,8 @@
               <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
             </label>
             <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label all-span">what do you do?</span>
-              <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-disabled="!filter.edit">
+              <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-hide="!filter.edit">
+              <span ng-hide="filter.edit">{{ilist.profile['work']}}</span>
             </label>
             <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label all-span">About yourself</span>
               <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" ng-disabled="!filter.edit">
