@@ -465,6 +465,13 @@ angular.module('starter.controllers', [])
 	$scope.selectTabWithIndex = function(index) {
 		$ionicTabsDelegate.select(index);
 	  }
+	$scope.filter = { edit :false, text:"Edit Profile"};  
+	$scope.toggleFilter = function(){
+		if($scope.filter.edit){	$scope.filter.edit = false; $scope.filter.text = "Edit Profile";}
+		else{ $scope.filter.edit = true; $scope.filter.text = "Done"}
+		}  
+	
+	
 	
 	$scope.getLimits = function (array) {
 		

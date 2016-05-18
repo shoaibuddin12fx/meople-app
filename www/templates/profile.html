@@ -40,7 +40,7 @@
                 <div class="center-inside welcome-profile-top">
                   <h2>{{ilist.profile.name}}</h2>
                   <p>{{ilist.profile.age}} years old</p>
-                  <ion-checkbox class="button button-balanced green-button-style" ng-model="filter.edit">Edit Profile</ion-checkbox>
+                  <div class="button button-balanced green-button-style" ng-click="toggleFilter()"><i ng-hide="filter.edit"class="icon ion-edit"></i>{{filter.text}}</div>
                   
                 </div>
               </div>
@@ -83,7 +83,7 @@
             <!--<button ng-click="openModal()" ng-disabled="filter.edit" class="button button-block button-balanced">edit profile</button>--> </div>
             
           
-          <!--<div class="over-box">
+          <div class="over-box">
             <div class="item item-divider"><span></span>
               <h4>Links</h4>
             </div>
@@ -93,7 +93,7 @@
               <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
               <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
             </div>
-          </div>-->
+          </div>
         </ion-content>
       </ion-view>
     </ion-tab>
@@ -127,11 +127,24 @@
     <ion-tab icon="icon ion-camera"> 
       <!-- Tab 4 content -->
       <ion-view>
-        <ion-content overflow-scroll="true">
-          <div class="item item-button-right"> UPLOAD PICTURE
+        <ion-content>
+          <!--<div class="item item-button-right"> UPLOAD PICTURE
             <button ng-click="photoUpload()" class="button button-positive"> <i class="icon ion-camera"></i> </button>
-          </div>
+          </div>-->
           <div class="list">
+            <div class="item center-outer">
+              <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{ilist.profile.name}}</h2>
+                  <p>{{ilist.profile.age}} years old</p>
+                  <div class="button button-balanced green-button-style" ng-click="photoUpload()"><i class="icon ion-camera"></i>Upload</div>
+                </div>
+              </div>
+            </div>
+          
+          
+          
+          
             <li class="item item-icon-right item-thumbnail-left center-outer" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}">
               <div class="center-inside">
                 <h2>Picture #{{$index+1}}</h2>

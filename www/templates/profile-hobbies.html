@@ -11,7 +11,7 @@
       <ion-slide ng-repeat="(key,value) in listAct">
       
         <div class="over-box">
-              <div class="item item-divider"><span></span><h4>Hobbies {{$index+1}} of 6</h4></div>              
+              <div class="item item-divider"><span></span><h4>Hobbies pages {{$index+1}}/6</h4></div>              
                <div class="small-center-inside">
                <a class="four-col-a" ng-repeat="(key, value) in value" ng-if="key != 'i'" ng-click="hobValue(key, 1, value)" ><img class="round-border-gray" src="{{value}}"  /><br> <span>  {{key}}  </span></a>                
                </div>               
