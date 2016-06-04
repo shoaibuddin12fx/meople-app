@@ -61,7 +61,7 @@
         <!-- Tab 2 content -->
         <ion-view>
           <ion-content overflow-scroll="true">
-            <div class="list card brown-i">
+            <div class="list brown-i">
               <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
                 <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
                 <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/>
@@ -90,16 +90,18 @@
         
         <ion-view>
           <ion-content overflow-scroll="true">
-            <div class="list card brown-i">
+            <div class="list brown-i">
               <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
                 <h2 style="text-transform:uppercase">{{res.act.Name}}</h2>
                 <h4>by {{res.ownerName}} for {{res.act.type}} at {{res.act.city}} <br/>
                   on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</h4>
                 <i ng-if="show" ng-click="openModal()" class="icon ion-edit"></i> </div>
               <div ng-if="show" class="item item-divider">Activity Details ...</div>
+              <div class="alternate-labels">
               <label ng-repeat="(key, value) in res.act" ng-if="key != 'params' && key != 'date' && key != 'time'" class="item item-input">
                 <span class="input-label all-span">{{key}}</span>
                 <span class="all-span">{{value}}</span> </label>
+              </div>
             </div>
           </ion-content>
         </ion-view>
@@ -109,14 +111,14 @@
         
         <ion-view view-title="Chat to" ng-init="isMemberFunc()">
           <ion-content class="chat-ion-content">
-            <ul class="card list" ng-show="isMember != true">
+            <ul class="list" ng-show="isMember != true">
                 	<li class="item item-icon-left">
                     <i class="icon ion-alert"></i>
                     Member's Chat only
                     </li>
                 </ul>
                 
-            <ul class="card list" ng-show="isMember == true">
+            <ul class="list" ng-show="isMember == true">
               <li class="item small-span item-avatar" ng-repeat="(tkey,tvalue) in res.conversation"> <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
                 <h2 ng-if="tvalue.msg">{{tvalue.msg}}</h2>
                 <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}"> <span ng-if="pid.muid == tvalue.uid">me</span> <span ng-if="pid.fuid == tvalue.uid">{{tvalue.name}}</span> </li>

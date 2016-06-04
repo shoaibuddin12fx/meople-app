@@ -1120,39 +1120,38 @@ button.co-button span{
 .over-box .col a img{
    width: 35px;
 }
+
+
+
 .over-box .row:nth-child(2) .col:nth-child(1) a{
-   background-color: #87C23C;
+   background-color: #83C14B;
 }
 .over-box .row:nth-child(2) .col:nth-child(2) a{
-   background-color: #F1873A;
+   background-color: #D59D57;
 }
 .over-box .row:nth-child(2) .col:nth-child(3) a{
-   background-color: #43ACE1;
+   background-color: #E4E454;
 }
 .over-box .row:nth-child(3) .col:nth-child(1) a{
-   background-color: #DBDBE4;
+   background-color: #61C8DB;
 }
-.over-box .row:nth-child(3) .col:nth-child(1) a i
-{
-   color: #44A8E5;
-}
-.over-box .row:nth-child(3) .col:nth-child(1) a span,
-.over-box .row:nth-child(3) .col:nth-child(3) a span
-{
-   color: #000;
-}
-
 .over-box .row:nth-child(3) .col:nth-child(2) a{
-   background-color: #F04347;
+   background-color: #E2464F;
 }
 .over-box .row:nth-child(3) .col:nth-child(3) a{
-   background-color: #DBDFE4;
+   background-color: #7F5013;
 }
-.over-box .row:nth-child(3) .col:nth-child(3) a i
+/* other unique colors */
+.over-box .row.unique-color:nth-child(2) .col:nth-child(1) a{
+   background-color: #E0DC2D;
+}
+.over-box .row.unique-color:nth-child(2) .col:nth-child(2) a{
+   background-color: #F6920E;
+}
+.over-box .row.unique-color:nth-child(2) .col:nth-child(3) a{
+   background-color: #2AB7B5;
+}
 
-{
-   color: #87C321;
-}
 
 .center-outer{
    display: table;
@@ -1202,6 +1201,9 @@ button.co-button span{
    border-radius: 8px;
    float: left;
    text-align: center;
+   background-color: #FFF;
+   border-radius: 50%;
+   border: 2px solid #000;
 }
 
 .over-box .four-col-a{
@@ -1217,7 +1219,8 @@ button.co-button span{
    width: 60px;
    border-radius: 8px;
    float: left;
-   text-align: center;   
+   text-align: center;
+   background-color: #FFF;
 }
 .picture-box{
    border-radius: 10px;
@@ -1259,7 +1262,7 @@ button.co-button span{
    border-radius: 10px;
 }
 .item.item-thumbnail-left.item-icon-right:nth-child(2n){
-   background: #DBDAE4;
+   background: #8ACEE8;
 }
 .full-page-map{
    position: absolute;
@@ -1340,6 +1343,18 @@ button.co-button span{
    
 }
 
+.alternate-color-child a:nth-child(even) i{
+   
+}
+.alternate-color-child a:nth-child(odd) i.ion-android-calendar{
+   color: #83C14B;
+}
+.alternate-color-child a:nth-child(odd){
+   color: gray;
+}
+.alternate-color-child a:nth-child(odd) i.ion-chevron-right{
+   color: gray;
+}
 
 
 
