@@ -852,7 +852,38 @@ angular.module('starter.services', [])
 		setActivity:function(authData, $q, array){
 			var q = $q.defer();
 			var actId = ref.child('activities').push(array);
+			var actkey = actId.key();
+			
 			q.resolve({sos:array.sos, distance:array.sosDistance, actId:actId.key()})
+			return q.promise;
+			},
+		setOwnerAsMember: function(authData, $q, array, param){
+			var q = $q.defer();
+			var id = param.actId;
+			
+			var attachMyProfile = ref.child('activities/'+id+'/members').child(authData.uid);  
+					attachMyProfile.update({
+						type:'member',
+						joinAs:array.act.params.itsfor,
+						name: array.ownerName,
+						picture: array.picture,
+						uid: array.uid,
+						Data: array.act 
+						});
+				var attachMyProfile2 = ref.child('activities/'+id+'/members').once("value", function(snapshot) {
+					var hasMemberCounter = snapshot.hasChild("MemberCounter");
+					if(hasMemberCounter === true){ 
+						ref.child('activities/'+id+'/members/MemberCounter').once("value", function(count){
+							var c = count.val();
+							c = c + 1;
+							ref.child('activities/'+actkey+'/members').update({MemberCounter:c});
+							})
+						console.log(true);
+					}else{
+						ref.child('activities/'+id+'/members').update({MemberCounter:1})
+						}
+					})
+			q.resolve({sos:array.sos, distance:array.sosDistance, actId:id})
 			return q.promise;
 			},
 		sendActivityAsSos:function(authData, $q, marker, res){
@@ -1283,7 +1314,7 @@ angular.module('starter.services', [])
 				});			
 			q.resolve(true);
 			return q.promise;
-			},				
+			},			
 		getactList:function(authData, $q){
 			var q = $q.defer();			
 			ref.child('activities').orderByChild('act/date').limitToLast(100).once("value", function(snap) {

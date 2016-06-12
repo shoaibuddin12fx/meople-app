@@ -1,14 +1,22 @@
 <ion-view view-title="Create {{AcType}}">
   <ion-content >
-    <div class="card list">
-      <div class="item item-avatar"> <img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
-        <h2>{{profile.profile.name}}</h2>
-        <p>{{profile.profile.age}}, {{profile.profile.gender}}</p>
-      </div>
+    <div class="list">
+    	<div class="item center-outer">
+              <div class="fix-div-inside"><img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{profile.profile.name}}</h2>
+                  <p>{{profile.profile.age}} years old</p>
+                  <div class="button button-balanced green-button-style" ng-click="createActivity()">create</div>
+                </div>
+              </div>
+            </div>
+     <ion-checkbox ng-model="sos.checked">SEND AS S.O.S</ion-checkbox>
+     <div class="alternate-labels">
       <form id="act-form"  class="brown-i">
-        <ion-checkbox ng-model="sos.checked">SEND AS S.O.S</ion-checkbox>
-        <div class="item item-divider" ng-if="sos.checked">Maximum distance to S.O.S</div>
-        <label style="padding-right:14px" ng-if="sos.checked" class="item item-input" for="sos_distance"> <span class="input-label all-span">{{sos.distance}} km</span> 10
+      
+        
+        
+        <label style="padding-right:14px" ng-if="sos.checked" class="item item-input" for="sos_distance"> <span class="input-label all-span">SOS {{sos.distance}} km</span> 10
           <input type="range" id="sos_distance" ng-model="sos.distance"  min="10" max="1000" value="sos.distance" style="padding-right:0">
           1000 </label>
         <label class="item item-input"> <span class="input-label all-span">{{AcType}} </span>
@@ -38,7 +46,6 @@
         <!-- City, Date, Accomodation Type-->
         
         <div ng-if="AcType == 'accomodation'">
-          <div class="item item-divider"></div>
           <label class="item item-input item-select"> <span class="input-label all-span">You are ?</span>
             <select name="HomeTypes" ng-model="accom.person">
               <option value="host" selected>host</option>
@@ -87,8 +94,7 @@
             <select name="HomeCapacity" ng-model="HomeCapacity.value">
               <option ng-repeat="n in [] | range:20" value="{{$index+1}}">{{$index+1}}</option>
             </select>
-          </label>
-          <div class="item item-divider"></div>
+          </label>          
         </div>
         
         <!-- End This Block is for Accomodation--> 
@@ -104,7 +110,6 @@
         <!-- Departure, Destination, Date, Car Type -->
         
         <div ng-if="AcType == 'carpool'">
-          <div class="item item-divider"></div>
           <label class="item item-input item-select"> <span class="input-label all-span">You are ?</span>
             <select name="HomeTypes" ng-model="poolcar.person">
               <option value="driver" selected>driver</option>
@@ -156,8 +161,7 @@
           </label>
           <label class="item item-input item-select" ng-if="poolcar.person != 'passenger'"> <span class="input-label all-span">No of Places</span>
             <input type="number" min="1" ng-model="NoPlaces.value" placeholder="charges" style="color:gray" value="">
-          </label>
-          <div class="item item-divider"></div>
+          </label>          
         </div>
         
         <!-- End This Block is for Carpool--> 
@@ -165,9 +169,7 @@
         <!-- Start This Block is for Activity -->
         
         <div ng-if="AcType == 'activity'">
-          <div class="item item-divider"></div>
-          
-          
+         
           <label class="item item-input item-icon-right"> <span class="input-label all-span">Choose Location</span>
             <button class="b-upload co-button" style="float:right" ng-click="openModal()"><span>{{marker.lat | number:2}}  {{marker.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
           </label>
@@ -219,16 +221,15 @@
               <option ng-repeat="n in [] | range:10" value="{{$index+1}}">{{$index+1}}</option>
             </select>
           </label>
-          <div class="item item-divider"></div>
+          
         </div>
         
         <!-- End This Block is for Activity-->
         
-        <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="createActivity()"> CREATE </button>
+        
       </form>
+      </div>
     </div>
   </ion-content>
-  <!--<div class="bar bar-footer" style="background:#0F6A93">
-      <div class="title" ng-click="createActivity()" style="cursor:pointer;color:#FFFFFF">CREATE</div>
-    </div> --> 
+  
 </ion-view>

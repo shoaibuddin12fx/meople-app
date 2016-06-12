@@ -1,50 +1,39 @@
 <ion-view view-title="Matches">
   <ion-content>
-    <div class="list" ng-if="inboxlist.length">
-      <div class="item item-divider">Match Requests Received</div>
-      <div ng-repeat="(tkey,tvalue) in inboxlist">
-        <li class="item item-avatar">
-        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />        
-          <h2>{{tvalue.name}}</h2>          
-          <p>#{{$index+1}}</p>
-          <div class="ActMemberInfoIcon">
-              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
-              <i ng-click="AcceptRequest(inboxlist, $index, tkey)" class="icon ion-checkmark-round"></i>
-              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
-          </div>
-            
-        </li>
+    <ion-list>
+    
+      <ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(tkey,tvalue) in inboxlist" > <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
+        <h2>{{tvalue.name}}</h2>
+        <p></p>
+        <span class="member-tag request">request #{{$index+1}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
+        <ion-option-button class="button-royal" ng-click="AcceptRequest(inboxlist, $index, tkey)"><i class="icon ion-checkmark-round" style="color:#FFF"></i> </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteRequest(inboxlist, $index, tkey)"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
+        <ion-option-button class="button-stable" ng-click="gotoPublicProfile(tkey)"><i class="icon ion-chevron-right"></i></ion-option-button>
+      </ion-item>
+    
+    
+      <ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(tkey,tvalue) in inboxlistd" > <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
+        <h2>{{tvalue.name}}</h2>
+        <p>{{tvalue.Data.nationality}}<br>
+          joined as: {{tvalue.joinAs}}</p>
+        <span class="member-tag">member</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
+        <ion-option-button class="button-assertive" ng-click="DeleteMember(tkey, 'member')"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
+        <ion-option-button class="button-stable" ng-click="gotoPublicProfile(tkey)"><i class="icon ion-chevron-right"></i></ion-option-button>
+      </ion-item>
+    
+    
+      <ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(tkey,tvalue) in inboxlistf" > <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
+        <h2>{{tvalue.name}}</h2>
+        <span class="member-tag">match #{{$index+1}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
         
-      </div>
-    </div>
-    <div class="list">
-      <div class="item item-divider">Match Requests sent</div>
-      <div ng-repeat="(tkey,tvalue) in inboxlistd">
-        <li class="item item-avatar">
-        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
-          <h2>{{tvalue.name}}</h2>
-          <p>#{{$index+1}}</p>
-          <div class="ActMemberInfoIcon">
-              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
-              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
-          </div>
-        </li>
-      </div>
-    </div>
-    <div class="list">
-      <div class="item item-divider">Matches</div>
-      <div ng-repeat="(tkey,tvalue) in inboxlistf">
+        <ion-option-button class="button-assertive" ng-click="deleteRequest(inboxlist, $index, tkey)"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
+        <ion-option-button class="button-stable" ng-click="gotoPublicProfile(tkey)"><i class="icon ion-chevron-right"></i></ion-option-button>
         
-        <li class="item item-avatar">
-        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}" /> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}" />
-          <h2>{{tvalue.name}}</h2>
-          <p>#{{$index+1}}</p>
-          <div class="ActMemberInfoIcon">
-              <i ng-click="gotoPublicProfile(tkey)" class="icon ion-chevron-right"></i>
-              <i ng-click="deleteRequest(inboxlist, $index, tkey)" class="icon ion-trash-b"></i>
-          </div>
-        </li>
-      </div>
-    </div>
+      </ion-item>
+    
+    
+    </ion-list>
+    
+    
   </ion-content>
 </ion-view>

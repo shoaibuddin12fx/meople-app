@@ -7,18 +7,31 @@
     </div>
   </ion-header-bar>
   <ion-pane>
-    <ion-tabs class="tabs-icon-top">
+    <ion-tabs class="tabs-icon-top tabs-color-light">
       <ion-tab title="Carpool" icon-on="ion-android-car" icon-off="ion-android-car"> 
         <!-- Tab 1 content -->
         <ion-view>
-          <ion-content overflow-scroll="true">
-            <div class="list card brown-i">
-              <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
-                <h2 style="text-transform:uppercase">JOIN AS DRIVER</h2>
-                <h4>please set details</h4>
+          <ion-content >
+            <div class="list brown-i">
+            	<div class="item center-outer">
+                <div class="fix-div-inside"><img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                  <div class="center-inside welcome-profile-top">
+                    <h2 style="text-transform:uppercase">JOIN AS DRIVER</h2>
+                	<p>please set details</p>
+                    <div class="button button-balanced green-button-style" style="background:#0F6A93" ng-click="sendRequestAs('driver')"> send </div>
+                  </div>
+                  
+                </div>
               </div>
+              
+              
               <ion-checkbox class="item" ng-model="JoinDateCheck.value1"><span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Will You be available on <br/>
                 {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</span> </ion-checkbox>
+                
+                
+                
+              <div class="alternate-labels">
+                
               <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Choose Location</span>
                 <button class="b-upload co-button" style="float:right" ng-click="OpenMapModal()"><span>{{marker.lat | number:2}}  {{marker.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
               </label>
@@ -40,7 +53,7 @@
               <label class="item item-input item-select"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Charges per Person</span>
                 <input type="number" min="1" ng-model="PerPersonCharges.value" placeholder="charges" style="color:gray" value="">
               </label>
-              <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="sendRequestAs('driver')"> SEND </button>
+              </div>
             </div>
           </ion-content>
         </ion-view>
@@ -48,16 +61,32 @@
       <ion-tab title="Passenger" icon-on="ion-android-walk" icon-off="ion-android-walk"> 
         <!-- Tab 2 content -->
         <ion-view>
-          <ion-content overflow-scroll="true">
-            <div class="list card brown-i">
-              <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
-                <h2 style="text-transform:uppercase">JOIN AS PASSENGER</h2>
-                <h4>please set details</h4>
+          <ion-content>
+            <div class="list brown-i">
+            
+            <div class="item center-outer">
+                <div class="fix-div-inside"><img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                  <div class="center-inside welcome-profile-top">
+                    <h2 style="text-transform:uppercase">JOIN AS PASSENGER</h2>
+                	<h4>please set details</h4>
+                    <div class="button button-balanced green-button-style" style="background:#0F6A93" ng-click="sendRequestAs('passenger')"> send </div>
+                  </div>
+                  
+                </div>
               </div>
+            
+            
+            
+            
+              
               <ion-checkbox class="item" ng-model="JoinDateCheck.value1"><span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Will You be available on <br/>
                 {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</span> </ion-checkbox>
+                
               <ion-checkbox class="item" ng-model="JoinDateCheck.value2"><span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Agree to Coordinate with Driver of this activity? <br/>
                 on {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</span> </ion-checkbox>
+                
+             <div class="alternate-labels">   
+                
               <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Choose Location</span>
                 <button class="b-upload co-button" style="float:right" ng-click="OpenMapModal()"><span>{{marker.lat | number:2}}  {{marker.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
               </label>
@@ -66,7 +95,7 @@
                   <option ng-repeat="n in [] | range:24" value="{{$index+1}}">{{$index+1}}</option>
                 </select>
               </label>
-              <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="sendRequestAs('passenger')"> SEND </button>
+              </div>
             </div>
           </ion-content>
         </ion-view>
@@ -75,13 +104,31 @@
         <!-- Tab 3 content -->
         <ion-view>
           <ion-content overflow-scroll="true">
-            <div class="list card brown-i">
-              <div class="item item-avatar item-icon-right"> <img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
-                <h2 style="text-transform:uppercase">JOIN AS ACCOMODATOR</h2>
-                <h4>please set details</h4>
-              </div>
+            <div class="list brown-i">
+            
+            
+              <div class="item center-outer">
+                <div class="fix-div-inside"><img id="logo-pic" ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img  id="logo-pic" ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                  <div class="center-inside welcome-profile-top">
+                    <h2 style="text-transform:uppercase">JOIN AS ACCOMODATOR</h2>
+                	<h4>please set details</h4>
+                    <div class="button button-balanced green-button-style" style="background:#0F6A93" ng-click="sendRequestAs('host')"> send </div>
+                  </div>
+                  
+                </div>
+              </div>	
+            
+            
+            
+            
+            
+            
+              
               <ion-checkbox class="item" ng-model="JoinDateCheck.value1"><span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Will Your place be available on <br/>
                 {{res.act.date | date:'yyyy/MM/dd'}} | {{res.act.time}} (24hr)</span> </ion-checkbox>
+              
+              <div class="alternate-labels">
+              
               <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Choose Location</span>
                 <button class="b-upload co-button" style="float:right" ng-click="OpenMapModal()"><span>{{marker.lat | number:2}}  {{marker.long | number:2}}</span><i style="cursor:pointer"  class="icon ion-location"></i></button>
               </label>
@@ -103,7 +150,10 @@
               <label class="item item-input item-select"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Charges per Person</span>
                 <input type="number" min="1" ng-model="PerPersonCharges.value" placeholder="charges" style="color:gray" value="">
               </label>
-              <button class="button button-block" style="cursor:pointer;color:#FFFFFF; background:#0F6A93; text-transform:uppercase" ng-click="sendRequestAs('host')"> SEND </button>
+              
+              </div>
+              
+              
             </div>
           </ion-content>
         </ion-view>

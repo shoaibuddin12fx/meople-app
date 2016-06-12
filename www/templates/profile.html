@@ -131,7 +131,7 @@
           <!--<div class="item item-button-right"> UPLOAD PICTURE
             <button ng-click="photoUpload()" class="button button-positive"> <i class="icon ion-camera"></i> </button>
           </div>-->
-          <div class="list">
+          
             <div class="item center-outer">
               <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
                 <div class="center-inside welcome-profile-top">
@@ -141,17 +141,29 @@
                 </div>
               </div>
             </div>
+      <ion-list>
+    	<ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(key,value) in ilist.images" > 
+      		<img ng-src="data:image/jpeg;base64,{{value.image}}">
+        <span class="member-tag request">picture #{{$index+1}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
+        <ion-option-button class="button-assertive" ng-click="removeImage(key)"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
+        
+      </ion-item>
+    
+    
+     
+    
+    </ion-list>
+    
           
           
           
           
-            <li class="item item-icon-right item-thumbnail-left center-outer" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}">
-              <div class="center-inside">
-                <h2>Picture #{{$index+1}}</h2>
-                <span class="dim-gray-italic">tap trash to remove image</span> </div>
-              <!--<p><span ng-if="value.count">{{value.count}}</span><span ng-if="!value.count">0</span> Likes </p>--> 
-              <i ng-click="removeImage(key)" class="icon ion-trash-b"></i> </li>
-          </div>
+          
+          
+          
+          
+          
+          
         </ion-content>
       </ion-view>
     </ion-tab>

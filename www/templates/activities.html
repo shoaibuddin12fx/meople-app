@@ -1,10 +1,7 @@
 <ion-view view-title="Activites" cache-view="false">
   <ion-content>
-    <!-- <div class="item item-button-right" ng-show="show"> Create New Activity
-      <a class="button button-dark" href="#/app/create-activities"> <span ng-show="wait">Please wait ...</span><i class="icon ion-plus" ng-click="showLoading()"></i> </a>
-    </div>  -->
+  	<ion-refresher pulling-text="Pull to refresh..."  on-refresh="RefreshView()">  </ion-refresher>
     <div class="list alternate-color-child"> <a class="item item-avatar small-span item-icon-left item-icon-right brown-i" ng-click="Redirect(tkey)" href="#/app/view-activities/{{tkey}}" ng-repeat="(tkey,tvalue) in acts"> 
-    <!--<img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}"> -->
       <i class="icon ion-android-calendar"></i>
       <h2>{{tvalue.act.Name}}</h2>
       <span>{{tvalue.act.city}} - </span>    
@@ -16,11 +13,5 @@
       
       </a> </div>
       
-  </ion-content>
-  <div class="bar bar-footer bar-dark">  	
-    
-    <div class="title"></div>
-    <button class="button button-clear" ng-click="RefreshView()">Refresh</button>
-    <!--<button class="button button-clear" ng-show="show" ng-click="showLoading()">Create Activity</button>-->
-  </div>
+  </ion-content>  
 </ion-view>

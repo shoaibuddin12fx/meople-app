@@ -336,6 +336,24 @@ angular.module('starter.controllers', [])
 	var filterBarInstance;	 
     var authData = authlogin.verify();
 	
+	
+	$scope.gotoPublicProfile = function(tkey){
+		$state.go('app.searchprofile', {uid: tkey})
+		}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	searchInfo.getmyCLocation(authData, $q)
 		.then(function(res){
 			    $scope.myC = {x:res.lat,y:res.long};
@@ -913,16 +931,15 @@ angular.module('starter.controllers', [])
 		
 	$scope.Run = function(){
 			actInfo.getActivity($stateParams.id, $q)
-					.then(function(res){$scope.acts = res;});		
+					.then(function(res){$scope.acts = res });		
 		};$scope.Run(); 	
 		
 		
 			if(authData.uid == $stateParams.id){}
 	
 	$scope.RefreshView = function(){
- 		$ionicLoading.show({ template: 'loading ...' });
-		$scope.Run();
-		$ionicLoading.hide();
+ 		$scope.Run();
+		$scope.$broadcast('scroll.refreshComplete');
 			
 		}
 	
@@ -956,6 +973,7 @@ angular.module('starter.controllers', [])
 	$scope.RefreshView = function(){
  		
 		$scope.getReq();
+		$scope.$broadcast('scroll.refreshComplete');
 		
 				
 		}
@@ -970,7 +988,10 @@ angular.module('starter.controllers', [])
 	$scope.myuid = authData.uid;
 	$scope.refreshList = function(){
 	searchInfo.getactList(authData, $q)
-		.then(function(data){$scope.acts = data;})
+		.then(function(data){
+			$scope.acts = data;
+			$scope.$broadcast('scroll.refreshComplete');
+			})
 	} ;$scope.refreshList();
 	
     $scope.dobValue = null;
@@ -1340,7 +1361,7 @@ angular.module('starter.controllers', [])
 			}else{
 				
 				var actData = {
-					params:{its:$scope.AcType},
+					params:{its:$scope.AcType, itsfor:'person'},
 					Name : $scope.NewActData.actname,
 					nationality: $scope.gnationality.repeatSelect,
 					type : $scope.cActivityList.repeatSelect,
@@ -1556,9 +1577,14 @@ angular.module('starter.controllers', [])
 		
 		$ionicLoading.show({ template: 'working ...' });
 			actInfo.setActivity(authData, $q, array)
+				.then(function(param){
+					actInfo.setOwnerAsMember(authData, $q, array, param)
+				
                 .then(function(res){
 					
 						if(!res.sos){
+							
+							
 							$ionicLoading.hide();
 							var alertPopup = $ionicPopup.alert({template: 'Activity created' });
 							alertPopup.then(function(){
@@ -1578,7 +1604,8 @@ angular.module('starter.controllers', [])
 									   })
 								})	
 							}
-					}); 
+					});
+			}) 
 		} // end CreateEntry() 
 	
 	
@@ -1643,8 +1670,20 @@ angular.module('starter.controllers', [])
 
 	
 })
-.controller('ViewActCtrl', function($scope,$state, $stateParams, $q,$ionicLoading, $firebaseObject, $ionicModal, getProfileInfo, authlogin, actInfo, getGlobals, $cordovaGeolocation, $cordovaCamera, $ionicPopup,$ionicHistory, NgMap, searchInfo, $http, chatlink) {	
-	console.log("0");
+.controller('ViewActCtrl', function($scope,$state, $stateParams, $q,$ionicLoading, $firebaseObject, $ionicModal, getProfileInfo, authlogin, actInfo, getGlobals, $cordovaGeolocation, $cordovaCamera, $ionicPopup,$ionicHistory, NgMap, searchInfo, $http, chatlink, $ionicTabsDelegate) {	
+	
+	
+	$scope.selectTabWithIndex = function(index) {
+		$ionicTabsDelegate.select(index);
+	  }
+	$scope.filter = { edit :false, text:"edit"};  
+	$scope.toggleFilter = function(){
+		if($scope.filter.edit){	$scope.filter.edit = false; $scope.filter.text = "edit";}
+		else{$scope.filter.edit = true; $scope.filter.text = "done";}
+		
+	}
+	
+	
     $ionicLoading.show({ template: 'loading ...' });
 	var authData = authlogin.verify();
 	
@@ -1822,6 +1861,7 @@ angular.module('starter.controllers', [])
 					 template: 'Complete the form'
 				   });
 				   alertPopup
+				   return false;
             
             
         }else{
@@ -1830,7 +1870,8 @@ angular.module('starter.controllers', [])
                 .then(function(res){
                         var alertPopup = $ionicPopup.alert({template: 'Activity updates' });
                        	alertPopup.then(function(){                           
-                           $scope.closeModal();
+                           //$scope.closeModal(); 
+						   return true;
                            })
                     }); 
             
@@ -1869,7 +1910,7 @@ angular.module('starter.controllers', [])
 		  }
 	  
 	  
-	  $scope.JoinDateCheck = {  value1 : true, value2 : false };
+	  $scope.JoinDateCheck = {  value1 : true, value2 : true };
 	  $scope.CarCapacity = {value: null}
 	  $scope.HomeCapacity = {value: null}
 	  $scope.AvailableHours = {value:null}
@@ -1939,11 +1980,8 @@ angular.module('starter.controllers', [])
 		  
 	}
 	  
-	  
-	  
-	  
-	  
-	  
+	
+	
 	  
 	  
 	  $ionicModal.fromTemplateUrl('templates/edit-activity.html', {

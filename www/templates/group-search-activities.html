@@ -1,18 +1,28 @@
 <ion-view view-title="Search Activity">
-  <ion-content style="height:calc(100% - 100px)">
-  <div class="card list">
-     <div class="item item-avatar"> <img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
-              <h2>{{profile.profile.name}}</h2>
-              <p>{{profile.profile.age}}, {{profile.profile.gender}}</p>
+  <ion-content>
+  <div class="list">
+  		<div class="item center-outer">
+              <div class="fix-div-inside"><img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{profile.profile.name}}</h2>
+                  <p>{{profile.profile.age}} years old</p>
+                  <div class="button button-balanced green-button-style" ng-click="createActivity()">search</div>
+                </div>
+              </div>
             </div>
+  
+  
+  
+  
+  
+     <div class="alternate-labels">
+  
       <form id="act-form">
-        <div class="item item-divider">Activity on ...</div>
         <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity Date</span><span class="input-label" style="text-transform:uppercase; font-size:11px">{{dobValue | date:'yyyy/MM/dd'}}</span>
           <ionic-datepicker input-obj="datepickerObject" style="width:100%">
               <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button></ionic-datepicker>
               
         </label>
-        <div class="item item-divider">Activity for ...</div>
         <label class="item item-input item-select" for="natSelect">
             <div class="input-label">
               <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity type</span>
@@ -36,13 +46,10 @@
               <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
             </select>
         </label>
-          <!-- <button class="button button-block button-dark" ng-click="createActivity()"> CREATE </button> --> 
+          
         
       </form>
-      
+      </div>
     </div>
-  </ion-content>
-    <div class="bar bar-footer" style="background:#0F6A93">
-      <div class="title" ng-click="createActivity()" style="cursor:pointer;color:#FFFFFF">SEARCH A GROUP</div>
-    </div>
+  </ion-content>    
 </ion-view>

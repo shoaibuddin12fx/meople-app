@@ -1,12 +1,11 @@
 <ion-view view-title="Search Activity">
   <ion-content>
+    <ion-refresher pulling-text="Pull to refresh..."  on-refresh="refreshList()">  </ion-refresher>
     <div class="list alternate-color-child">
       <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Select Activity Date</span><span class="input-label" style="text-transform:uppercase; font-size:11px">{{dobValue | date:'yyyy/MM/dd'}}</span>
           <ionic-datepicker input-obj="datepickerObject" style="width:100%">          
               <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button></ionic-datepicker>
         </label>
-        <div class="item item-divider"> <a ng-click="refreshList()" style="float:right">Refresh</a> </div>      
-    
      <a class="item item-avatar small-span item-icon-left item-icon-right brown-i" href="#/app/view-activities/{{tkey}}" ng-repeat="(tkey,tvalue) in acts" ng-if="tvalue.uid != myuid"> 
     
     <!--<img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}"> -->
