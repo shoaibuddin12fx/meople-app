@@ -4,16 +4,29 @@
   <div class="h1 title">Signup</div>  
 </div>
   <ion-content>
-    <div id="wrapper"> <div style="height:80px"></div>
-    <ionic-datepicker input-obj="datepickerObject">
-          <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
-        </ionic-datepicker>
+    <div id="wrapper"><div style="height:30px"></div>
+    	
+      
+      <div class="list">
+            <div class="item center-outer">
+              <div class="fix-div-inside"><img id="logo-pic" ng-click="changeLogo('picture')" ng-if="NewloginData.image.indexOf('img/') !== -1" src="{{NewloginData.image}}" /> <img  id="logo-pic" ng-click="changeLogo('picture')" ng-if="NewloginData.image.indexOf('img/') === -1" src="data:image/jpeg;base64,{{NewloginData.image}}" />
+                <div class="center-inside welcome-profile-top">
+                  <h2>{{NewloginData.fullname}}</h2>
+                  <p>age:{{yAge}}</p>
+                  <ionic-datepicker input-obj="datepickerObject">
+                      <button class="button button-balanced green-button-style" style="background:#0F6A93;"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+                    </ionic-datepicker>
+                </div>
+              </div>
+            </div>
+         
+      
       <form id="login-form" ng-submit="doRegister()">
         
-        <input type="text" placeholder="your age - {{yAge}}" disabled>
-        <input type="text" ng-model="NewloginData.fullname" placeholder="Full name" required>
+        
+        <input type="text" ng-model="NewloginData.fullname" placeholder="Full name" minlength="3" maxlength="15" required>
         <input type="text" ng-model="NewloginData.username" placeholder="Email" required>
-        <input type="password" ng-model="NewloginData.password" placeholder="password" required>
+        <input type="password" ng-model="NewloginData.password" placeholder="password" minlength="3" maxlength="15" required>
           
         <ion-toggle toggle-class="toggle-dark" ng-model="NewloginData.checked" ng-checked="NewloginData.checked" ng-click="test()"> 
         <span ng-if="NewloginData.checked">Male</span>
@@ -27,6 +40,7 @@
         <!-- <li><a href="#" ng-click="terms()">terms and condition</a></li> -->
         <li><a href="#" ng-click="returnToLogin()">Cancel</a></li>
       </ul>
+       </div>
     </div>
   </ion-content>
 </ion-view>

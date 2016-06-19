@@ -1,10 +1,18 @@
 <ion-view view-title="Chat to" ng-init="">
+<div class="bar bar-subheader bar-assertive">
+  <div class="pull-left">
+  	<img ng-if="aprofile.profile.picture.indexOf('http') !== -1" src="{{aprofile.profile.picture}}">
+    <img ng-if="aprofile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}">
+    <h2 class="title">{{aprofile.profile.name}}</h2>
+  </div>
+  
+</div>
 <ion-content class="chat-ion-content">
     <ul class="list" >
       <li class="item small-span" ng-class="checkPuid(tvalue.uid)" ng-repeat="(tkey,tvalue) in convlist">
         
-        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}">
-        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}">
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{profile.profile.picture}}">
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{profile.profile.picture}}">
         
         <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{aprofile.profile.picture}}">
         <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}">

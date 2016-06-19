@@ -128,8 +128,17 @@ angular.module('starter.controllers', [])
   
   
   })
-.controller('NewLoginCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $stateParams, $state, $location,$ionicPlatform, $interval, $firebaseAuth,$ionicHistory, createUser,createDBentry, authlogin, getProfileInfo, $q) {
-	 
+.controller('NewLoginCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $stateParams, $state, $location,$ionicPlatform, $interval, $firebaseAuth,$ionicHistory, createUser,createDBentry, authlogin, getProfileInfo, $cordovaCamera, $q) {
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
 	  // Create the login modal that we will use later
 	  $ionicModal.fromTemplateUrl('templates/date.html', {
 		scope: $scope,
@@ -159,8 +168,12 @@ angular.module('starter.controllers', [])
 						   alertPopup.then(function(res){});
 						});
 		  }
-		};
-	  
+		}
+	
+	
+	
+	
+	
 	  
 	// datepickerCustom function ends 
 	 
@@ -169,6 +182,7 @@ angular.module('starter.controllers', [])
 	 $scope.mainLogo = 'img/nat.jpg';
 	 $scope.NetworkMsg = "";
 	 $scope.Signin = "Register";
+	 
 	 
 	 
 	 
@@ -185,31 +199,91 @@ angular.module('starter.controllers', [])
 	  }
 	
 	 
-	 $scope.NewloginData = {};
+  $scope.NewloginData = {};
+  $scope.NewloginData.image = "img/photo.png";
 	 
-  	 
+  $scope.changeLogo = function(key){
+				
+		//console.log("its great" + key);
+		//var userReference = new Firebase("https://luminous-heat-6224.firebaseio.com/users/"+authData.uid+"/profile/"+key);
+		
+			var options = {
+				quality : 75,
+				destinationType : Camera.DestinationType.DATA_URL,
+				sourceType : Camera.PictureSourceType.PHOTOLIBRARY,
+				allowEdit : true,
+				encodingType: Camera.EncodingType.JPEG,
+				popoverOptions: CameraPopoverOptions,
+				targetWidth: 500,
+				targetHeight: 500,
+				saveToPhotoAlbum: false
+			};
+			$cordovaCamera.getPicture(options).then(function(imageData) {
+				$scope.NewloginData.image = imageData;
+            	$scope.NewloginData.NetworkMsg = imageData;
+			}, function(error) {
+				alert("Image has not uploaded");
+			});
+			
+		}
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  function validateEmail(email) {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	}
+  
+  
   $scope.doRegister = function(){
-	  $scope.Signin = "Working...";
-	  $scope.NetworkMsg = "Connecting ...";
+	  	
+			  var email = $scope.NewloginData.username;
+			  var password = $scope.NewloginData.password;
+			  var fullname = $scope.NewloginData.fullname;
+			  var dob = $scope.dobValue.getTime();
+			  var age = $scope.yAge;
+			  var picture = $scope.NewloginData.image;		
+				
+				
+		if(picture == "img/photo.png"){
+			$ionicPopup.alert({ template: 'please upload a picture'});
+		}else if(!validateEmail(email)){
+			$ionicPopup.alert({ template: 'email format incorrect'});
+		}else if(email == null || password == null || fullname == null){
+		
+		}
+		else{		
+				
+			  $scope.Signin = "Working...";
+			  $scope.NetworkMsg = "Connecting ...";
+			  
+			  
+			  
+			  
+			 if($scope.NewloginData.checked){var gender = "male"}
+			 if(!$scope.NewloginData.checked){var gender = "female"}
+			 
+			  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender,picture:picture};
+			  //console.log(regData);
+			  createUser.emaillogin(email, password, $q)
+			  .then(function(authData){	  		
+					createDBentry.emailEntry(authData,  regData, $q)
+					.then(authlogin.emaillogin(email, password, $q),$scope.loginSuccessful);
+			  },function(authData){
+			   // console.log(authData)
+			  });
 	  
-	  var email = $scope.NewloginData.username;
-	  var password = $scope.NewloginData.password;
-	  var fullname = $scope.NewloginData.fullname;
-	  var dob = $scope.dobValue.getTime();
-	  var age = $scope.yAge;
-	  
-	  
-	 if($scope.NewloginData.checked){var gender = "male"}
-	 if(!$scope.NewloginData.checked){var gender = "female"}
-	  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender};
-	  //console.log(regData);
-	  createUser.emaillogin(email, password, $q)
-	  .then(function(authData){	  		
-			createDBentry.emailEntry(authData,  regData, $q)
-			.then(authlogin.emaillogin(email, password, $q),$scope.loginSuccessful);
-	  },function(authData){
-	   // console.log(authData)
-	  });
+		}
+	 
+	 
 	  
 	  
   };  // doRegister function ends
@@ -365,7 +439,20 @@ angular.module('starter.controllers', [])
 			.then(function(res){
 				console.log(res);
 				
-				/*angular.forEach(res, function(value, key) {
+				angular.forEach(res, function(value, key) {
+							   value['distance'] = "...";
+										
+								    })
+									$scope.ilist = res;
+									$scope.wait = "";
+				
+									$ionicLoading.hide();
+									return res;
+				}).then(function(res){
+					console.log("got it");
+					
+					
+				angular.forEach($scope.ilist, function(value, key) {
 							   
 							   // calculate distance
 							    var x1 = $scope.myC.x;
@@ -375,13 +462,15 @@ angular.module('starter.controllers', [])
 							    
 								actInfo.getDistance(x1,y1,x2,y2,$q)
 									.then(function(res){
-										value['distance'] = Math.round(res);
+										value['distance'] = Math.round(res) + " km away";
 										})
-								    });*/
-									$scope.ilist = res;
-									$scope.wait = "";
-				})
-				$ionicLoading.hide();
+								    });
+					console.log(res);
+					
+					
+					
+					})
+				
 		
 		
 		}; $scope.SearchTick();
@@ -443,11 +532,6 @@ angular.module('starter.controllers', [])
         $scope.$broadcast('scroll.refreshComplete');
       }, 500);
     };
-	
-	
-	
-
-	
 	
 	
 })
@@ -527,23 +611,7 @@ angular.module('starter.controllers', [])
 		}
 	
 		 
-	/* NgMap.getMap({id:'MyLocation'}).then(function(map) {
-					$scope.coords = { lat: ilist.profile.location.lat, long: ilist.profile.location.long};
-					$ionicLoading.hide();
-		 			})
 	
-	
-	
-	actInfo.getLocation(authData, $q, $cordovaGeolocation)
-		 	.then(function(res){
-				
-				getGlobals.setlocation(authData, $q, res.lat, res.long)
-				NgMap.getMap({id:'MyLocation'}).then(function(map) {
-					$scope.coords = { lat: res.lat, long: res.long};
-				})
-				$ionicLoading.hide();
-				})
-		*/	
 	
 	
 			
@@ -558,8 +626,8 @@ angular.module('starter.controllers', [])
 	  
 	 $scope.getGroups = function(){
 		  var ref = new Firebase("https://luminous-heat-6224.firebaseio.com/users/"+authData.uid+"/profile");
-		  getGlobals.sethobbies(authData,$q);
-		  getGlobals.setlanguages(authData,$q);
+		  //getGlobals.sethobbies(authData,$q);
+		  //getGlobals.setlanguages(authData,$q);
 		  
 	 	  $scope.hobValue = function(lang, state, icon){		 		
 			  if(state == 1 ){ console.log('true')
@@ -718,6 +786,89 @@ angular.module('starter.controllers', [])
 					   alertPopup
 				}
 		}    
+	
+	
+	// edit my map location
+	$scope.mapedit = false; 
+	
+	$scope.mapTabSelected = function(){
+		
+		NgMap.getMap({id:'actMapLoc'}).then(function(map) {
+					
+					var setCoords;
+					console.log($scope.ilist.profile.location);
+					
+					$scope.coords = { lat:$scope.ilist.profile.location.lat,
+									  long:$scope.ilist.profile.location.long };
+					$scope.marker = $scope.coords;
+					
+					
+					$scope.edit_my_location = function(){
+						$scope.mapedit = true;
+						
+						var c = map.getCenter();			
+						$scope.marker2 = {lat:c.lat(), long:c.lng()};
+						
+						$scope.centerChanged = function(event) {						
+							var c = map.getCenter();			
+							$scope.marker2 = {lat:c.lat(), long:c.lng()};
+							setCoords = {lat:c.lat(), long:c.lng()};
+							
+						}
+						
+						
+						
+						
+						
+					}
+					
+					$scope.set_my_location = function(){
+						$scope.mapedit = false;
+						$scope.ilist.profile.location = $scope.marker2;
+						$scope.ilist.profile.location.user_set = true; 
+						$scope.coords = $scope.ilist.profile.location;
+						$scope.marker = $scope.ilist.profile.location;
+						
+						
+						$scope.marker = $scope.coords;
+						alertPopup = $ionicPopup.alert({template: 'new location set' });
+						
+						//actInfo.setTheActivityLocation(authData, $q, $stateParams.ackey, $scope.marker)
+							//.then(function(res){
+								
+								// })
+								
+							
+					}
+					
+													
+					
+				
+					
+					
+								
+								
+								
+					})
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -17,7 +17,7 @@
         <p>{{tvalue.Data.nationality}}<br>
           joined as: {{tvalue.joinAs}}</p>
         <span class="member-tag">member</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
-        <ion-option-button class="button-assertive" ng-click="DeleteMember(tkey, 'member')"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteRequest(inboxlist, $index, tkey)"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
         <ion-option-button class="button-stable" ng-click="gotoPublicProfile(tkey)"><i class="icon ion-chevron-right"></i></ion-option-button>
       </ion-item>
     

@@ -101,7 +101,7 @@
       <!-- Tab 3 content -->
       
       <ion-view>
-        <ion-content overflow-scroll="true">
+        <ion-content>
           <div class="over-box">
             <div class="item item-divider"><span></span>
               <h4>Hobbies</h4>
@@ -122,6 +122,21 @@
             </div>
           </div>
         </ion-content>
+      </ion-view>
+    </ion-tab>
+    <ion-tab icon="icon ion-map" on-select="mapTabSelected()"> 
+      <!-- Tab 4(a) content -->
+      <ion-view>
+        <ion-content>
+          
+          <ng-map class="full-page-map" zoom="11" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
+            <marker ng-if="!mapedit" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+            <marker ng-if="mapedit"  position="[{{marker2.lat}}, {{marker2.long}}]" title="Location"></marker>
+            
+          </ng-map>
+        </ion-content>
+        <div class="footer-on-map-only"> <a ng-if="!mapedit" ng-click="edit_my_location()"><i class="icon ion-location"></i><br><span>edit</span></a>
+        <a ng-if="mapedit" ng-click="set_my_location()"><i class="icon ion-pinpoint"></i><br><span>set</span></a> </div>
       </ion-view>
     </ion-tab>
     <ion-tab icon="icon ion-camera"> 

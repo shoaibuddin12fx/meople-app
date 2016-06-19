@@ -447,7 +447,8 @@ ion-side-menu ion-item *{
 }
 
 .chat-ion-content{
-   height: calc(100% - 126px);
+   height: calc(100% - 166px);
+   top: 90px;
 }
 .chat-ion-content .item-avatar-right h2, .chat-ion-content .item-avatar-right span{
    float: right;
@@ -590,7 +591,11 @@ td-card {
 
 td-card img {
   max-width: 100%;
+  
    border-radius: 13px 13px 0px 0px;
+}
+td-card #full-width-image{
+   min-width: 100%;
 }
 
 .yes-text {
@@ -657,6 +662,8 @@ td-card #p-bar ul #profile-name{
    text-transform: uppercase;
    letter-spacing: 2px;
    font-weight: bold;
+   
+   
 }
 
 td-card img#logo-pic{
@@ -862,6 +869,8 @@ height: 50px;
    height: 90px;
    top: 110px;
    left: 105px;
+   border-radius: 50%;
+   border: 5px double #91C4D6;
 }
 
 @-webkit-keyframes slide
@@ -1427,10 +1436,17 @@ ion-item.item-thumbnail-left:nth-child(odd) .item-content{
    
 }
 .full-page-map{
-   height: 95vh;
+   height: calc(100vh-100px);
+}
+.bar-subheader .pull-left img{
+   height: 30px;
+   border-radius: 50%;
 }
 
-
+.bar-subheader .pull-left .title{
+   text-align: left;
+   left: 50px;
+}
 
 
 
