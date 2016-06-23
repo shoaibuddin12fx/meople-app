@@ -25,7 +25,7 @@
 .main-background #wrapper #main-menu li{
    width: 100%;
    margin-bottom: 0px;
-   box-shadow: 2px 2px 5px #000000;
+   
    border-radius: 8px;
 }
 .main-background #wrapper #main-menu li#facebook button{
@@ -40,19 +40,21 @@
    text-align: center;
    text-decoration: none;
    font-weight: bold;
+   box-shadow: 2px 2px 5px #000000;
 }
 
 .main-background #wrapper #main-menu li#sig a{
    margin-bottom: 8px;  
    display: block;
-   border-radius: 8px;
-   border: 2px solid #33CD5F;
    padding: 0px;
    min-height: 7px !important;
-   text-transform: uppercase;
-   font-size: 1em;
+   text-transform: capitalize;
+   font-size: 1.6em;
    height: 30px;
    line-height: 26px;
+   text-align: center;
+   text-decoration: none;
+   color: #000;
 }
 
 .bar-header{
@@ -95,6 +97,7 @@ ion-side-menu ion-item *{
    padding-top: 15px;
    overflow: hidden;
    height: 100vh;
+   background-color: #F3F1DA;
 }
 
 .login-page img#logo{
@@ -423,9 +426,9 @@ ion-side-menu ion-item *{
    position: fixed !important;
    bottom: 0;
    left: 0;
-   width: calc(100% - 15px);
-   margin: 15px;
-   border: 1px solid lightgray;
+   width: calc(100%);
+   /*margin: 15px;*/
+   /*border: 1px solid lightgray;*/
    
 }
 .message-window input{
@@ -436,13 +439,16 @@ ion-side-menu ion-item *{
    
 }
 .message-window button{
-   right: 0px !important;
-   top: 0 !important;
-   height: 47px;
-   width: 47px;
+   position: fixed;
+   right: 55px !important;
+   bottom: 5px !important;
+   height: 42px;
+   width: 42px;
    line-height: 47px;
    padding: 0 !important;
    margin: 0 !important;
+   border: none;
+   z-index: 101
    
 }
 
@@ -456,11 +462,14 @@ ion-side-menu ion-item *{
 }
 
 .chat-pic-button{
-  position: absolute;
-   bottom: 16px;
-   right: 10px;
-   background: #0F6A93 !important;
-   color: #FFFFFF;
+   position: absolute;
+   bottom: 5px;
+   right: 5px;
+   background: transparent !important;;
+   color: #EF473A !important;;
+   border-radius: 50%;
+   border-color: lightgray !important;;
+   
       
 }
 
@@ -596,6 +605,7 @@ td-card img {
 }
 td-card #full-width-image{
    min-width: 100%;
+   height: 300px;
 }
 
 .yes-text {
@@ -1448,6 +1458,324 @@ ion-item.item-thumbnail-left:nth-child(odd) .item-content{
    left: 50px;
 }
 
+/* additional CSS for chat */
+
+
+.name{
+    position: absolute;
+    top: 3px;
+    left: 110px;
+    font-family: 'Lato';
+    font-size: 25px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.98);
+    cursor: default;
+}
+.last{
+    position: absolute;
+    top: 30px;
+    left: 115px;
+    font-family: 'Lato';
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+    cursor: default;
+}
+
+/* M E S S A G E S */
+
+.chat {
+    list-style: none;
+    background: none;
+    margin: 0;
+    padding: 0 0 50px 0;
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+.chat li {
+    padding: 0.5rem;
+    overflow: hidden;
+    display: flex;
+}
+.chat .avatar {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: block;
+    z-index: 2;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    background-color: rgba(255,255,255,0.9);
+}
+.chat .avatar img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -ms-border-radius: 100%;
+    background-color: rgba(255,255,255,0.9);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.chat .day {
+    position: relative;
+    display: block;
+    text-align: center;
+    color: #c0c0c0;
+    height: 20px;
+    text-shadow: 7px 0px 0px #e5e5e5, 6px 0px 0px #e5e5e5, 5px 0px 0px #e5e5e5, 4px 0px 0px #e5e5e5, 3px 0px 0px #e5e5e5, 2px 0px 0px #e5e5e5, 1px 0px 0px #e5e5e5, 1px 0px 0px #e5e5e5, 0px 0px 0px #e5e5e5, -1px 0px 0px #e5e5e5, -2px 0px 0px #e5e5e5, -3px 0px 0px #e5e5e5, -4px 0px 0px #e5e5e5, -5px 0px 0px #e5e5e5, -6px 0px 0px #e5e5e5, -7px 0px 0px #e5e5e5;
+    box-shadow: inset 20px 0px 0px #e5e5e5, inset -20px 0px 0px #e5e5e5, inset 0px -2px 0px #d7d7d7;
+    line-height: 38px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.other .msg {
+    order: 1;
+    border-top-left-radius: 0px;
+    box-shadow: -1px 2px 0px #D4D4D4;
+}
+.other:before {
+    content: "";
+    position: relative;
+    top: 0px;
+    right: 0px;
+    left: 40px;
+    width: 0px;
+    height: 0px;
+    border: 5px solid #fff;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.self {
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+.self .msg {
+    order: 1;
+    border-bottom-right-radius: 0px;
+    box-shadow: 1px 2px 0px #D4D4D4;
+}
+.self .avatar {
+    order: 2;
+}
+.self .avatar:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    bottom: 19px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    border: 5px solid #fff;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    box-shadow: 0px 2px 0px #D4D4D4;
+}
+
+.msg {
+    background: white;
+    min-width: 50px;
+    padding: 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+}
+.msg p {
+    font-size: 0.8rem;
+    margin: 0 0 0.2rem 0;
+    color: #777;
+}
+.msg img {
+    position: relative;
+    display: block;
+    width: 450px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px #eee;
+    transition: all .4s cubic-bezier(0.565, -0.260, 0.255, 1.410);
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+@media screen and (max-width: 800px) {
+    .msg img {
+    width: 300px;
+}
+}
+@media screen and (max-width: 550px) {
+    .msg img {
+    width: 200px;
+}
+}
+
+.msg time {
+    font-size: 0.7rem;
+    color: #ccc;
+    margin-top: 3px;
+    float: right;
+    cursor: default;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+.msg time:before{
+    content:"\f017";
+    color: #ddd;
+    font-family: FontAwesome;
+    display: inline-block;
+    margin-right: 4px;
+}
+
+emoji{
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-top: -7px;
+    margin-right: 2px;
+    transform: translate3d(0px, 3px, 0px);
+}
+emoji.please{background-image: url(http://imgur.com/ftowh0s.png);}
+emoji.lmao{background-image: url(http://i.imgur.com/MllSy5N.png);}
+emoji.happy{background-image: url(http://imgur.com/5WUpcPZ.png);}
+emoji.pizza{background-image: url(http://imgur.com/voEvJld.png);}
+emoji.cryalot{background-image: url(http://i.imgur.com/UUrRRo6.png);}
+emoji.books{background-image: url(http://i.imgur.com/UjZLf1R.png);}
+emoji.moai{background-image: url(http://imgur.com/uSpaYy8.png);}
+emoji.suffocated{background-image: url(http://i.imgur.com/jfTyB5F.png);}
+emoji.scream{background-image: url(http://i.imgur.com/tOLNJgg.png);}
+emoji.hearth_blue{background-image: url(http://i.imgur.com/gR9juts.png);}
+emoji.funny{background-image: url(http://i.imgur.com/qKia58V.png);}
+
+@-webikt-keyframes pulse {
+  from { opacity: 0; }
+  to { opacity: 0.5; }
+}
+
+::-webkit-scrollbar {
+    min-width: 12px;
+    width: 12px;
+    max-width: 12px;
+    min-height: 12px;
+    height: 12px;
+    max-height: 12px;
+    background: #e5e5e5;
+    box-shadow: inset 0px 50px 0px rgba(82,179,217,0.9), inset 0px -52px 0px #fafafa;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border: none;
+    border-radius: 100px;
+    border: solid 3px #e5e5e5;
+    box-shadow: inset 0px 0px 3px #999;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b0b0b0;
+  box-shadow: inset 0px 0px 3px #888;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #aaa;
+  box-shadow: inset 0px 0px 3px #7f7f7f;
+}
+
+::-webkit-scrollbar-button {
+    display: block;
+    height: 26px;
+}
+
+/* T Y P E */
+
+input.textarea {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: calc(100% - 70px);
+    height: 50px;
+    z-index: 99;
+    background: #fafafa;
+    border: none;
+    outline: none;
+    padding-left: 55px;
+    padding-right: 55px;
+    color: #666;
+    font-weight: 400;
+}
+.emojis {
+    position: fixed;
+    display: block;
+    bottom: 8px;
+    left: 7px;
+    width: 34px;
+    height: 34px;
+    background-image: url(http://i.imgur.com/5WUpcPZ.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 100;
+    cursor: pointer;
+}
+.emojis:active {
+    opacity: 0.9;
+}
+
+
+/* settings */
+
+.settings-view .item.range, .activity-box .item.range{
+   background: transparent;
+   border: none;   
+}
+
+.settings-view .item.range:nth-child(even) i, .activity-box .item.range{
+   color: #E2464F;
+}
+.settings-view .item.range:nth-child(odd) i{
+   color: #61C8DB;
+}
+
+.row.setting .col a i{
+   font-size: 2em
+}
+
+.row.setting1 .col:nth-child(1) a{
+   background: #83C14B !important;;
+}
+.row.setting1 .col:nth-child(2) a{
+   background: #D59D57 !important;;
+}
+.row.setting2 .col:nth-child(1) a{
+   background: #E4E454 !important;;
+}
+.row.setting2 .col:nth-child(2) a{
+   background: #7F5013 !important;;
+}
+
+
+/*Activity pages*/
+.activity-box input[type=text]{
+   background: transparent;
+   width: 100%;
+   border: none;
+   border-bottom: 1px solid gray;
+   margin-bottom: 5px;
+}
 
 
 
@@ -1455,21 +1783,167 @@ ion-item.item-thumbnail-left:nth-child(odd) .item-content{
 
 
 
+.styled-select {
+   background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+   height: 29px;
+   overflow: hidden;
+   width: 210px;;
+}
+
+.styled-select select {
+   background: transparent;
+   border: none;
+   font-size: 14px;
+   height: 29px;
+   padding: 5px; /* If you add too much padding here, the options won't show in IE */
+   width: 268px;
+}
+
+.styled-select.slate {
+   background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+   height: 34px;
+   width: 240px;
+}
+
+.styled-select.slate select {
+   border: 1px solid #ccc;
+   font-size: 16px;
+   height: 34px;
+   width: 268px;
+}
+
+/* -------------------- Rounded Corners */
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+/* -------------------- Colors: Background */
+.slate   { background-color: #ddd; }
+.green   { background-color: #779126; }
+.blue    { background-color: #3b8ec2; }
+.yellow  { background-color: #eec111; }
+.black   { background-color: #000; }
+
+/* -------------------- Colors: Text */
+.slate select   { color: #000; }
+.green select   { color: #fff; }
+.blue select    { color: #fff; }
+.yellow select  { color: #000; }
+.black select   { color: #fff; }
 
 
+/* -------------------- Select Box Styles: danielneumann.com Method */
+/* -------------------- Source: http://danielneumann.com/blog/how-to-style-dropdown-with-css-only/ */
+#mainselection select {
+   border: 0;
+   color: #EEE;
+   background: transparent;
+   font-size: 20px;
+   font-weight: bold;
+   padding: 2px 10px;
+   width: 378px;
+   *width: 350px;
+   *background: #58B14C;
+   -webkit-appearance: none;
+}
+
+#mainselection {
+   overflow:hidden;
+   width:350px;
+   -moz-border-radius: 9px 9px 9px 9px;
+   -webkit-border-radius: 9px 9px 9px 9px;
+   border-radius: 9px 9px 9px 9px;
+   box-shadow: 1px 1px 11px #330033;
+   background: #58B14C url("http://i62.tinypic.com/15xvbd5.png") no-repeat scroll 319px center;
+}
 
 
+/* -------------------- Select Box Styles: stackoverflow.com Method */
+/* -------------------- Source: http://stackoverflow.com/a/5809186 */
+select#soflow, select#soflow-color {
+   -webkit-appearance: button;
+   -webkit-border-radius: 2px;
+   -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+   -webkit-padding-end: 20px;
+   -webkit-padding-start: 2px;
+   -webkit-user-select: none;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+   background-position: 97% center;
+   background-repeat: no-repeat;
+   border: 1px solid #AAA;
+   color: #555;
+   font-size: inherit;
+   margin: 20px;
+   overflow: hidden;
+   padding: 5px 10px;
+   text-overflow: ellipsis;
+   white-space: nowrap;
+   width: 300px;
+}
 
+select#soflow-color {
+   color: #fff;
+   background-image: url(http://i62.tinypic.com/15xvbd5.png), -webkit-linear-gradient(#779126, #779126 40%, #779126);
+   background-color: #779126;
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+   padding-left: 15px;
+}
 
+.activity-box .row.locat3 a{
+   font-size: 0.8em;
+}
 
+.activity-box .row.datetime ionic-datepicker button,
+.activity-box .row.datetime ionic-timepicker button{
+   width: 100%;
+   
+   background: white;
+   border: 2px solid #33CD5F;
+   box-shadow: 1px 1px 1px gray;
+   border-radius: 10px;
+}
 
+.activity-box .row.datetime ionic-datepicker button i,
+.activity-box .row.datetime ionic-timepicker button i{
+   color: #33CD5F;
+   font-size: 1.8em;
+}
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
+.activity-box input[type=number]{
+   background: transparent;
+   width: 100%;
+   border-bottom: 1px solid gray; 
+}
 
+.clear-chat-button{
+   background: transparent;
+   border: 1px solid #fff;
+   color: #fff;
+   padding: 5px 15px;
+   text-transform: uppercase
+}
 
-
-
-
+.activity-box .item-checkbox .item-content{
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%)
+}
 
 
 

@@ -439,6 +439,13 @@ angular.module('starter.controllers', [])
 			.then(function(res){
 				console.log(res);
 				
+				searchInfo.getmyCLocation(authData, $q)
+				.then(function(res){
+						$scope.myC = {x:res.lat,y:res.long};
+					})
+				
+				
+				
 				angular.forEach(res, function(value, key) {
 							   value['distance'] = "...";
 										
@@ -950,6 +957,9 @@ angular.module('starter.controllers', [])
 })
 .controller('ichatCtrl', function($scope,$state, $stateParams, $q, $ionicLoading, $firebaseObject, getProfileInfo, authlogin, BeFriend, chatlink, $cordovaCamera, $ionicScrollDelegate) {
 	
+	$scope.wait = "loading ... please wait";
+	
+	
 	$ionicLoading.show({
 		  template: 'loading ...'
 		});
@@ -961,8 +971,8 @@ angular.module('starter.controllers', [])
 		}
 	
 	$scope.checkPuid = function(uid){
-		if(uid == authData.uid){return "item-avatar-right";}
-		if(uid == $stateParams.uid){return "item-avatar";}
+		if(uid == authData.uid){return "self";}
+		if(uid == $stateParams.uid){return "other";}
 		}
 	
 	getProfileInfo.publicProfile($stateParams.uid, $q)
@@ -989,9 +999,14 @@ angular.module('starter.controllers', [])
 	}
 	
 	
+	
 	$scope.syncChat = function(){
+		
+		
 		 var uuid = $scope.uuid;
 		 var ref = new Firebase("https://luminous-heat-6224.firebaseio.com/chats/"+uuid+"/conversation");
+		 
+		 
 		 // sync as object for sync as sent
 		 var syncObject = $firebaseObject(ref);
 		 $scope.convlist = syncObject; 
@@ -999,10 +1014,21 @@ angular.module('starter.controllers', [])
 		 
 		 $scope.$watch('convlist', function(newValue, oldValue) {
 			$ionicScrollDelegate.scrollBottom(false);
+			$scope.wait = "";
 			 $ionicLoading.hide();			
 		  }, true);
+				
+		
 		
 		} // profilesList function ends
+	
+	
+	
+	
+	
+	
+	
+	
 		
 	$scope.msg = {};
 	$scope.sendmsg = function(){
@@ -1481,7 +1507,8 @@ angular.module('starter.controllers', [])
 	$scope.NewActData = {};
 	$scope.ageGroup = {value: 'any'};
     $scope.rPersons = {value: 2}
-    $scope.Lookingfor = {value: 'female'}        		
+    $scope.Lookingfor = {value: 'female'}
+	$scope.activ = {person:"host"}        		
 	$scope.accom = {person:"host"}
 	$scope.poolcar = {person:"driver"}
 	$scope.CarCapacity = {value: null}
@@ -1898,7 +1925,7 @@ angular.module('starter.controllers', [])
 						}
 					})
 				
-				
+				$scope.mapedit = false;
 								
 				NgMap.getMap({id:'actMapLoc'}).then(function(map) {
 					if($scope.res.lat2 != null){
@@ -1906,35 +1933,67 @@ angular.module('starter.controllers', [])
 							$scope.marker2 = {lat:$scope.res.lat2, long:$scope.res.long2};
 							$scope.twoMarkers = true;
 						}
-						
+					
 						
 					console.log($scope.res);
-					
 					$scope.coords = { lat:$scope.res.lat, long:$scope.res.long };
 					
 					if($scope.res.uid == authData.uid){
 						
 						$scope.show = true; 	
 						
-						
+					var setCoords;
+					
+					$scope.coords = { lat:$scope.res.lat, long:$scope.res.long };
+					$scope.marker = $scope.coords;
+					
+					
+					$scope.edit_my_location = function(){
+						$scope.mapedit = true;
 						
 						var c = map.getCenter();			
-						$scope.marker = {lat:c.lat(), long:c.lng()};								
-					$scope.centerChanged = function(event) {						
-						var c = map.getCenter();			
-						$scope.marker = {lat:c.lat(), long:c.lng()};
+						$scope.marker3 = {lat:c.lat(), long:c.lng()};
 						
-								
-						$scope.editLabel = "set new location";
-						$scope.m_icon = "ion-pinpoint";
+						$scope.centerChanged = function(event) {						
+							var c = map.getCenter();			
+							$scope.marker3 = {lat:c.lat(), long:c.lng()};
+							setCoords = {lat:c.lat(), long:c.lng()};
+							
+						}
+						
+						
+						
+						
+						
 					}
-				
-					$scope.change_location = function(){
+					
+					$scope.set_my_location = function(){
+						$scope.mapedit = false;
+						$scope.marker = $scope.marker3;
+						$scope.coords = $scope.marker3;
+						
 						actInfo.setTheActivityLocation(authData, $q, $stateParams.ackey, $scope.marker)
 							.then(function(res){
 								var alertPopup = $ionicPopup.alert({template: 'new location set' });
 								alertPopup  })
-								}
+								
+							
+					}
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					
+					
+					
+					
+					
+					
 					}else{
 						$scope.show = false;
 						$scope.marker = $scope.coords;
@@ -2232,7 +2291,11 @@ angular.module('starter.controllers', [])
 	$scope.gotoPublicProfile = function(tkey){
 		$state.go('app.searchprofile', {uid:tkey})
 		}
-	
+		
+	$scope.checkPuid = function(uid){
+		if(uid == authData.uid){return "self";}
+		else{return "other"}
+		}
 	
 	
 	$scope.msg = {};
@@ -2815,15 +2878,6 @@ angular.module('starter.controllers', [])
 		$state.go('login');
 		}
   
-  /*$scope.geoLocation = function(){	  	 
-		 actInfo.getLocation(authData, $q, $cordovaGeolocation)
-		 	.then(function(res){
-					getGlobals.setlocation(authData, $q, res.lat, res.long)
-						.then(function(res){})
-				},function(res){					
-					alert(res);	
-					})	  
-	  }*/
   
    // Create the login modal that we will use later
    $ionicModal.fromTemplateUrl('templates/mapd.html', {
@@ -2844,6 +2898,14 @@ angular.module('starter.controllers', [])
 	  $ionicLoading.hide();
 	  
 	  }
+  
+  $scope.toggleGender = function(){
+	  if($scope.ilist2.male == true){$scope.ilist2.male = false }
+	  else{ $scope.ilist2.male = true}
+	  
+	  }
+  
+  
   
   $scope.mapshow = function(){
 	    
@@ -2885,26 +2947,12 @@ angular.module('starter.controllers', [])
 		  
 		  $scope.groups = [];
 		   
-		  /*getGlobals.hobbies(authData, $q)
-			.then(function(res){
-				$scope.groups[0] = {
-				  name: 'hobbies',
-				  items: []
-				};
-				angular.forEach(res, function(value, key) {
-					$scope.groups[0].items = res;				
-				});	  			
-			})*/
+		 
 		  getGlobals.languages(authData, $q)
 			.then(function(res){
 				$scope.languages = res;					
 			})
-		 /* $scope.hobValue = function(lang, state, icon){		 		
-			  if(state == 1 ){ console.log('true')
-				  ref.child('hobbies').child(lang).set(icon)   }
-			  else{console.log('false')
-				  ref.child('hobbies').child(lang).set(null);  }		
-			}	*/		  
+		
 		  $scope.langValue = function(key){
 			  getProfileInfo.setMyLanguage(authData, $q, key)
 			  	.then(function(res){

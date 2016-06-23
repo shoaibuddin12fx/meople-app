@@ -3,11 +3,39 @@
   <div class="pull-left">
   	<img ng-if="aprofile.profile.picture.indexOf('http') !== -1" src="{{aprofile.profile.picture}}">
     <img ng-if="aprofile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}">
-    <h2 class="title">{{aprofile.profile.name}}</h2>
+    <h2 class="title" style="width:calc(100% - 180px)">{{aprofile.profile.name}}{{wait}}</h2>
   </div>
+  
+  <!--<div class="pull-right">
+  	<button class="clear-chat-button" ng-click="clearchat()">clear</button>
+  </div> -->
   
 </div>
 <ion-content class="chat-ion-content">
+	
+    <ol class="chat">
+    <li ng-class="checkPuid(tvalue.uid)" ng-repeat="(tkey,tvalue) in convlist">
+        <div class="avatar"><img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{aprofile.profile.picture}}" draggable="false"/>
+        <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}" draggable="false"/>
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{profile.profile.picture}}" draggable="false"/>
+        <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" draggable="false"/>
+        </div>
+      <div class="msg">
+        <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}" draggable="false"/>
+        <p ng-if="tvalue.msg" ng-bind-html-unsafe="tvalue.msg | emoji">{{tvalue.msg | emoji}}</p>
+        <time>{{tvalue.time | date:"h:mma"}}</time>
+      </div>
+    </li>
+    </ol>
+    
+    
+    
+    
+    
+    
+    
+	<!--
+
     <ul class="list" >
       <li class="item small-span" ng-class="checkPuid(tvalue.uid)" ng-repeat="(tkey,tvalue) in convlist">
         
@@ -15,7 +43,7 @@
         <img ng-if="pid.muid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{profile.profile.picture}}">
         
         <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') === -1" src="{{aprofile.profile.picture}}">
-        <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}">
+        <img ng-if="pid.fuid == tvalue.uid && tvalue.profile.picture.indexOf('http') !== -1" src="data:image/jpeg;base64,{{aprofile.profile.picture}}"> 
         <h2 ng-if="tvalue.msg">{{tvalue.msg}}</h2>
         <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}">  
         <span ng-if="pid.muid == tvalue.uid">me</span>
@@ -24,11 +52,11 @@
         
         
       </li>
-    </ul>
+    </ul>-->
   </ion-content>
      <form id="msg-form" class="message-window" ng-submit="sendmsg()">
-        <input type="text" ng-model="msg.text" placeholder="message text">
-        <button class="submit-button button" type="submit" style="background: #0F6A93;color:#FFFFFF"> <i class="fa fa-paper-plane"></i></button>       
+        <input class="textarea" ng-model="msg.text" type="text" placeholder="Type here!"/><div class="emojis"></div>
+        <button class="submit-button button" type="submit"> <i class="fa fa-paper-plane"></i></button>       
      </form>
      <button class="submit-button button button-dark pull-right chat-pic-button" ng-click="sendMsgImage()"> <i class="fa fa-camera"></i></button>
       

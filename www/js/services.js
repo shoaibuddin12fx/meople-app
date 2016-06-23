@@ -557,11 +557,22 @@ angular.module('starter.services', [])
 .factory('chatlink', function($http, $firebase, $firebaseObject, getProfileInfo) {
 	var ref = new  Firebase("https://luminous-heat-6224.firebaseio.com/");
 	return{
+		lastMsgs:function(uuid, $q){
+			var q = $q.defer();
+			var ref = new Firebase("https://luminous-heat-6224.firebaseio.com/chats/"+uuid+"/conversation");
+			ref.orderByChild("time").limitToLast(10).once("value", function(snapshot) {
+			  q.resolve({conv: snapshot.val()});
+			});
+			
+			return q.promise;
+			},
+		
 		pushmsg:function(authData, frienduid, $q, msg, uuid){
 			var q = $q.defer();
 			ref.child('chats').child(uuid).child('conversation').push({
 						uid: authData.uid,
-						msg: msg 
+						msg: msg,
+						time: Firebase.ServerValue.TIMESTAMP 
 						});
 						q.resolve(true);
 			return q.promise;
@@ -570,7 +581,8 @@ angular.module('starter.services', [])
 			var q = $q.defer();
 			ref.child('chats').child(uuid).child('conversation').push({
 						uid: authData.uid,
-						img: image 
+						img: image,
+						time: Firebase.ServerValue.TIMESTAMP 
 						});
 						q.resolve(true);
 			return q.promise;
@@ -584,7 +596,8 @@ angular.module('starter.services', [])
 						uid: uid,
 						img: image,
 						name: snap.profile.name,
-						picture: snap.profile.picture
+						picture: snap.profile.picture,
+						time: Firebase.ServerValue.TIMESTAMP
 						});						
 					});
 			
@@ -600,7 +613,8 @@ angular.module('starter.services', [])
 						uid: uid,
 						msg: msg,
 						name: snap.profile.name,
-						picture: snap.profile.picture
+						picture: snap.profile.picture,
+						time: Firebase.ServerValue.TIMESTAMP
 						});						
 					});
 						

@@ -7,7 +7,8 @@
         <ion-content>
           <div class="alternate-labels" style="background:transparent"> <span class="input-label all-span" style="text-transform:uppercase; float:right">{{res.act.Name}}</span> </div>
           <ng-map class="full-page-map" zoom="11" ng-if="marker2.lat == null" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
-            <marker position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+            <marker ng-if="!mapedit" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+            <marker ng-if="mapedit"  position="[{{marker3.lat}}, {{marker3.long}}]" title="Location"></marker>            
           </ng-map>
           <ng-map class="full-page-map" zoom="11" ng-if="marker2.lat != null"
                 center="[{{coords.lat}}, {{coords.long}}]"
@@ -28,8 +29,11 @@
             </custom-marker>
           </ng-map>
         </ion-content>
-        <div class="footer-on-map-only"> <a ng-if="show" ng-hide="twoMarkers" ng-click="change_location()" ><i class="icon {{m_icon}}"></i><br>
-          <span>{{editLabel}}</span></a> <a ng-click="joinActivityAs()" ng-show='!show && status != "pending"' > <i class="icon ion-android-person-add"></i><br>
+        <div class="footer-on-map-only">
+         <a ng-if="!mapedit && show" ng-hide="twoMarkers" ng-click="edit_my_location()"><i class="icon ion-location"></i><br><span>edit</span></a>
+         <a ng-if="mapedit && show" ng-hide="twoMarkers" ng-click="set_my_location()"><i class="icon ion-pinpoint"></i><br><span>set</span></a>
+         <!-- <a ng-if="show" ng-hide="twoMarkers" ng-click="change_location()" ><i class="icon {{m_icon}}"></i><br> 
+          <span>{{editLabel}}</span></a>--> <a ng-click="joinActivityAs()" ng-show='!show && status != "pending"' > <i class="icon ion-android-person-add"></i><br>
           <span>join</span></a> <a ng-click="showConfirm()" ng-show='!show && status == "pending"' ><i class="icon ion-android-send"></i><br>
           <span>sent</span></a> <a style="float:right;" ng-click="selectTabWithIndex(2)"><i class="icon ion-coffee"></i><br>
           <span>Details</span></a> </div>
@@ -126,21 +130,48 @@
         <!-- Tab 4 content -->
         
         <ion-view view-title="Chat to" ng-init="isMemberFunc()">
+          <div class="bar bar-subheader bar-assertive" style="top:92px">
+              <div class="pull-left">
+                <img ng-if="res.picture.indexOf('http') !== -1" src="{{res.picture}}" /> <img ng-if="res.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{res.picture}}" />
+                <h2 class="title">{{res.act.Name}} group chat</h2>
+              </div>
+              
+            </div>
           <ion-content class="chat-ion-content">
-            <ul class="list" ng-show="isMember != true">
-              <li class="item item-icon-left"> <i class="icon ion-alert"></i> Member's Chat only </li>
-            </ul>
-            <ul class="list" ng-show="isMember == true">
-              <li class="item small-span item-avatar" ng-repeat="(tkey,tvalue) in res.conversation"> <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
-                <h2 ng-if="tvalue.msg">{{tvalue.msg}}</h2>
-                <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}"> <span ng-if="pid.muid == tvalue.uid">me</span> <span ng-if="pid.fuid == tvalue.uid">{{tvalue.name}}</span> </li>
-            </ul>
+            
+            
+            <ol class="chat">
+            <li ng-class="checkPuid(tvalue.uid)" ng-show="isMember != true">
+              <div class="msg">
+                <p>Member's Chat only</p>
+                <time>hh:mm</time>
+              </div>
+            </li>
+            
+            <li ng-class="checkPuid(tvalue.uid)" ng-repeat="(tkey,tvalue) in res.conversation" ng-if="isMember == true">
+                <div class="avatar"><img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}"> <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
+                </div>
+              <div class="msg">
+                <img ngif="tvalue.img" ng-src="data:image/jpeg;base64,{{tvalue.img}}" draggable="false"/>
+                <p ng-if="tvalue.msg" ng-bind-html-unsafe="tvalue.msg | emoji">{{tvalue.msg | emoji}}</p>
+                <time>{{tvalue.time | date:"h:mma"}}</time>
+              </div>
+            </li>
+            </ol>
+            
+            
+            
+            
+            
+            
           </ion-content>
-          <form id="msg-form" class="message-window" ng-submit="sendmsg()" ng-show="isMember == true">
-            <input type="text" ng-model="msg.text" placeholder="message text">
-            <button class="submit-button button" type="submit" style="background: #0F6A93;color:#FFFFFF"> <i class="fa fa-paper-plane"></i></button>
-          </form>
-          <button class="submit-button button button-dark pull-right chat-pic-button" ng-click="sendMsgImage()" ng-show="isMember == true"> <i class="fa fa-camera"></i></button>
+          <form id="msg-form" class="message-window" ng-submit="sendmsg()" ng-if="isMember == true">
+            <input class="textarea" ng-model="msg.text" type="text" placeholder="Type here!"/><div class="emojis"></div>
+            <button class="submit-button button" type="submit"> <i class="fa fa-paper-plane"></i></button>       
+         </form>
+         <button class="submit-button button button-dark pull-right chat-pic-button" ng-if="isMember == true" ng-click="sendMsgImage()"> <i class="fa fa-camera"></i></button>
+         
+          
         </ion-view>
       </ion-tab>
   </ion-tabs>
