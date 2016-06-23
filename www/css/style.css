@@ -1,8 +1,8 @@
 /* Empty. Add your own CSS if you like */
 .main-background{
-   background: url('../img/b-cover.png') no-repeat;
-   background-position: center;
-   background-size: auto 100%;
+   background: url('../img/login.png') no-repeat;
+   background-position: top;
+   background-size: auto 400px;
    background-color: #EFF0D7;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .bar-header{
-   background: rgba(0,0,0,0.4) !important;
+   background: #33CD5F !important;
 }
 .bar-header *{
    color: #FFFFFF !important;   
@@ -1269,7 +1269,7 @@ button.co-button span{
 }
 
 .tab-nav.tabs{
-   background: #000;
+   background: #EF473A;
 }
 .tab-nav.tabs a.tab-item i.icon{
    color: #FFF;
@@ -1445,9 +1445,7 @@ ion-item.item-thumbnail-left:nth-child(even) .item-content{
 ion-item.item-thumbnail-left:nth-child(odd) .item-content{
    
 }
-.full-page-map{
-   height: calc(100vh-100px);
-}
+
 .bar-subheader .pull-left img{
    height: 30px;
    border-radius: 50%;
