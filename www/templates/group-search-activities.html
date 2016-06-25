@@ -1,55 +1,57 @@
 <ion-view view-title="Search Activity">
   <ion-content>
-  <div class="list">
-  		<div class="item center-outer">
-              <div class="fix-div-inside"><img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
-                <div class="center-inside welcome-profile-top">
-                  <h2>{{profile.profile.name}}</h2>
-                  <p>{{profile.profile.age}} years old</p>
-                  <div class="button button-balanced green-button-style" ng-click="createActivity()">search</div>
-                </div>
-              </div>
-            </div>
-  
-  
-  
-  
-  
-     <div class="alternate-labels">
-  
-      <form id="act-form">
-        <label class="item item-input item-icon-right"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity Date</span><span class="input-label" style="text-transform:uppercase; font-size:11px">{{dobValue | date:'yyyy/MM/dd'}}</span>
-          <ionic-datepicker input-obj="datepickerObject" style="width:100%">
-              <button class="b-upload" style="float:right"><i class="icon ion-android-calendar"></i></button></ionic-datepicker>
-              
-        </label>
-        <label class="item item-input item-select" for="natSelect">
-            <div class="input-label">
-              <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Activity type</span>
-            </div>
-            <select name="natSelect" ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
-              <option value="" disabled selected>Select option</option>    
-              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
-              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
-              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
-              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
-              <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>    
-            </select>
-        </label>
-        <label class="item item-input item-select"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Language</span>          
-            <select name="language"  ng-model="languages.repeatSelect" ng-change="selectedEduChanged()">
-              <option ng-repeat="(k,v) in languages.availableOptions" value="{{k}}">{{k}}</option>              
-            </select>
-        </label>
-        <label class="item item-input item-select"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Nationality</span>          
-            <select name="ageFrom"  ng-model="gnationality.repeatSelect" ng-change="selectedEduChanged()">
-              <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
-            </select>
-        </label>
-          
-        
-      </form>
+    <div class="list">
+      <div class="item center-outer">
+        <div class="fix-div-inside"><img ng-if="profile.profile.picture.indexOf('http') !== -1" src="{{profile.profile.picture}}" /> <img ng-if="profile.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{profile.profile.picture}}" />
+          <div class="center-inside welcome-profile-top">
+            <h2>{{profile.profile.name}}</h2>
+            <p>{{profile.profile.age}} years old</p>
+            <div class="button button-balanced green-button-style" ng-click="createActivity()">search</div>
+          </div>
+        </div>
       </div>
     </div>
-  </ion-content>    
+    </div>
+    <ion-slide-box class="full-page-hobbies activity-box" show-pager="false" >
+      <ion-slide>
+        <div class="over-box">
+          <div class="item item-divider"><span></span>
+            <h4>Basic 1/5</h4>
+          </div>
+          <div class="small-center-inside">
+            <div class="row datetime">
+              <div class="col">
+                <ionic-datepicker input-obj="datepickerObject">
+                  <button><i class="icon ion-android-calendar"></i><br><span>DATE</span></button>
+                </ionic-datepicker>
+                <input type="text" placeholder="{{dobValue | date:'yyyy/MM/dd'}}" minlength="3" maxlength="15" style="color:gray" value="">
+              </div>              
+            </div>
+            <div class="styled-select black rounded">
+              <select ng-model="cActivityList.repeatSelect" ng-change="selectedEduChanged()">
+                <option value="" disabled selected>Activity Type?</option>
+                <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies1" value="{{key}}">{{key}}</option>
+                <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies2" value="{{key}}">{{key}}</option>
+                <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies3" value="{{key}}">{{key}}</option>
+                <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies4" value="{{key}}">{{key}}</option>
+                <option ng-repeat="(key,value) in cActivityList.availableOptions.Hobbies5" value="{{key}}">{{key}}</option>
+              </select>
+            </div>
+            <div class="styled-select green rounded">
+              <select name="language"  ng-model="languages.repeatSelect" ng-change="selectedEduChanged()">
+                <option value="" disabled selected>language?</option>
+                <option ng-repeat="(k,v) in languages.availableOptions" value="{{k}}">{{k}}</option>
+              </select>
+            </div>
+            <div class="styled-select blue rounded">
+              <select name="ageFrom"  ng-model="gnationality.repeatSelect" ng-change="selectedEduChanged()">
+                <option value="" disabled selected>country?</option>
+                <option ng-repeat="(key,value) in gnationality.availableOptions" value="{{value.name}}">{{value.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
 </ion-view>

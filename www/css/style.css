@@ -1291,7 +1291,7 @@ button.co-button span{
    top: 0px;
    left: 0;
    width: 100%;
-   height: calc(100vh - 100px) !important;;
+   height: 90vh !important;;
 }
 
 .fix-div-inside{
