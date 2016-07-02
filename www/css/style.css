@@ -1136,6 +1136,11 @@ button.co-button span{
    font-size: 3.5em;
    clear: both;
 }
+.over-box .col a span{
+   font-size: 0.9em;
+   clear: both;
+}
+
 .over-box .col a img{
    width: 35px;
 }
@@ -1416,16 +1421,19 @@ button.co-button span{
 
 .member-tag{
    position: absolute;
-   top: 0;
-   right: 0;
+   top: 5px;
+   right: 5px;
    background: #83C14B;
    font-size: 0.8em;
    color: #FFF;
-   padding: 5px;
+   padding: 5px 15px;
+   border-radius: 8px;
+   border-bottom: 2px solid #000
+   
    
 }
 .member-tag.request{
-   background: brown;
+   background: #E2464F;
 }
 .swipe-tag{
    position: absolute;
@@ -1828,7 +1836,8 @@ input.textarea {
 .green   { background-color: #779126; }
 .blue    { background-color: #3b8ec2; }
 .yellow  { background-color: #eec111; }
-.black   { background-color: #000; }
+.black   { background-color: #E2464F; }
+
 
 /* -------------------- Colors: Text */
 .slate select   { color: #000; }
@@ -1906,16 +1915,23 @@ select#soflow-color {
    width: 100%;
    
    background: white;
-   border: 2px solid #33CD5F;
+   border: 2px solid #779126;
    box-shadow: 1px 1px 1px gray;
    border-radius: 10px;
 }
 
 .activity-box .row.datetime ionic-datepicker button i,
 .activity-box .row.datetime ionic-timepicker button i{
-   color: #33CD5F;
+   color: #779126;
    font-size: 1.8em;
 }
+
+.activity-box .row.datetime ionic-datepicker button,
+.activity-box .row.datetime ionic-timepicker button{
+   color: #779126;
+   font-size: 1em;
+}
+
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
@@ -1943,10 +1959,17 @@ input[type=number]::-webkit-outer-spin-button {
    transform: translateY(-50%)
 }
 
+.trash-bin-background{
+   background-color: #E2464F !important;
+}
 
+.over-box.transparent-input input{
+   background: transparent !important;
+}
 
-
-
+ion-header-bar .title.title-center{
+   text-transform: uppercase;
+}
 
 
 

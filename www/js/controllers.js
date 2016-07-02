@@ -128,7 +128,7 @@ angular.module('starter.controllers', [])
   
   
   })
-.controller('NewLoginCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $stateParams, $state, $location,$ionicPlatform, $interval, $firebaseAuth,$ionicHistory, createUser,createDBentry, authlogin, getProfileInfo, $cordovaCamera, $q) {
+.controller('NewLoginCtrl', function($scope, $ionicModal, $ionicPopup, $timeout, $stateParams, $state, $location,$ionicPlatform, $interval, $firebaseAuth,$ionicHistory, createUser,createDBentry, authlogin, getProfileInfo, $cordovaCamera, $cordovaGeolocation, actInfo, $q) {
 	  
 	  
 	  
@@ -243,6 +243,19 @@ angular.module('starter.controllers', [])
 	}
   
   
+  actInfo.getLocation("authData", $q, $cordovaGeolocation)
+  	.then(function(loc){
+		console.log(loc.lat);
+		$scope.loc = {lat: loc.lat, long: loc.long}
+	
+		
+		})
+  
+  
+  
+  
+  
+  
   $scope.doRegister = function(){
 	  	
 			  var email = $scope.NewloginData.username;
@@ -250,7 +263,8 @@ angular.module('starter.controllers', [])
 			  var fullname = $scope.NewloginData.fullname;
 			  var dob = $scope.dobValue.getTime();
 			  var age = $scope.yAge;
-			  var picture = $scope.NewloginData.image;		
+			  var picture = $scope.NewloginData.image;
+			  var location = $scope.loc;
 				
 				
 		if(picture == "img/photo.png"){
@@ -259,7 +273,9 @@ angular.module('starter.controllers', [])
 			$ionicPopup.alert({ template: 'email format incorrect'});
 		}else if(email == null || password == null || fullname == null){
 		
-		}
+		}else if($scope.loc == null){
+			
+			}
 		else{		
 				
 			  $scope.Signin = "Working...";
@@ -271,7 +287,7 @@ angular.module('starter.controllers', [])
 			 if($scope.NewloginData.checked){var gender = "male"}
 			 if(!$scope.NewloginData.checked){var gender = "female"}
 			 
-			  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender,picture:picture};
+			  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender,picture:picture, location: location};
 			  //console.log(regData);
 			  createUser.emaillogin(email, password, $q)
 			  .then(function(authData){	  		
@@ -2759,7 +2775,16 @@ angular.module('starter.controllers', [])
 				$scope.chicon = "ion-chevron-left";
 				$scope.cBlock = "search again";
 				$scope.chlink = "search";
-				if(response){$scope.hicon = "ion-checkmark-round";$scope.htext = "Request sent";}
+				if(response){
+					
+					BeFriend.CheckFriendRequest(authData, $stateParams.uid, $q)
+						.then(function(check){
+							$scope.htext = check;
+							})
+					
+					$scope.hicon = "ion-checkmark-round"; //$scope.htext = "Request sent";
+					
+					}
 				else{$scope.hicon = "ion-happy";$scope.htext = "Let's friend";}
 				 });
 	
@@ -2767,7 +2792,7 @@ angular.module('starter.controllers', [])
 	// lets hang button request function
 	$scope.letsHang = function(){
 		$scope.hicon = "ion-checkmark-round";
-		$scope.htext = "Request sent";
+		$scope.htext = "sent";
 			if (authData) {
 			getProfileInfo.publicProfile($stateParams.uid, $q)
 			.then(function(friendProfile){

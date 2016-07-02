@@ -159,7 +159,7 @@
       <ion-list>
     	<ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(key,value) in ilist.images" > 
       		<img ng-src="data:image/jpeg;base64,{{value.image}}">
-        <span class="member-tag request">picture #{{$index+1}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
+        <span class="member-tag request">picture {{$index+1}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
         <ion-option-button class="button-assertive" style="background: #A52A2A" ng-click="removeImage(key)"><i class="icon ion-trash-b" style="color:#FFF"></i> </ion-option-button>
         
       </ion-item>
