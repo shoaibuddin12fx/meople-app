@@ -281,22 +281,43 @@ angular.module('starter.controllers', [])
 			  $scope.Signin = "Working...";
 			  $scope.NetworkMsg = "Connecting ...";
 			  
+			 createUser.checkmailexist(email, $q)
+				.then(function(iuser){
+					
+					if(!iuser){
+						
+					
+						 if($scope.NewloginData.checked){var gender = "male"}
+						 if(!$scope.NewloginData.checked){var gender = "female"}
+						 
+						  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender,picture:picture, location: location};
+						  //console.log(regData);
+						  createUser.emaillogin(email, password, $q)
+						  .then(function(authData){	  		
+								createDBentry.emailEntry(authData,  regData, $q)
+								.then(authlogin.emaillogin(email, password, $q),$scope.loginSuccessful);
+						  },function(authData){
+						   // console.log(authData)
+						  });
+					}else{
+						
+						$ionicPopup.alert({ template: 'email already exist'});
+						$scope.Signin = "REGISTER";
+						
+						}
+				}) 
 			  
 			  
-			  
-			 if($scope.NewloginData.checked){var gender = "male"}
-			 if(!$scope.NewloginData.checked){var gender = "female"}
-			 
-			  var regData = {email:email,fullname:fullname,dob:dob,age:age,gender:gender,picture:picture, location: location};
-			  //console.log(regData);
-			  createUser.emaillogin(email, password, $q)
-			  .then(function(authData){	  		
-					createDBentry.emailEntry(authData,  regData, $q)
-					.then(authlogin.emaillogin(email, password, $q),$scope.loginSuccessful);
-			  },function(authData){
-			   // console.log(authData)
-			  });
+					
 	  
+		
+		
+		
+		
+		
+		
+		
+		
 		}
 	 
 	 

@@ -95,6 +95,16 @@ angular.module('starter.services', [])
 	var ref = new Firebase("https://luminous-heat-6224.firebaseio.com/");
 	
 	return{
+		checkmailexist:function(email, $q){
+			var q = $q.defer();
+			var flag = false;
+			ref.child('users').orderByChild('profile/email').equalTo(email).once("value", function(snap) {
+				var a = snap.exists();
+					console.log(a);
+					q.resolve(a);
+    				});
+			return q.promise;
+			},
 		emaillogin:function(email, password, $q){
 			var q = $q.defer();
 			var flag = false;
