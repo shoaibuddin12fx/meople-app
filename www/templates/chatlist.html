@@ -3,12 +3,13 @@
     
     
     
-    <div class="card list">
-      <a class="item item-avatar small-span" href="#/app/chat/{{tkey}}" ng-repeat="(tkey,tvalue) in chatlist">
+    <div class="list alternate-color-child">
+      <a class="item item-avatar small-span item-icon-right" href="#/app/chat/{{tkey}}" ng-repeat="(tkey,tvalue) in chatlist">
        <img ng-if="tvalue.picture.indexOf('http') !== -1" src="{{tvalue.picture}}">
       <img ng-if="tvalue.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.picture}}">
       <h2>{{tvalue.name}}</h2>
       <span>tap to start chat</span>
+      <i class="icon ion-chevron-right"></i>
       </a>
       </div>
     

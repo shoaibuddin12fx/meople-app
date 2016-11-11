@@ -1,64 +1,43 @@
-<ion-view view-title="Settings">
-  <div class="dob-wrapper"  ng-show="!hasdob">
-    <ionic-datepicker input-obj="datepickerObject">
-      <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
-    </ionic-datepicker>
-    <span></span> </div>
-  <ion-tabs class="tabs-icon-only" ng-show="hasdob">
-    <ion-tab icon="fa fa-search"> 
-      <!-- Tab 1 content -->
-      <ion-view>
-        <ion-content>
-          <div class="item item-divider">Maximum distance to search:</div>
-          <label style="padding-right:14px" class="item item-input" for="{{ilist2}}-{{ilist2.distance}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">{{ilist2.distance}} km</span>
-            0 <input type="range" id="{{ilist2}}-{{ilist2.distance}}" ng-model="ilist2.distance"  min="0" max="100" value="ilist2.distance" style="padding-right:0"> 100
-          </label>
-          <div class="item item-divider">Maximum Age to Find:</div>
-          <label style="padding-right:14px" class="item item-input" for="{{ilist2}}-{{ilist2.maleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Age Limit: ({{ilist2.maleage}})</span>
-            0 <input type="range" id="{{ilist2}}-{{ilist2.maleage}}" ng-model="ilist2.maleage"  min="18" max="100" value="ilist2.maleage" style="padding-right:0"> 100
-          </label>
-          <!--    
-          <label style="padding-right:14px" class="item item-input" for="{{ilist2}}-{{ilist2.femaleage}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Female Age: ({{ilist2.femaleage}})</span>
-            0 <input type="range" id="{{ilist2}}-{{ilist2.femaleage}}" ng-model="ilist2.femaleage"  min="18" max="100" value="ilist2.femaleage" style="padding-right:0"> 100
-          </label> -->
-          <div class="item item-divider">Show Me:</div>    
-          <ion-toggle ng-model="ilist2.male" toggle-class="toggle-calm">
-              <span ng-if="ilist2.male">Male</span>
-              <span ng-if="!ilist2.male">Female</span>
-            </ion-toggle>
-         <!-- <ion-toggle ng-model="ilist2.female" toggle-class="toggle-dark"><span style="text-transform:uppercase; font-size:11px; font-weight:bold">Female</span></ion-toggle> -->
-        
-        </ion-content>
-      </ion-view>
-    </ion-tab>
+<ion-view title="Settings">
+<div class="dob-wrapper"  ng-show="!hasdob">
+  <ionic-datepicker input-obj="datepickerObject">
+    <button class="button button-block"> {{dobValue | date:'yyyy/MM/dd'}}</button>
+  </ionic-datepicker>
+  <span></span> </div>
+<ion-view ng-show="hasdob" class="settings-view">
+  <ion-content>
     
-    <ion-tab icon="fa fa-exclamation-circle"> 
-      <!-- Tab 3 content -->
-      <ion-view>
-        <ion-content>
-        
-        <div class="list card s-modify" >
-
-          <a href="#" class="item item-icon-right" ng-click="resetPassword()">
-            <i class="fa fa-key"></i>
-            Modify Password
-          </a>
-        
-          <a href="#" class="item item-icon-right" ng-click="DeleteProfile()">
-            <i class="fa fa-ban"></i>
-            Delete My Profile
-          </a>
-        
-          <a href="#" class="item item-icon-right" ng-click="logout()">
-            <i class="fa fa-sign-out"></i>
-            Logout
-          </a>
-                  
-        </div>          
-          
-        </ion-content>
-      </ion-view>
-    </ion-tab>
-    
-  </ion-tabs>
+    <div class="over-box">
+    <div class="item item-divider"><span></span>
+              <h4>settings</h4>
+            </div>
+            <div>
+            <div class="item range">
+              <i class="icon ion-android-search"></i>
+              <input ng-model="ilist2.distance" min="10" max="100" value="ilist2.distance" type="range" name="volume">
+              <i class="icon ion-search"></i>
+            </div>
+            <div class="item range">
+              <i class="icon ion-man"></i>
+              <input ng-model="ilist2.maleage" min="18" max="100" value="ilist2.distance" type="range" name="volume">
+              <i class="icon ion-woman"></i>
+            </div>
+            	
+            </div>
+            <div class="row range-numbers">
+              <div class="col"><a  class="item item-icon-right"><span>{{ilist2.distance}}</span><br>Search (km)</a></div>
+              <div class="col"><a  class="item item-icon-right"><span>{{ilist2.maleage}}</span><br>Age (year)</a></div>              
+            </div>
+            <div class="row setting1">
+              <div class="col"><a  class="item item-icon-right" ng-click="resetPassword()"><i class="fa fa-key"></i><br>Password</a></div>
+              <div class="col"><a  class="item item-icon-right" ng-click="DeleteProfile()"> <i class="fa fa-ban"></i><br> Delete </a></div>              
+            </div>
+            <div class="row setting2">
+              <div class="col"><a  class="item item-icon-right" ng-click="toggleGender()"><i ng-if="ilist2.male" class="fa fa-male"></i><i ng-if="!ilist2.male" class="fa fa-female"></i><br> show </a></div>
+              <div class="col"><a  class="item item-icon-right" ng-click="logout()"> <i class="fa fa-sign-out"></i><br> Logout </a></div>              
+            </div>
+            
+          </div>
+   
+  </ion-content>
 </ion-view>

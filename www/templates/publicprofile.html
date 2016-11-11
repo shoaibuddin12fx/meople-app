@@ -1,60 +1,68 @@
 <ion-view view-title="Information   {{loading}}" cache-view="false" class="Profile-page  public">
-
   <ion-tabs class="tabs-icon-only">
     <ion-tab icon="icon ion-grid">
       <!-- Tab 1 content -->
       
       <ion-view>
-        <ion-content overflow-scroll="true">
-          <div class="list card brown-i">
-            <div class="item item-avatar"> <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-              <h2>{{ilist.profile.name}}</h2>
-              <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              <p>approx {{myDistance}} km away</p>
-            </div>
-            <div class="item item-image"> 
-              
-              <!--<img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') !== -1" src="{{ilist.profile.cover}}" /> <img class="cover-photo" ng-click="changeLogo('cover')" ng-if="ilist.profile.cover.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.cover}}" /> -->
-              <ng-map zoom="15" id="MyLocation" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
+        <ion-content overflow-scroll="false">
+          <ng-map zoom="15" id="MyLocation" class="full-page-map" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
                 <marker position="[{{coords.lat}}, {{coords.long}}]" title="Location"></marker>
-              </ng-map>
-            </div>
-            <a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a> </div>
+          </ng-map>
+          <!--<a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a>-->
+         </div>
         </ion-content>
       </ion-view>
       </ion-tab>
       <ion-tab title="Activities" icon="icon ion-person"> 
         <!-- Tab 2 content -->
         <ion-view>
-          <ion-content overflow-scroll="true"> 
+          <ion-content> 
             <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"></ion-refresher> -->
-            <ul class="card list brown-i">
-              <div class="item item-avatar"> <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
+            <div class="list brown-i">
+            <div class="item item-thumbnail-left item-icon-right center-outer"> 
+            <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" />
+            <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
+              <div class="center-inside">
                 <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              </div>
+                <h2>{{ilist.profile.name}}</h2>
+                <span class="dim-gray-italic">approx {{myDistance}} km away</span>
+                </div>
+            </div>
+            </div>  
+              
+              <div class="over-box transparent-input">
               <!--<a class="item item-icon-left" ng-click="letsHang()"><i class="icon {{hicon}}"></i> {{htext}} </a> -->
-              <div class="item item-divider">Personal</div>
+              <div class="item item-divider"><span></span><h4>About</h4></div>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Name</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" ng-model="ilist.profile['name']" disabled>
-                <i class="icon ion-person"></i> </label>
+                <input type="text" id="{{ilist}}-{{ilist.profile.name}}" ng-model="ilist.profile['name']" disabled>
+              </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">My Work</span>
-                <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" disabled>
-                <i class="icon ion-card"></i> </label>
+                <input type="text" id="{{ilist}}-work"  ng-model="ilist.profile['work']" disabled>
+                </label>
               <label class="item item-input" for="{{ilist}}-{{ilist.profile.about}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">About Myself</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" placeholder="about your self" ng-model="ilist.profile['about']" disabled>
+                <input type="text" id="{{ilist}}-{{ilist.profile.about}}" ng-model="ilist.profile['about']" disabled>
               </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.education}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">education</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.education}}" placeholder="your education" ng-model="ilist.profile['education']" readonly>
-                <i class="icon ion-university"></i> </label>
+                <input type="text" id="{{ilist}}-{{ilist.profile.education}}"  ng-model="ilist.profile['education']" readonly>
+                </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-nationality"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">nationality</span>
-                <input type="text" id="{{ilist}}-nationality" placeholder="your nationality" ng-model="ilist.profile['nationality']" readonly>
-                <i class="icon ion-ios-flag"></i> </label>
+                <input type="text" id="{{ilist}}-nationality"  ng-model="ilist.profile['nationality']" readonly>
+                </label>
               <label class="item item-input item-icon-right" for="{{ilist}}-{{ilist.profile.status}}"> <span class="input-label" style="text-transform:uppercase; font-size:11px; font-weight:bold">Status</span>
-                <input type="text" id="{{ilist}}-{{ilist.profile.status}}" placeholder="your status" ng-model="ilist.profile['status']" readonly>
-                <i class="icon ion-ios-heart"></i> </label>
-              
-            </ul>
+                <input type="text" id="{{ilist}}-{{ilist.profile.status}}"  ng-model="ilist.profile['status']" readonly>
+                </label>
+              </div>
+            <div class="over-box">
+                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
+                  <div class="row">
+                    <div class="col"><a ng-click="letsHang()"><i class="icon {{hicon}}"></i><br><span>{{htext}}</span> </a>
+                    <!--<a ng-click="selectTabWithIndex(0)"> <i class="icon ion-grid"></i><br><span>Main</span></a>-->
+                    </div>
+                    <div class="col"><a ng-click="selectTabWithIndex(2)"> <i class="icon ion-coffee"></i> <span>Hobbies</span></a></div>
+                    <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
+                  </div>              
+            </div>
+            
           </ion-content>
         </ion-view>
       </ion-tab>
@@ -62,39 +70,45 @@
         <!-- Tab 3 content -->
         
         <ion-view>
-          <ion-content overflow-scroll="true">
-            <ul class="card list brown-i">
-              <div class="item item-avatar"> <img id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  id="logo-pic" ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              </div>
-              <a class="item item-icon-left item-icon-right" href="#/app/activities/{{id}}"><i class="icon ion-android-calendar"></i> My Activities <i class="icon ion-chevron-right"></i></a> 
-              <div class="item item-divider">My Hobbies</div>
-              <div class="item  item-avatar item-icon-right" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'"> <img src="{{value}}"  /> {{key}} </div>
-            </ul>
+          <ion-content>
+          
+            <div class="over-box">
+              <div class="item item-divider"><span></span><h4>Hobbies</h4></div>              
+               <div class="small-center-inside">
+               <a class="two-col-a" ng-repeat="(key, value) in ilist.profile.hobbies" ng-if="key != 'i'" ><img src="{{value}}"  /><br> <span>  {{key}}  </span></a>                
+               </div> 
+            </div>
+            
+            <div class="over-box">
+                  <div class="item item-divider"><span></span><h4>Links</h4></div>              
+                  <div class="row">
+                    <div class="col"><a href="#/app/activities/{{id}}"> <i class="icon ion-android-calendar"></i><br><span>Activities</span></a></div>
+                    <div class="col"><a ng-click="selectTabWithIndex(1)"> <i class="icon ion-person"></i><br><span>About</span></a></div>
+                    <div class="col"><a ng-click="selectTabWithIndex(3)"> <i class="icon ion-camera"></i> <span>Pictures</span></a></div>
+                  </div>              
+            </div>
+            
+            
+            
+            
+            
           </ion-content>
         </ion-view>
       </ion-tab>
       <ion-tab icon="icon ion-camera"> 
         <!-- Tab 4 content -->
         <ion-view>
-          <ion-content overflow-scroll="true"> 
+          <ion-content> 
             <!-- <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()"> </ion-refresher> -->
-            
-            <div class="card list">
-              <div class="item item-avatar"> <img ng-if="ilist.profile.picture.indexOf('http') !== -1" src="{{ilist.profile.picture}}" /> <img  ng-if="ilist.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{ilist.profile.picture}}" />
-                <h2>{{ilist.profile.name}}</h2>
-                <p>{{ilist.profile.age}}, {{ilist.profile.gender}}</p>
-              </div>
-              <div class="item item-divider">Pictures</div>
-              <li class="item item-thumbnail-left" ng-repeat="(key,value) in ilist.images"> <img ng-src="data:image/jpeg;base64,{{value.image}}">
-                <h2>Picture</h2>
-                <p>#{{$index+1}} </p>
-                <!--<span ng-if="value.count">{{value.count}}</span> <span ng-if="!value.count" >0 </span> <i class="icon ion-heart"></i>-->
-                <!--<div class='clearfix'></div>
-                <ion-checkbox ng-model="isChecked" ng-click="likePic(key, isChecked)" style="background:rbga(0,0,0,0.3);height:45px; padding: 3px 10px;"> <span class="brown-i" ng-if="isChecked">Liked - <i class="icon ion-heart"></i></span> <span class="brown-i" ng-if="!isChecked"> Like </span></ion-checkbox>-->
-              </li>
-            </div>
+                               
+             <div class="picture-box">
+               <a ng-repeat="(key,value) in ilist.images" ng-if="key != 'i'" >
+               
+               <img ng-src="data:image/jpeg;base64,{{value.image}}"></a>
+               
+               </div>
+               
+           
           </ion-content>
         </ion-view>
       </ion-tab>

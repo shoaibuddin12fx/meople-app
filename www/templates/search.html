@@ -5,32 +5,28 @@
   </ion-nav-buttons>
   
   <ion-content>
-  
-   <div class="card list">
+	  <ion-list>
       <ion-toggle toggle-class="toggle-dark" ng-model="SearchMale.checked" ng-checked="SearchMale.checked" ng-click="SearchTick()"> 
-        <span ng-if="SearchMale.checked">Male</span>
-        <span ng-if="!SearchMale.checked">Female</span> {{wait}}</ion-toggle>    
-    </div>
+    	    	<span ng-if="SearchMale.checked">MALE</span>
+	    	    <span ng-if="!SearchMale.checked">FEMALE</span> {{wait}}</ion-toggle>
+    	<ion-item class="item-remove-animate item-thumbnail-left custom-user-list center-outer" ng-repeat="(tkey,tvalue) in ilist" > 
+      		<img  ng-if="tvalue.profile.picture.indexOf('http') !== -1" src="{{tvalue.profile.picture}}">
+            <img  ng-if="tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.profile.picture}}">
+            <p>{{tvalue.profile.age}} years old</p>
+            <h2>{{tvalue.profile.name}}</h2> 
+        <span class="member-tag request">{{tvalue.distance}}</span> <span class="swipe-tag"><i class="icon ion-chevron-left"></i>swipe left for options</span>
+        <ion-option-button class="button-balanced" ng-click="gotoPublicProfile(tkey)"><i class="icon ion-map"></i></ion-option-button>
+        
+      </ion-item>
   
-  
-        <ion-refresher pulling-icon="ion-arrow-down-b" on-refresh="refreshItems()">
-        </ion-refresher>
-         	<ul class=" card list">
-             <a class="item item-avatar small-span" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
+         
+        <!--<a class="item item-avatar small-span" href="#/app/search/{{tkey}}" ng-repeat="(tkey,tvalue) in ilist" ng-if="tkey!=cuid" >
               <img  ng-if="tvalue.profile.picture.indexOf('http') !== -1" src="{{tvalue.profile.picture}}">
               <img  ng-if="tvalue.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{tvalue.profile.picture}}">
               <span style="font-weight:bold">{{tvalue.profile.name}} <br/> </span>
               <span>{{tvalue.profile.gender}},  {{tvalue.profile.age}} </span><br/>
-              <!--<span style="float:left">just {{tvalue.distance}} km away</span>-->
-              </a>
-          <li ng-if="!ilist" class="item item-divider">
-            sorry no results
-            
-            
-          </li> 
-               
-          </ul>
-        
+              <span style="float:left">just {{tvalue.distance}} km away</span>
+              </a>-->
         
         </ion-content>
 

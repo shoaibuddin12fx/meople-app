@@ -7,10 +7,11 @@
           <div class="no-text"><i class="icon ion-thumbsdown"></i></div>
           <div class="yes-text"><i class="icon ion-thumbsup"></i></div>
           <div class="discard"><a href="#/app/search/{{card.key}}">PROFILE</a></div>
-          <img  ng-if="card.value.profile.picture.indexOf('http') !== -1" src="{{card.value.profile.picture}}" /> <img  ng-if="card.value.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{card.value.profile.picture}}" /> </div>
+          <img id="full-width-image" ng-if="card.value.profile.picture.indexOf('http') !== -1" src="{{card.value.profile.picture}}" /> <img id="full-width-image" ng-if="card.value.profile.picture.indexOf('http') === -1" src="data:image/jpeg;base64,{{card.value.profile.picture}}" /> </div>
         <div id="p-bar">
           <ul class="rect">
-            <li id="profile-name">{{card.value.profile.name}},{{card.value.profile.age}} - {{card.value.distance}} km </li>
+            <li id="profile-name">{{card.value.profile.name}},{{card.value.profile.age}}</li>
+            <li id="distance" style="float:right">{{card.value.distance}} km</li>
           </ul>          
         </div>
       </td-card>

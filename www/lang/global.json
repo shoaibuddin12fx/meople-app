@@ -63,8 +63,7 @@
          "Museume":"icon/museum.png",         
          "Songs":"icon/icon-headphone-128.png",
 		 "Pets":"icon/pets.png",
-		 "Politics":"icon/politics.png",
-		 "Technologies":"icon/technology-128.png"
+		 "Politics":"icon/politics.png"		 
       },
       "Hobbies2":{
          "Classic":"icon/icon-music-note-128.png",
@@ -86,10 +85,7 @@
          "Gardening":"icon/gardening_512pxGREY.png",
 		 "Hiking":"icon/hiking-128.png",
          "TV Shows":"icon/39-128.png",
-		 "Riding":"icon/riding-128.png",
-		 "Running":"icon/run-128.png",
-         "Theatre":"icon/Theatre_2-128.png"
-		 
+		 "Riding":"icon/riding-128.png"
       },
       "Hobbies4":{
          "Base_ball":"icon/baseball-128.png",
@@ -100,10 +96,7 @@
          "Shopping":"icon/09.Handbag-128.png",
          "Surfing":"icon/globe-128.png",
 		 "Games":"icon/game.png",
-		 "Oriental":"icon/oriental.png",
-		 "Camping":"icon/Tent-512.png",
-		 "Clubbing":"icon/clubbing.png",
-         "Travelling":"icon/11-128.png"
+		 "Oriental":"icon/oriental.png"		 
       },
       "Hobbies5":{
          "Golf":"icon/golf-128.png",
@@ -114,7 +107,15 @@
          "Swimming":"icon/swimming-128.png",
          "Tennis":"icon/Tennis_2-128.png",
 		 "Rugby":"icon/rugby-128.png",
-		 "Handball": "icon/handball-128.png",
+		 "Handball": "icon/handball-128.png"		 
+      },
+      "Hobbies6":{
+         "Camping":"icon/Tent-512.png",
+		 "Clubbing":"icon/clubbing.png",
+         "Travelling":"icon/11-128.png",
+		 "Technologies":"icon/technology-128.png",
+		 "Running":"icon/run-128.png",
+         "Theatre":"icon/Theatre_2-128.png",
 		 "Video Games":"icon/jostic-128.png",
 		 "Ping Pong":"icon/ping-128.png",
 		 "Martial Arts":"icon/tobi-geri.png"
