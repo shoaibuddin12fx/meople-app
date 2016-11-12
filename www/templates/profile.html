@@ -49,7 +49,7 @@
         <div class="alternate-labels">
           
             <label class="item item-input" for="{{ilist}}-{{ilist.profile.name}}"> <span class="input-label all-span">Name</span>
-              <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" minlength="3" maxlength="15" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
+              <input type="text" id="{{ilist}}-{{ilist.profile.name}}" placeholder="change name" minlength="3" maxlength="25" ng-model="ilist.profile['name']" ng-disabled="!filter.edit">
             </label>
             <label class="item item-input item-icon-right" for="{{ilist}}-work"> <span class="input-label all-span">what do you do?</span>
               <input type="text" id="{{ilist}}-work" placeholder="about your self" ng-model="ilist.profile['work']" ng-hide="!filter.edit">

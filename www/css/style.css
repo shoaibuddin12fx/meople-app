@@ -592,7 +592,7 @@ td-card {
   top: calc(20% - 30px);
   left: calc(50% - 150px);
   width: 300px;
-  height: 350px;
+  min-height: 350px;
   box-shadow: 5px 10px 20px rgba(99, 54, 25, 0.5);
   border-radius: 13px;
   background-color: transparent;
@@ -654,8 +654,7 @@ td-card #p-bar ul li{
 td-card #p-bar ul li:nth-child(1){   
    text-align: left;
    float: left;
-   
-   
+   width: 85%;
 }
 td-card #p-bar ul li:nth-child(2){   
    text-align: right;
@@ -1315,13 +1314,18 @@ button.co-button span{
 .fix-div-inside .welcome-profile-top{
    
    padding: 0px 0px 0px 15px;
-   width: 200px;
+   max-width: 200px;
    height: 100px;
    
 }
 .fix-div-inside h2{
    font-weight: bold;
    text-transform: capitalize;
+   word-break: break-all;
+   word-break: break-all;
+   overflow: unset;
+   text-overflow: unset;
+   white-space: normal;
 }
 .text-align-center{
    text-align: center;
@@ -1417,6 +1421,11 @@ button.co-button span{
 .custom-user-list h2{
    font-weight: bold;
    text-transform: capitalize;
+   word-break: break-all;
+   overflow: unset;
+   text-overflow: unset;
+   white-space: normal;
+   width: 75%;
 }
 
 .member-tag{
