@@ -884,6 +884,16 @@ angular.module('starter.controllers', [])
 
 
 					}
+					
+					$scope.showMyDirections = function(){
+						if($scope.showDirections == true){
+							$scope.showDirections = false;
+						}else{
+							$scope.showDirections = true;
+						}
+						
+					}
+					
 
 
 

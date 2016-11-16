@@ -132,11 +132,13 @@
           <ng-map class="full-page-map" zoom="11" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
             <marker ng-if="!mapedit" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
             <marker ng-if="mapedit"  position="[{{marker2.lat}}, {{marker2.long}}]" title="Location"></marker>
-            
+            <directions ng-if="!mapedit && showDirections" draggable="true" travel-mode="DRIVING" origin="current-location" destination="[{{marker.lat}}, {{marker.long}}]"></directions>
           </ng-map>
         </ion-content>
         <div class="footer-on-map-only"> <a ng-if="!mapedit" ng-click="edit_my_location()"><i class="icon ion-location"></i><br><span>edit</span></a>
-        <a ng-if="mapedit" ng-click="set_my_location()"><i class="icon ion-pinpoint"></i><br><span>set</span></a> </div>
+        <a ng-if="mapedit" ng-click="set_my_location()"><i class="icon ion-pinpoint"></i><br><span>set</span></a>
+        <a ng-if="!mapedit" ng-click="showMyDirections()"><i class="icon ion-pinpoint"></i><br><span>Directions</span></a>
+        </div>
       </ion-view>
     </ion-tab>
     <ion-tab icon="icon ion-camera"> 
