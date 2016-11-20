@@ -130,8 +130,8 @@
         <ion-content>
           
           <ng-map class="full-page-map" zoom="11" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
-            <marker ng-if="!mapedit" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
-            <marker ng-if="mapedit"  position="[{{marker2.lat}}, {{marker2.long}}]" title="Location"></marker>
+            <marker ng-if="!mapedit && !showDirections" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+            <marker ng-if="mapedit" position="[{{marker2.lat}}, {{marker2.long}}]" title="Location"></marker>
             <directions ng-if="!mapedit && showDirections" draggable="true" travel-mode="DRIVING" origin="current-location" destination="[{{marker.lat}}, {{marker.long}}]"></directions>
           </ng-map>
         </ion-content>

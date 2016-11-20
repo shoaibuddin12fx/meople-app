@@ -1,16 +1,20 @@
 <ion-view view-title="Information   {{loading}}" cache-view="false" class="Profile-page  public">
   <ion-tabs class="tabs-icon-only">
-    <ion-tab icon="icon ion-grid">
+    <ion-tab icon="icon ion-map">
       <!-- Tab 1 content -->
       
       <ion-view>
         <ion-content overflow-scroll="false">
           <ng-map zoom="15" id="MyLocation" class="full-page-map" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
-                <marker position="[{{coords.lat}}, {{coords.long}}]" title="Location"></marker>
+                <marker ng-if="!showDirections" position="[{{coords.lat}}, {{coords.long}}]" title="Location"></marker>
+                <directions ng-if="showDirections" draggable="true" travel-mode="DRIVING" origin="current-location" destination="[{{coords.lat}}, {{coords.long}}]"></directions>
           </ng-map>
           <!--<a class="item item-icon-left" href="#/app/{{chlink}}"><i class="icon {{chicon}}"></i>{{cBlock}} </a>-->
          </div>
         </ion-content>
+        <div class="footer-on-map-only"> 
+          <a ng-click="showMyDirections()"><i class="icon ion-pinpoint"></i><br><span>Directions</span></a>
+        </div>
       </ion-view>
       </ion-tab>
       <ion-tab title="Activities" icon="icon ion-person"> 

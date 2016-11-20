@@ -2867,7 +2867,15 @@ angular.module('starter.controllers', [])
 			}
 		}
 
-
+	$scope.showMyDirections = function(){
+						if($scope.showDirections == true){
+							$scope.showDirections = false;
+						}else{
+							$scope.showDirections = true;
+						}
+						
+					}
+					
 	$scope.likePic = function(key, isChecked){
 
 		var ref = new Firebase("https://luminous-heat-6224.firebaseio.com/users/"
