@@ -7,18 +7,22 @@
         <ion-content>
           <div class="alternate-labels" style="background:transparent"> <span class="input-label all-span" style="text-transform:uppercase; float:right">{{res.act.Name}}</span> </div>
           <ng-map class="full-page-map" zoom="11" ng-show="marker2.lat == null" id="actMapLoc" center="[{{coords.lat}}, {{coords.long}}]" on-center-changed="centerChanged()">
-            <marker ng-if="!mapedit" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
+            <marker ng-if="!mapedit && !showDirections" position="[{{marker.lat}}, {{marker.long}}]" title="Location"></marker>
             <marker ng-if="mapedit"  position="[{{marker3.lat}}, {{marker3.long}}]" title="Location"></marker>
+            <directions ng-if="!mapedit && showDirections" draggable="true" travel-mode="DRIVING" origin="current-location" destination="[{{marker.lat}}, {{marker.long}}]"></directions>
+            
+            
           </ng-map>
           <ng-map class="full-page-map" zoom="11" ng-show="marker2.lat != null"
                 center="[{{coords.lat}}, {{coords.long}}]"
                 style="height:90%" >
-            <directions
+            <directions ng-if="!mapedit && !showDirections"
                   draggable="true"
                   panel="directions-panel"
                   travel-mode="DRIVING"
                   origin="[{{coords.lat}}, {{coords.long}}]"
                   destination="[{{marker2.lat}}, {{marker2.long}}]"> </directions>
+            <directions ng-if="!mapedit && showDirections" draggable="true" travel-mode="DRIVING" origin="current-location" destination="[{{coords.lat}}, {{coords.long}}]"></directions>
             <custom-marker id="start"
                   position="[{{coords.lat}}, {{coords.long}}]">
               <div> Departure </div>
@@ -32,6 +36,7 @@
         <div class="footer-on-map-only">
          <a ng-if="!mapedit && show" ng-hide="twoMarkers" ng-click="edit_my_location()"><i class="icon ion-location"></i><br><span>edit</span></a>
          <a ng-if="mapedit && show" ng-hide="twoMarkers" ng-click="set_my_location()"><i class="icon ion-pinpoint"></i><br><span>set</span></a>
+          <a ng-click="showMyDirections()"><i class="icon ion-pinpoint"></i><br><span>Directions</span></a>
          <!-- <a ng-if="show" ng-hide="twoMarkers" ng-click="change_location()" ><i class="icon {{m_icon}}"></i><br>
           <span>{{editLabel}}</span></a>--> <a ng-click="joinActivityAs()" ng-show='!show && status != "pending"' > <i class="icon ion-android-person-add"></i><br>
           <span>join</span></a> <a ng-click="showConfirm()" ng-show='!show && status == "pending"' ><i class="icon ion-android-send"></i><br>

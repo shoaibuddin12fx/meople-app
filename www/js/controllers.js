@@ -1975,7 +1975,7 @@ angular.module('starter.controllers', [])
 					})
 
 				$scope.mapedit = false;
-
+				$scope.showDirections == false;
 				NgMap.getMap({id:'actMapLoc'}).then(function(map) {
 					if($scope.res.lat2 != null){
 							$scope.marker = {lat:$scope.res.lat, long:$scope.res.long};
@@ -1983,7 +1983,18 @@ angular.module('starter.controllers', [])
 							$scope.twoMarkers = true;
 						}
 
-
+					
+					$scope.showMyDirections = function(){
+						if($scope.showDirections == true){
+							$scope.showDirections = false;
+						}else{
+							$scope.showDirections = true;
+						}
+						
+					}
+					
+					
+					
 					console.log($scope.res);
 					$scope.coords = { lat:$scope.res.lat, long:$scope.res.long };
 
