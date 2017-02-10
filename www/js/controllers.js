@@ -1523,7 +1523,6 @@ angular.module('starter.controllers', [])
 
 	  });
 	  $scope.openModal = function(m) {
-		$scope.modal.show();
 		$scope.getMap(m);
 
 	  };
@@ -1848,6 +1847,7 @@ angular.module('starter.controllers', [])
 		NgMap.getMap({id:'foomap'}).then(function(map) {
 				var c = map.getCenter();
 				$scope.marker = {lat:c.lat(), long:c.lng()};
+				$scope.modal.show();
 			$scope.centerChanged = function(event) {
 				var c = map.getCenter();
 				$scope.marker = {lat:c.lat(), long:c.lng()};
