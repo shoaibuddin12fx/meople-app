@@ -266,10 +266,8 @@ angular.module('starter.controllers', [])
 			  var picture = $scope.NewloginData.image;
 			  var location = $scope.loc;
 
-
-		if(picture == "img/photo.png"){
-			$ionicPopup.alert({ template: 'please upload a picture'});
-		}else if(!validateEmail(email)){
+		
+		if(!validateEmail(email)){
 			$ionicPopup.alert({ template: 'email format incorrect'});
 		}else if(email == null || password == null || fullname == null){
 
@@ -285,7 +283,11 @@ angular.module('starter.controllers', [])
 				.then(function(iuser){
 
 					if(!iuser){
-
+						 
+						 if(picture == "img/photo.png"){
+							$ionicPopup.alert({ template: 'please upload a picture'});
+							return
+						 }
 
 						 if($scope.NewloginData.checked){var gender = "male"}
 						 if(!$scope.NewloginData.checked){var gender = "female"}
@@ -1629,7 +1631,7 @@ angular.module('starter.controllers', [])
 
 
 			if($scope.NewActData.actname == null || $scope.gnationality.repeatSelect == null ||
-			   $scope.NewActData.city == null || $scope.marker1 == null ||
+			   $scope.NewActData.city == null || 
 			   $scope.dobValue == null || $scope.dobValue == "No date selected"
 			   // || $scope.cActivityList.repeatSelect == null
 			   || $scope.AccTypeList.repeatSelect == null
@@ -1657,8 +1659,8 @@ angular.module('starter.controllers', [])
 					   var array = {
 						       sos: $scope.sos.checked,
 							   sosDistance: $scope.sos.distance,
-							   lat: $scope.marker1.lat,
-							   long:$scope.marker1.long,
+							   lat: $scope.marker2.lat,
+							   long:$scope.marker2.long,
 							   members:true,
 							   act:actData,
 							   uid:authData.uid,
@@ -1670,7 +1672,12 @@ angular.module('starter.controllers', [])
 
 				} // if host
 
-				if($scope.accom.person == 'traveller'){
+				if($scope.accom.person == 'guest'){
+					
+					if($scope.marker1 == null){
+						var alertPopup = $ionicPopup.alert({template: 'Complete the form'}); alertPopup
+						return;
+					}
 
 					   var actData = {
 								params:{its:$scope.AcType,itsfor:$scope.accom.person},
@@ -1713,7 +1720,7 @@ angular.module('starter.controllers', [])
 
 
 			if($scope.NewActData.actname == null || $scope.gnationality.repeatSelect == null ||
-			   $scope.NewActData.city == null || $scope.marker1 == null ||
+			   $scope.NewActData.city == null ||
 			   $scope.dobValue == null || $scope.dobValue == "No date selected"
 			   // || $scope.cActivityList.repeatSelect == null
 			   || $scope.CarTypeList.repeatSelect == null ||
@@ -1745,8 +1752,8 @@ angular.module('starter.controllers', [])
 					   var array = {
 						       sos: $scope.sos.checked,
 							   sosDistance: $scope.sos.distance,
-							   lat: $scope.marker1.lat,
-							   long:$scope.marker1.long,
+							   lat: $scope.marker2.lat,
+							   long:$scope.marker2.long,
 							   members:true,
 							   act:actData,
 							   uid:authData.uid,
@@ -1759,6 +1766,11 @@ angular.module('starter.controllers', [])
 				} // if host
 
 				if($scope.poolcar.person == 'passenger'){
+					
+					if($scope.marker1 == null){
+						var alertPopup = $ionicPopup.alert({template: 'Complete the form'}); alertPopup
+						return;
+					}
 
 					   var actData = {
 								params:{its:$scope.AcType,itsfor:$scope.poolcar.person},
@@ -1841,7 +1853,11 @@ angular.module('starter.controllers', [])
 
 		actInfo.getLocation(authData, $q, $cordovaGeolocation)
 		 	.then(function(res){
-				$scope.coords = { lat: res.lat, long: res.long};
+				if($scope.NewActData.city != null && $scope.gnationality.repeatSelect != null){
+					$scope.coords = { lat: $scope.NewActData.city, long: $scope.gnationality.repeatSelect };
+				}else{
+					$scope.coords = { lat: res.lat, long: res.long};
+				}
 
 				})
 		NgMap.getMap({id:'foomap'}).then(function(map) {

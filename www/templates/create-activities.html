@@ -83,7 +83,7 @@
                     </div>
                     
                     <div class="row locat3">
-                      <div class="col"><a ng-if="AcType != 'activity' && (accom.person == 'traveller' || poolcar.person == 'passenger')"  class="item item-icon-right" ng-click="openModal('m1')"><i class="fa fa-map-marker" ></i><br>Departure<br>{{marker1.lat | number:2}}<br>{{marker1.long | number:2}}</a></div>
+                      <div class="col"><a ng-if="AcType != 'activity' && (accom.person == 'guest' || poolcar.person == 'passenger')"  class="item item-icon-right" ng-click="openModal('m1')"><i class="fa fa-map-marker" ></i><br>Departure<br>{{marker1.lat | number:2}}<br>{{marker1.long | number:2}}</a></div>
                       <div class="col"><a  class="item item-icon-right" ng-click="openModal('m2')"><i class="fa fa-map-marker"></i><br>Destination<br>{{marker2.lat | number:2}}<br>{{marker2.long | number:2}}</a></div>              
                     </div>
 
