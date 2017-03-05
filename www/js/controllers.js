@@ -214,8 +214,6 @@ angular.module('starter.controllers', [])
 				allowEdit : true,
 				encodingType: Camera.EncodingType.JPEG,
 				popoverOptions: CameraPopoverOptions,
-				targetWidth: 500,
-				targetHeight: 500,
 				saveToPhotoAlbum: false
 			};
 			$cordovaCamera.getPicture(options).then(function(imageData) {
